@@ -1,7 +1,6 @@
-
 :root {
-  --purple-end: #b304eb;
-  --purple-start: #8c02ec;
+  --purple-primary: #8c02ec;
+  --purple-secondary: #b304eb;
   --pink-primary: #ee07a2;
   --header-text-color: #112333ff;
   --light-background: #f9fafcff;
@@ -29,7 +28,7 @@
 .ShelterManagment__petPhoto {
   width: 100%;
   height: 100%;
-  object-fit: cover;  
+  object-fit: cover;
 }
 
 .ShelterManagment__petDescription {

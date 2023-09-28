@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link rel="stylesheet" href="../../BaseStyles.css" />
+    <link rel="stylesheet" href="Notifications.css" />
+  </head>
+  <body>
+    <header>
+      <a class="HeaderItem__active" href="#">Home</a>
+      <a class="HeaderItem" href="#">About</a>
+      <a class="HeaderItem" href="#">services</a>
+      <div class="HeaderItem__manage">
+        <div class="Notification__button">
+          <button onclick="toggleNotifications()" class="dropbtn">
+            Notifications
+          </button>
+          <div id="notificationsDropdown" class="Notification__dropdown">
+            <div class="Notification__none">
+              <div class="Notification__noneText">No new notificaitons</div>
+            </div>
+          </div>
+        </div>
+        <button class="Button__purple">Manage Shelter</button>
+      </div>
+    </header>
+    <div class="PageContainer">
+      <div class="Main">
+        <h1 class="HeaderText">Notifications</h1>
+        <div class="NotificationsPage">
+
+          <div class="NotificationsPage__item">
+            <img
+              src="../../assets/funny.jpeg"
+              alt="Pet Photo"
+              class="NotificationsPage__photo"
+            />
+            <div class="Notification__text">
+              Mango Puppy: A new application has been submitted. Click here to
+              view.
+            </div>
+          </div>
+
+          <div class="NotificationsPage__item">
+            <img
+              src="../../assets/funny.jpeg"
+              alt="Pet Photo"
+              class="NotificationsPage__photo"
+            />
+            <div class="Notification__text">
+              Mango Puppy: A new application has been submitted. Click here to
+              view.
+            </div>
+          </div>
+
+          <div class="NotificationsPage__item">
+            <img
+              src="../../assets/mango.jpeg"
+              alt="Pet Photo"
+              class="NotificationsPage__photo"
+            />
+            <div class="Notification__text">
+              Mr Mango: A new application has been submitted. Click here to
+              view.
+            </div>
+          </div>
+          
+          <div class="NotificationsPage__item">
+            <img
+              src="../../assets/cone-head.jpeg"
+              alt="Pet Photo"
+              class="NotificationsPage__photo"
+            />
+            <div class="Notification__text">
+              Mr Cone Head: There is a new message for this listing. Click here
+              to view.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* When the user clicks on the notifications text, 
+      toggle on/off the notifications */
+      function toggleNotifications() {
+        document
+          .getElementById("notificationsDropdown")
+          .classList.toggle("show");
+      }
+
+      // Close the notifications if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var notifications = document.getElementsByClassName(
+            "Notification__dropdown"
+          );
+          var i;
+          for (i = 0; i < notifications.length; i++) {
+            var openNotifications = notifications[i];
+            if (openNotifications.classList.contains("show")) {
+              openNotifications.classList.remove("show");
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
