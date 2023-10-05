@@ -1,42 +1,186 @@
 .slider {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    overflow-y: hidden;
-    /*border: 4px solid var(--purple-primary);*/
-    padding: 10px;
-    border-radius: 10px; /* Add rounded corners */
-    width: 70%;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
+  /*border: 4px solid var(--purple-primary);*/
+  padding: 10px;
+  border-radius: 10px; /* Add rounded corners */
+  /* width: 50%; */
+  height: 90%;
 }
 
-
-.slider > div{
-    display: flex;
-    flex-shrink: 0;
-    width: 100%;
-    height: 30rem;
-    scroll-snap-align: start;
-    scroll-behavior: smooth;
-    justify-content: center;
-    align-items: center;
-    font-size: 100px;
+.slider > div {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  height: 30rem;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
 }
 
-.center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider::-webkit-scrollbar {
-    display: none;
+  display: none;
+}
+
+.slider-card {
+  /* background-color: #ccc;  */
+  background-color: white;
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Add padding to the content inside the div */
+  width: 95%; /* Make it stretch the full width of its container */
+  height: 500px; /* Set the desired height */
+  margin: 2rem;
+  color: rgb(77, 71, 81);
+  /* font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold !important; */
+}
+
+.slider-button {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.slider-button.left {
+  transform: translateX(400%);
+  left: 0;
+}
+.slider-button.right {
+  transform: translateX(-400%);
+  right: 0;
 }
 
 .info-card {
-    background-color: #ccc; /* Grey background color */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px; /* Add padding to the content inside the div */
-    width: 70%; /* Make it stretch the full width of its container */
-    height: 300px; /* Set the desired height */
-    margin: 2rem;
+  /* background-color: #ccc;  */
+  background-color: white;
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Add padding to the content inside the div */
+  width: 100%; /* Make it stretch the full width of its container */
+  height: 1100px; /* Set the desired height */
+  margin: 2rem;
+  color: rgb(77, 71, 81);
+  /* font-family: "Lucida Console", "Courier New", monospace;
+  font-weight: bold !important; */
+}
+
+.review-card {
+  /* background-color: #ccc;  */
+  background-color: white;
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Add padding to the content inside the div */
+  width: 100%; /* Make it stretch the full width of its container */
+  height: 400px; /* Set the desired height */
+  margin: 2rem;
+  color: rgb(77, 71, 81);
+  /* font-family: "Lucida Console", "Courier New", monospace;
+  font-weight: bold !important; */
+}
+
+.reviews {
+  display: flex;
+  justify-content: space-between; /* Distribute reviews horizontally */
+  gap: 10px; /* Add some spacing between reviews */
+}
+
+.review {
+  flex: 1; /* Allow reviews to grow equally and take full width */
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  height: 200px;
+}
+
+.review h1 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.review p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.quick-info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.info-card h1,
+h2,
+h3,
+h4,
+a {
+  padding-left: 15px; /* Adjust the value as needed */
+  padding-top: 20px;
+}
+
+.info-card p {
+  padding-left: 15px;
+}
+
+#locationhref {
+  margin-left: 50px;
+}
+
+/* test css */
+
+.carousel {
+  position: relative;
+  width: 100vw; /* Full width of the screen */
+  height: 100vh; /* Full height of the screen */
+  overflow: hidden;
+}
+
+.slide-container {
+  display: flex;
+  width: 300%; /* Three times the width for three images */
+  height: 100%;
+  animation: rotateCarousel 15s linear infinite; /* Rotate every 5 seconds (3 images * 5 seconds = 15 seconds) */
+}
+
+.slide {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s;
+  box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.5); /* Shadow for the images on the right */
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@keyframes rotateCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  33.33% {
+    transform: translateX(-100%);
+  }
+  66.66% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
