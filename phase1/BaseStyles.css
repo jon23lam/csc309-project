@@ -3,7 +3,7 @@
   --purple-secondary: #b304eb;
   --pink-primary: #ee07a2;
   --header-text-color: #112333ff;
-  --light-background: #f9fafcff;
+  --light-background: rgb(245, 245, 245);
 }
 
 body {
@@ -275,4 +275,15 @@ input:checked + .ToggleSlider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+
+@media (max-width: 480px) {
+  .PageContainer {
+    margin: 0px;
+  }
+
+  .HeaderText {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }

@@ -3,7 +3,7 @@
   --purple-secondary: #b304eb;
   --pink-primary: #ee07a2;
   --header-text-color: #112333ff;
-  --light-background: #f9fafcff;
+  --light-background: rgb(245, 245, 245);
 }
 
 .ShelterManagement {
