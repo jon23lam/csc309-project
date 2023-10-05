@@ -1,0 +1,42 @@
+.slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overflow-y: hidden;
+    /*border: 4px solid var(--purple-primary);*/
+    padding: 10px;
+    border-radius: 10px; /* Add rounded corners */
+    width: 70%;
+}
+
+
+.slider > div{
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    height: 30rem;
+    scroll-snap-align: start;
+    scroll-behavior: smooth;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.info-card {
+    background-color: #ccc; /* Grey background color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Add padding to the content inside the div */
+    width: 70%; /* Make it stretch the full width of its container */
+    height: 300px; /* Set the desired height */
+    margin: 2rem;
+}
