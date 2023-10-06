@@ -1,0 +1,116 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link rel="stylesheet" href="../../BaseStyles.css" />
+    <link rel="stylesheet" href="../Search/SearchPage.css" />
+    <link rel="stylesheet" href="./PetCreate.css" />
+  </head>
+  <body>
+    <header>
+      <a class="HeaderItem__active" href="#">Home</a>
+      <a class="HeaderItem" href="#">About</a>
+      <a class="HeaderItem" href="#">services</a>
+      <div class="HeaderItem__signup">
+        <button class="Button__purple">Sign Out</button>
+      </div>
+    </header>
+    <div class="PageContainer">
+      <div class="Main">
+        <h1>List your pet!</h1>
+        <div class="PetCreate__fields">
+            <form class="Filters__form" action="https://postman-echo.com/post" method="post" enctype="multipart/form-data">
+              <div class="Filters__filterItem">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Name" class="TextField__PurpleOutline">
+              </div>
+              <div class="Filters__filterItem">
+                <label for="animal">Animal:</label>
+                <select name="animal" id="animal" class="Dropdown__PurpleOutline">
+                  <option value="dog">Dog</option>
+                  <option value="cat">Cat</option>
+                  <option value="bird">Bird</option>
+                  <option value="fish">Fish</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="breed">Breed:</label>
+                <select name="breed" id="sex" class="Dropdown__PurpleOutline">
+                  <option value="" disabled selected hidden>
+                    Select a breed
+                  </option>
+                  <option value="any">Any</option>
+                  <option value="any">Corgi</option>
+                  <option value="male">Labrador</option>
+                  <option value="retriever">Retriever</option>
+                  <option value="german-shepherd">German Shepherd</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="sex">Sex</label>
+                <select name="sex" id="sex" class="Dropdown__PurpleOutline">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="province">Province</label>
+                <select name="province" id="province" class="Dropdown__PurpleOutline">
+                  <option value="ontario">Ontario</option>
+                  <option value="british-columbia">British Columbia</option>
+                  <option value="alberta">Alberta</option>
+                  <option value="manitoba">Manitoba</option>
+                  <option value="new-brunswick">New Brunswick</option>
+                  <option value="newfoundland-and-labrador">Newfoundland and Labrador</option>
+                  <option value="nova-scotia">Nova Scotia</option>
+                  <option value="prince-edward-island">Prince Edward Island</option>
+                  <option value="quebec">Quebec</option>
+                  <option value="saskatchewan">Saskatchewan</option>
+                  <option value="northwest-territories">Northwest Territories</option>
+                  <option value="nunavut">Nunavut</option>
+                  <option value="yukon">Yukon</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" class="TextField__PurpleOutline">
+              </div>
+              <div class="Filters__filterItem">
+                <label for="color">Color</label>
+                <select name="color" id="color" class="Dropdown__PurpleOutline">
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
+                  <option value="Brown">Brown</option>
+                  <option value="sable">Sable</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="age">Age:</label>
+                <div class="Filters__range">
+                  <input type="number" id="age" name="age" placeholder="Age" min="0" class="TextField__PurpleOutlineRange">
+                </div>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="weight">Weight:</label>
+                <div class="Filters__range">
+                  <input type="number" id="weight" name="weight" placeholder="Weight" min="0" class="TextField__PurpleOutlineRange">
+                </div>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" class="TextField__PurpleOutline">
+              </div>
+              <div class="Filters__filterItem">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" class="TextField__PurpleOutline">
+              </div>
+              <div class="PetCreate__listButton">
+                <button type="submit" class="Button__purple">List Animal</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
