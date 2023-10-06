@@ -3,7 +3,7 @@
   --purple-secondary: #b304eb;
   --pink-primary: #ee07a2;
   --header-text-color: #112333ff;
-  --light-background: #f9fafcff;
+  --light-background: rgb(245, 245, 245);
 }
 
 body {
@@ -79,6 +79,17 @@ header {
   border: 1px solid var(--pink-primary);
 }
 
+.Button__pink {
+  padding: 12px 18px;
+  color: white;
+  font-family: sans-serif;
+  font-size: medium;
+  background-color: var(--pink-primary);
+  border-radius: 8px;
+  border: 1px solid var(--pink-primary);
+  cursor: pointer;
+}
+
 .Main {
   height: 100%;
 }
@@ -114,6 +125,7 @@ header {
   display: none;
   position: absolute;
   width: 320px;
+  right: -120px;
   border-radius: 16px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -190,10 +202,89 @@ header {
   margin: auto;
 }
 
+.Dropdown__PurpleOutline {
+  padding: 12px 18px;
+  color: var(--purple-primary);
+  font-family: sans-serif;
+  font-size: medium;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid var(--purple-primary);
+  cursor: pointer;
+}
+
+.TextField__PurpleOutline {
+  padding: 12px 18px;
+  color: var(--purple-primary);
+  font-family: sans-serif;
+  font-size: medium;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid var(--purple-primary);
+  cursor: text;
+}
+
+/* Reference/Credit: https://www.w3schools.com/howto/howto_css_switch.asp */
+.Toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.Toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ToggleSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.ToggleSlider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .ToggleSlider {
+  background-color: var(--pink-primary);
+}
+
+input:focus + .ToggleSlider {
+  box-shadow: 0 0 1px var(--pink-primary);
+}
+
+input:checked + .ToggleSlider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
 @media (max-width: 480px) {
   .PageContainer {
-    position: relative;
-    min-height: 100vh;
-    margin: 0px 10px;
+    margin: 0px;
+  }
+
+  .HeaderText {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }
