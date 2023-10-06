@@ -73,6 +73,15 @@
         <h1 class="HeaderText">Search for your new pet</h1>
         <div class="SearchPage">
           <div class="SearchPage__results">
+            <div class="SearchPage__FilterButtonWrapper">
+              <button
+                id="FilterToggle"
+                class="Button__purple"
+                onclick="toggleFilters()"
+              >
+                Search Filters
+              </button>
+            </div>
             <div class="SearchPage__petInfo">
               <div class="SearchPage__petPhotoWrapper">
                 <img
@@ -196,7 +205,10 @@
 
           <div class="SearchPage__filters">
             <form class="Filters__form">
-              <h2 class="Filters__header">Search Filters</h2>
+              <div class="Filters__headerWrapper">
+                <h2 class="Filters__header">Search Filters</h2>
+                <div class="Filters__back" onClick="toggleFilters()">Back</div>
+              </div>
               <div class="Filters__filterItem">
                 <label>Sort by:</label>
                 <div class="Filters__sort">
@@ -383,6 +395,40 @@
           }
         }
       };
+
+      function toggleFilters() {
+        let div = document.querySelector(".SearchPage__filters");
+
+        if (div.style.display === "none" || div.style.display === "") {
+          div.style.display = "block";
+          div = document.querySelector(".SearchPage__results");
+          div.style.display = "none";
+        } else {
+          div.style.display = "none";
+          div = document.querySelector(".SearchPage__results");
+          div.style.display = "flex";
+        }
+      }
+
+      let previousWidth = window.innerWidth;
+
+      function checkScreenWidth() {
+        const currentWidth = window.innerWidth;
+        const threshold = 480;
+
+        if (currentWidth >= threshold && previousWidth < threshold) {
+          // Screen width went from below 480 to above 480
+          let div = document.querySelector(".SearchPage__filters");
+
+          div.style.display = "block";
+          div = document.querySelector(".SearchPage__results");
+          div.style.display = "flex";
+        }
+
+        previousWidth = currentWidth;
+      }
+
+      window.addEventListener("resize", checkScreenWidth);
     </script>
   </body>
 </html>

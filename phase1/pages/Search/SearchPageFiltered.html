@@ -368,6 +368,26 @@
           div.style.display = "flex";
         }
       }
+
+      let previousWidth = window.innerWidth;
+
+      function checkScreenWidth() {
+        const currentWidth = window.innerWidth;
+        const threshold = 480;
+
+        if (currentWidth >= threshold && previousWidth < threshold) {
+          // Screen width went from below 480 to above 480
+          let div = document.querySelector(".SearchPage__filters");
+
+          div.style.display = "block";
+          div = document.querySelector(".SearchPage__results");
+          div.style.display = "flex";
+        }
+
+        previousWidth = currentWidth;
+      }
+
+      window.addEventListener("resize", checkScreenWidth);
     </script>
   </body>
 </html>

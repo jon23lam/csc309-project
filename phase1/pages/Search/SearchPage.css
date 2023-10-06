@@ -80,6 +80,7 @@ object {
 
 .Filters__back {
   display: none;
+  cursor: pointer;
   color: var(--purple-primary);
 }
 
