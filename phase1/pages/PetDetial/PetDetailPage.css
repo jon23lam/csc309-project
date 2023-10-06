@@ -1,0 +1,202 @@
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  height: 90%;
+}
+
+.slider > div {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  height: 30rem;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-card {
+  background-color: var(--light-background);
+  border-radius: 10px;
+  padding: 20px;
+  width: 95%;
+  height: 500px;
+  margin: 2rem;
+  color: rgb(77, 71, 81);
+  border: 2px solid var(--purple-primary);
+}
+
+.slider-button {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.slider-button.left {
+  transform: translateX(400%);
+  left: 0;
+}
+.slider-button.right {
+  transform: translateX(-400%);
+  right: 0;
+}
+
+.info-card {
+  background-color:  var(--light-background);
+  border-radius: 10px;
+  padding: 20px;
+  width: 70%;
+  border: 2px solid var(--purple-primary);
+  margin: 2rem;
+  color: rgb(77, 71, 81);
+}
+
+.adopt-card {
+  background-color: var(--light-background);
+  border-radius: 10px;
+  padding: 20px;
+  width: 30%;
+  margin: 2rem;
+  color: rgb(77, 71, 81);
+  border: 2px solid var(--purple-primary);
+  text-align: center;
+}
+
+.adopted{
+  background: #f1baba;
+}
+
+.adopt-button{
+  background: var(--purple-primary);
+  border: 1px solid var(--purple-secondary);
+}
+
+.adopt-button:hover{
+  background: var(--pink-primary);
+  border: 1px solid var(--pink-primary);
+}
+
+.quick-info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.info-card h1,
+h2,
+h3,
+h4,
+a {
+  padding-left: 15px;
+  padding-top: 20px;
+}
+
+.info-card p {
+  padding-left: 15px;
+}
+
+#locationhref {
+  margin-left: 50px;
+}
+
+.carousel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide-container {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  animation: rotateCarousel 15s linear infinite;
+}
+
+.slide {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@keyframes rotateCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  33.33% {
+    transform: translateX(-100%);
+  }
+  66.66% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1280px) {
+  .slider {
+    padding: 0;
+    height: auto;
+    overflow-x: hidden;
+  }
+  .info-card{
+    width: 100%;
+  }
+
+  .main-content{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .adopt-card{
+    width: 70%;
+  }
+
+  .slider > div {
+    width: 100%;
+  }
+
+  .slider-card {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+  .slider-button {
+    display: none;
+  }
+  .reviews {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+

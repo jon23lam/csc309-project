@@ -1,2 +1,9 @@
 .vscode
 .DS_Store
+phase1/pages/test.html
+.idea/csc309-project.iml
+.idea/jsLibraryMappings.xml
+.idea/modules.xml
+.idea/prettier.xml
+.idea/vcs.xml
+.idea/.gitignore

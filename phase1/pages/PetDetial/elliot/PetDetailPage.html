@@ -1,0 +1,228 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../PetDetailPage.css" />
+    <link rel="stylesheet" href="../../../BaseStyles.css" />
+  </head>
+  <body style="background-color: white">
+    <header>
+      <a class="HeaderItem__active" href="#">Home</a>
+      <a class="HeaderItem" href="#">About</a>
+      <a class="HeaderItem" href="#">services</a>
+      <div class="HeaderItem__manage">
+        <div class="Notification__button">
+          <div class="Notification__dot"></div>
+          <button onclick="toggleNotifications()" class="dropbtn">
+            Notifications
+          </button>
+          <div id="notificationsDropdown" class="Notification__dropdown">
+            <div class="Notification__item">
+              <img
+                src="../../../assets/funny.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mango Puppy: A new application has been submitted. Click here to
+                view.
+              </div>
+            </div>
+
+            <div class="Notification__item">
+              <img
+                src="../../../assets/mango.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mr Mango: A new application has been submitted. Click here to
+                view.
+              </div>
+            </div>
+
+            <div class="Notification__item">
+              <img
+                src="../../../assets/cone-head.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mr Cone Head: There is a new message for this listing. Click
+                here to view.
+              </div>
+            </div>
+
+            <div
+              class="Notification__seeAll"
+              onclick="location.href='../../Notifications/Notifications.html';"
+            >
+              <div class="Notification__seeAllText">See all notifications</div>
+            </div>
+          </div>
+        </div>
+        <button class="Button__purple">Manage Shelter</button>
+      </div>
+    </header>
+
+    <div class="PageContainer">
+      <div class="center">
+        <div class="slider-card center">
+          <div class="slider">
+            <div>
+              <img src="../../../assets/elliot/1.jpeg" height="100%" />
+            </div>
+            <div>
+              <img
+                src="../../../assets/elliot/2.jpeg"
+                height="100%"
+                alt="dog 1"
+              />
+            </div>
+            <div>
+              <img
+                src="../../../assets/elliot/3.jpeg"
+                height="100%"
+                alt="dog 2"
+              />
+            </div>
+          </div>
+          <div class="slider-button left" onclick="scrollToNextImage(-1)">
+            ←
+          </div>
+          <div class="slider-button right" onclick="scrollToNextImage(1)">
+            →
+          </div>
+        </div>
+      </div>
+      <div class="center main-content">
+        <div class="info-card">
+          <div>
+            <h1>Lilly (Already Adopted)</h1>
+            <br />
+            <a href="#" style="font-size: 18px; color: black">
+              Maremma Sheepdog
+            </a>
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a href="#" style="font-size: 18px; color: black"
+              >Richmond Hill, ON</a
+            >
+
+            <br />
+            <br />
+          </div>
+          <hr />
+          <div class="quick-info">
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >Puppy
+            </a>
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >Female
+            </a>
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a
+              href=""
+              style="text-decoration: none; font-size: 18px; color: black"
+              >Extra Large</a
+            >
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a
+              href=""
+              style="text-decoration: none; font-size: 18px; color: black"
+              >White / Cream</a
+            >
+          </div>
+          <hr />
+          <div>
+            <section id="about">
+              <h2>About</h2>
+              <ul>
+                <li>
+                  <p>
+                    Characteristics: Friendly, Affectionate, Loyal, Playful,
+                    Protective, Athletic, Loves Kisses
+                  </p>
+                </li>
+                <li>
+                  <p>Health: Vaccinations up to date.</p>
+                </li>
+                <li>
+                  <p>Good in a home with: Other dogs, cats, children</p>
+                </li>
+                <li>
+                  <p>Status: Already adopted</p>
+                </li>
+              </ul>
+            </section>
+          </div>
+          <div>
+            <hr />
+          </div>
+          <div class="get-to-know">
+            <h2>Get to know Lilly</h2>
+            <p>
+              Lilly's journey began when she was separated from her mother at
+              the tender age of 3 weeks and sold as a golden retriever puppy to
+              a first-time dog owner. However, a visit to the vet revealed that
+              Lilly was too young to be away from her mom and littermates, and
+              she wasn't a golden retriever after all.
+            </p>
+            <p>
+              Despite the initial challenges, Lilly's story took a turn when her
+              new owner tried to reunite her with her mother, but the breeder
+              declined to take her back. Since then, Lilly has found her way
+              into our care. She's now healthy, vaccinated, and ready to embark
+              on her next chapter through adoption.
+            </p>
+            <p>
+              Lilly is a Maremma sheepdog, known for their large and protective
+              nature. We're looking for a loving family committed to her
+              training and providing her with the space she deserves. Lilly
+              would thrive on a larger property, ideally in a country setting.
+            </p>
+          </div>
+        </div>
+
+        <div class="adopt-card adopted">
+          <h1 class="center">Lilly has already found a home!</h1>
+          <p class="center">
+            She is unable to adopt right now, but feel free to look at our other
+            pets!
+          </p>
+          <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-primary adopt-button">View Pets</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../PetDetailPage.js"></script>
+  </body>
+</html>

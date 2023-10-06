@@ -1,0 +1,221 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../PetDetailPage.css" />
+    <link rel="stylesheet" href="../../../BaseStyles.css" />
+  </head>
+  <body style="background-color: white">
+    <header>
+      <a class="HeaderItem__active" href="#">Home</a>
+      <a class="HeaderItem" href="#">About</a>
+      <a class="HeaderItem" href="#">services</a>
+      <div class="HeaderItem__manage">
+        <div class="Notification__button">
+          <div class="Notification__dot"></div>
+          <button onclick="toggleNotifications()" class="dropbtn">
+            Notifications
+          </button>
+          <div id="notificationsDropdown" class="Notification__dropdown">
+            <div class="Notification__item">
+              <img
+                src="../../../assets/funny.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mango Puppy: A new application has been submitted. Click here to
+                view.
+              </div>
+            </div>
+
+            <div class="Notification__item">
+              <img
+                src="../../../assets/mango.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mr Mango: A new application has been submitted. Click here to
+                view.
+              </div>
+            </div>
+
+            <div class="Notification__item">
+              <img
+                src="../../../assets/cone-head.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mr Cone Head: There is a new message for this listing. Click
+                here to view.
+              </div>
+            </div>
+
+            <div
+              class="Notification__seeAll"
+              onclick="location.href='../../Notifications/Notifications.html';"
+            >
+              <div class="Notification__seeAllText">See all notifications</div>
+            </div>
+          </div>
+        </div>
+        <button class="Button__purple">Manage Shelter</button>
+      </div>
+    </header>
+
+    <div class="PageContainer">
+      <div class="center">
+        <div class="slider-card center">
+          <div class="slider">
+            <div>
+              <img src="../../../assets/elliot/1.jpeg" height="100%" />
+            </div>
+            <div>
+              <img
+                src="../../../assets/elliot/2.jpeg"
+                height="100%"
+                alt="dog 1"
+              />
+            </div>
+            <div>
+              <img
+                src="../../../assets/elliot/3.jpeg"
+                height="100%"
+                alt="dog 2"
+              />
+            </div>
+          </div>
+          <div class="slider-button left" onclick="scrollToNextImage(-1)">
+            ←
+          </div>
+          <div class="slider-button right" onclick="scrollToNextImage(1)">
+            →
+          </div>
+        </div>
+      </div>
+      <div class="center main-content">
+        <div class="info-card">
+          <div>
+            <h1>Elliot</h1>
+            <br />
+            <a href="#" style="font-size: 18px; color: black">
+              Jack Russell Terrier & Wirehaired Dachshund Mix</a
+            >
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a href="#" style="font-size: 18px; color: black">King City, ON</a>
+
+            <br />
+            <br />
+          </div>
+          <hr />
+          <div class="quick-info">
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >Young</a
+            >
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >Male
+            </a>
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a
+              href=""
+              style="text-decoration: none; font-size: 18px; color: black"
+              >Small</a
+            >
+            <a
+              href="#"
+              style="font-size: 18px; color: black; text-decoration: none"
+              >•</a
+            >
+            <a
+              href=""
+              style="text-decoration: none; font-size: 18px; color: black"
+              >Tricolor (Brown, Black, & White)</a
+            >
+          </div>
+          <hr />
+          <div>
+            <section id="about">
+              <h2>About</h2>
+              <ul>
+                <li>
+                  <p>Characteristics: Playful, fun, exited</p>
+                </li>
+                <li>
+                  <p>Health: Spayed / neutered, special needs.</p>
+                </li>
+                <li>
+                  <p>Good in a home with: Other dogs, cats, children</p>
+                </li>
+              </ul>
+            </section>
+          </div>
+          <div>
+            <hr />
+          </div>
+          <div class="get-to-know">
+            <h2>Get to know Elliot</h2>
+            <p>
+              Introducing the cheerful Elliot, a spirited little guy who's about
+              6 months old. Elliot's zest for life is truly infectious, and he's
+              got a heart full of love for everyone he meets. What makes Elliot
+              extra special is that he doesn't let anything hold him back, not
+              even the fact that he walks a bit differently from other dogs. His
+              independent spirit and playful nature make him an absolute joy to
+              be around.
+            </p>
+            <p>
+              Elliot is a pro when it comes to house training, pee pad training,
+              and crate training. He's adapted to his unique situation with
+              grace and determination. While he may not be a fan of traditional
+              walks, he's all about running and playing in a secure, fenced
+              yard. And don't be surprised by his agility – he effortlessly
+              conquers any step with the help of a ramp in his foster home.
+            </p>
+            <p>
+              Currently residing in Pickering under the loving care of his
+              foster family, Elliot is ready to find his forever home. If you're
+              looking for a furry companion who embodies resilience and
+              enthusiasm, Elliot could be the perfect match for you. Fill out an
+              application today to arrange a meeting with this remarkable pup.
+            </p>
+          </div>
+        </div>
+
+        <div class="adopt-card">
+          <h1 class="center">Adopt Elliot Now!</h1>
+          <p class="center">Click below if you would like to adopt now:</p>
+          <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-primary adopt-button">Adopt now!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../PetDetailPage.js"></script>
+  </body>
+</html>
