@@ -1,0 +1,42 @@
+.page-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.field-container {
+    background-color: var(--light-background);
+    width: 30vw;
+    height: 30vh;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+}
+
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-labels {
+    margin: 0 0 5px 10px;
+    text-align: left;
+}
+
+.login-fields {
+    width: 20rem;
+    margin: 0 10px 20px 10px;
+}
+
+.login-button {
+    margin-top: 4rem;
+    width: 10rem;
+    align-self: center;
+}
