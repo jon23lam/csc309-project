@@ -19,7 +19,7 @@
 
 .PetCreate__petDescription {
     resize: none;
-    min-height: 320px;
+    min-height: 200px;
 }
 
 .PetCreate__petPhotoWrapper {
