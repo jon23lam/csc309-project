@@ -19,7 +19,15 @@
     <div class="PageContainer">
       <div class="Main">
         <h1>Edit Pet Information</h1>
+        
         <div class="PetCreate__fields">
+          <div class="PetCreate__petPhotoWrapper">
+            <img
+              src="../../assets/funny.jpeg"
+              alt="Pet Photo"
+              class="PetCreate__petPhoto"
+            />
+          </div>
             <form class="Filters__form" method="post" enctype="multipart/form-data">
               <div class="Filters__filterItem">
                 <label for="image">Image:</label>
@@ -103,7 +111,7 @@
               </div>
               <div class="Filters__filterItem">
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" class="TextField__PurpleOutline"></textarea>
+                <textarea id="description" name="description" class="TextField__PurpleOutline PetCreate__petDescription"></textarea>
               </div>
             </form>
             <div class="PetCreate__listButton">
