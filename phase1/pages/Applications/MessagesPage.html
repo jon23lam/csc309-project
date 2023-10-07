@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link rel="stylesheet" href="../../BaseStyles.css" />
+    <link rel="stylesheet" href="ApplicationsPage.css" />
+  </head>
+  <body>
+    <header>
+      <a class="HeaderItem__active" href="#">Home</a>
+      <a class="HeaderItem" href="#">About</a>
+      <a class="HeaderItem" href="#">services</a>
+      <div class="HeaderItem__manage">
+        <div class="Notification__button">
+          <div class="Notification__dot"></div>
+          <button onclick="toggleNotifications()" class="dropbtn">
+            Notifications
+          </button>
+          <div id="notificationsDropdown" class="Notification__dropdown">
+            <div class="Notification__item">
+              <img
+                src="../../assets/funny.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mango Puppy: A new application has been submitted. Click here to
+                view.
+              </div>
+            </div>
+
+            <div class="Notification__item">
+              <img
+                src="../../assets/mango.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mr Mango: A new application has been submitted. Click here to
+                view.
+              </div>
+            </div>
+
+            <div class="Notification__item">
+              <img
+                src="../../assets/cone-head.jpeg"
+                alt="Pet Photo"
+                class="Notification__photo"
+              />
+              <div class="Notification__text">
+                Mr Cone Head: There is a new message for this listing. Click
+                here to view.
+              </div>
+            </div>
+
+            <div
+              class="Notification__seeAll"
+              onclick="location.href='../Notifications/Notifications.html';"
+            >
+              <div class="Notification__seeAllText">See all notifications</div>
+            </div>
+          </div>
+        </div>
+        <button class="Button__purple">Manage Shelter</button>
+      </div>
+    </header>
+
+    <div class="PageContainer">
+      <div class="Main">
+        <h1 class="HeaderText">Message Johnnay:</h1>
+        <div class="ApplicationsPage">
+          <div class="MessagePage__messagesWrapper">
+            <div class="Application__leftCol">
+              <div class="Application__photoWrapper">
+                <img
+                  src="../../assets/johnnay.jpeg"
+                  alt="Pet Photo"
+                  class="Application__photo"
+                />
+              </div>
+              <div class="Application__generalInfo">
+                <h5 class="Application__contact">Contact:</h5>
+                <a
+                  class="Application__email"
+                  href="mailto:johnnay.xins@gmail.com"
+                  >johnnay.xins@gmail.com</a
+                >
+                <a class="Application__phone" href="tel:508-314-4977"
+                  >(508)-314-4977</a
+                >
+                <h5 class="Application__address">
+                  120 Homewood Ave, Toronto, ON
+                </h5>
+                <h5 class="Application__dob">Date of birth: July 8th, 2001</h5>
+                <h5 class="Application__gender">Gender: Male</h5>
+              </div>
+            </div>
+            <div class="Application__mainCol">
+              <div class="MessagePage__messages">
+                <h5 class="Message__item">
+                  Johnnay: Hi I am very interested in adopting Mr Mango! I am
+                  currently a doctor but I have also worked as a lawyer,
+                  mechanic, engineer and many more! I am looking for a puppy and
+                  I really like corgis so I think Mr Mango would be a great fit
+                  for what im looking for. I currently make 200k a year so I
+                  have the money to take care of him and treat him well. Please
+                  get back to me about the next steps to adopt him! Thanks, -
+                  Johnnay
+                </h5>
+                <h5 class="Message__item">
+                  You: Hi Johnnay, I am glad to hear you are interested in
+                  adopting Mango! Before we proceed, what kind of home do you
+                  have? Home, Apartment, Farmland, etc
+                </h5>
+                <h5 class="Message__item">
+                  Johnnay: I am currently living in an apartment that has 2
+                  bedrooms with around 800sqft
+                </h5>
+                <h5 class="Message__item">
+                  You: Great that is good to know. Have you ever had a dog
+                  before or would this be your first dog?
+                </h5>
+                <h5 class="Message__item">
+                  Johnnay: I had a dog growing up but he passed away when I was
+                  young
+                </h5>
+                <h5 class="Message__item">
+                  You: Im sorry to hear that. Okay since it looks like you have
+                  experience with dogs you are a pretty good canditate, would
+                  you like to meet him first?
+                </h5>
+              </div>
+              <textarea
+                class="Message__textarea"
+                name="message"
+                placeholder="Message Johnnay here"
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* When the user clicks on the notifications text, 
+      toggle on/off the notifications */
+      function toggleNotifications() {
+        document
+          .getElementById("notificationsDropdown")
+          .classList.toggle("show");
+      }
+
+      // Close the notifications if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var notifications = document.getElementsByClassName(
+            "Notification__dropdown"
+          );
+          var i;
+          for (i = 0; i < notifications.length; i++) {
+            var openNotifications = notifications[i];
+            if (openNotifications.classList.contains("show")) {
+              openNotifications.classList.remove("show");
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
