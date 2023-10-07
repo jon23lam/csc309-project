@@ -156,21 +156,6 @@ a {
 }
 
 
-@keyframes rotateCarousel {
-  0% {
-    transform: translateX(0);
-  }
-  33.33% {
-    transform: translateX(-100%);
-  }
-  66.66% {
-    transform: translateX(-200%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 @media (max-width: 1280px) {
   .slider {
     padding: 0;
