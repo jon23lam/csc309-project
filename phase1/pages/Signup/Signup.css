@@ -1,0 +1,64 @@
+.page-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.field-container {
+    background-color: var(--light-background);
+    width: 40rem;
+    height: 70vh;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+}
+
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signup-labels {
+    margin: 0 0 5px 10px;
+    text-align: left;
+}
+
+.signup-fields {
+    max-width: 30rem;
+    width: 30rem;
+    margin: 0 10px 20px 10px;
+}
+
+.special-fields {
+    margin: 0 10px 20px 10px;
+    width: 15rem;
+}
+
+.signup-button {
+    margin-top: 4rem;
+    width: 10rem;
+    align-self: center;
+}
+
+.hours {
+    display: flex;
+    flex-direction: row;
+}
+
+.hour-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.hour-fields {
+    width: 10rem;
+    margin: 0 10px 20px 10px;
+}

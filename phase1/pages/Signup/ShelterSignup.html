@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link rel="stylesheet" href="../../BaseStyles.css" />
+    <link rel="stylesheet" href="./Signup.css" />
+</head>
+<body>
+<div class="page-container">
+    <h1>Sign Up as Pet Shelter</h1>
+    <div class="field-container">
+        <div class="field-wrapper">
+            <label for="shelterName" class="signup-labels">Shelter Name:</label>
+            <input type="text" id="shelterName" name="shelterName" class="TextField__PurpleOutline signup-fields" placeholder="Shelter Name" required>
+            <label for="address" class="signup-labels">Street Address:</label>
+            <input type="text" id="address" name="address" class="TextField__PurpleOutline signup-fields" placeholder="Street Address" required>
+            <label for="city" class="signup-labels">City:</label>
+            <input type="text" id="city" name="city" class="TextField__PurpleOutline signup-fields" placeholder="City" required>
+            <label for="province" class="signup-labels">Province:</label>
+            <select
+                    name="province"
+                    id="province"
+                    class="Dropdown__PurpleOutline signup-fields"
+            >
+                <option value="" disabled selected hidden>
+                    Select a Province
+                </option>
+                <option value="ontario">Ontario</option>
+                <option value="british-columbia">British Columbia</option>
+                <option value="alberta">Alberta</option>
+                <option value="manitoba">Manitoba</option>
+                <option value="new-brunswick">New Brunswick</option>
+                <option value="newfoundland-and-labrador">
+                    Newfoundland and Labrador
+                </option>
+                <option value="nova-scotia">Nova Scotia</option>
+                <option value="prince-edward-island">
+                    Prince Edward Island
+                </option>
+                <option value="quebec">Quebec</option>
+                <option value="saskatchewan">Saskatchewan</option>
+                <option value="northwest-territories">
+                    Northwest Territories
+                </option>
+                <option value="nunavut">Nunavut</option>
+                <option value="yukon">Yukon</option>
+            </select>
+            <label for="postalCode" class="signup-labels">Postal Code:</label>
+            <input type="text" id="postalCode" name="postalCode" class="TextField__PurpleOutline signup-fields" placeholder="Postal Code" required>
+            <div class="hours">
+                <div class="hour-wrapper">
+                    <label for="openTime" class="signup-labels">Open Time:</label>
+                    <input type="time" id="openTime" name="openTime" class="TextField__PurpleOutline hour-fields">
+                </div>
+                <div class="hour-wrapper">
+                    <label for="closeTime" class="signup-labels">Close Time:</label>
+                    <input type="time" id="closeTime" name="closeTime" class="TextField__PurpleOutline hour-fields">
+                </div>
+            </div>
+            <label for="email" class="signup-labels">Email Address:</label>
+            <input type="email" id="email" name="email" class="TextField__PurpleOutline signup-fields" placeholder="Email Address" required>
+            <label for="password" class="signup-labels">Password:</label>
+            <input type="text" id="password" name="password" class="TextField__PurpleOutline signup-fields" placeholder="Password">
+            <label for="confirmPassword" class="signup-labels">Confirm Password:</label>
+            <input type="text" id="confirmPassword" name="confirmPassword" class="TextField__PurpleOutline signup-fields" placeholder="Confirm Password">
+            <button class="Button__purpleOutline signup-button">Sign Up</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
