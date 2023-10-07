@@ -20,7 +20,11 @@
       <div class="Main">
         <h1>Edit Pet Information</h1>
         <div class="PetCreate__fields">
-            <form class="Filters__form" action="https://postman-echo.com/post" method="post" enctype="multipart/form-data">
+            <form class="Filters__form" method="post" enctype="multipart/form-data">
+              <div class="Filters__filterItem">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" class="TextField__PurpleOutline">
+              </div>
               <div class="Filters__filterItem">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Name" class="TextField__PurpleOutline">
@@ -99,16 +103,12 @@
               </div>
               <div class="Filters__filterItem">
                 <label for="description">Description:</label>
-                <input type="text" id="description" name="description" class="TextField__PurpleOutline">
-              </div>
-              <div class="Filters__filterItem">
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image" class="TextField__PurpleOutline">
-              </div>
-              <div class="PetCreate__listButton">
-                <button type="submit" class="Button__purple">Update Listing</button>
+                <textarea id="description" name="description" class="TextField__PurpleOutline"></textarea>
               </div>
             </form>
+            <div class="PetCreate__listButton">
+              <button onclick="window.location.href='../ShelterManagment/ShelterManagmentPage.html'" class="Button__purple">Update Listing</button>
+            </div>
           </div>
       </div>
     </div>
