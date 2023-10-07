@@ -1,0 +1,26 @@
+.info-card {
+    background-color: var(--light-background);
+    border-radius: 10px;
+    padding: 20px;
+    width: 70%;
+    border: 2px solid var(--purple-primary);
+    color: rgb(77, 71, 81);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    margin: 2rem auto;
+}
+
+.info-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group{
+    padding: 0 0 1rem 0;
+}
