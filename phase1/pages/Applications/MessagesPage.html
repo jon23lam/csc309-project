@@ -10,61 +10,66 @@
   </head>
   <body>
     <header>
-      <a class="HeaderItem__active" href="#">Home</a>
-      <a class="HeaderItem" href="#">About</a>
-      <a class="HeaderItem" href="#">services</a>
-      <div class="HeaderItem__manage">
-        <div class="Notification__button">
-          <div class="Notification__dot"></div>
-          <button onclick="toggleNotifications()" class="dropbtn">
-            Notifications
-          </button>
-          <div id="notificationsDropdown" class="Notification__dropdown">
-            <div class="Notification__item">
-              <img
-                src="../../assets/funny.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mango Puppy: A new application has been submitted. Click here to
-                view.
+      <div class="Header__logo" onclick="location.href='../ShelterManagement/ShelterManagementPage.html';">
+        <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+      </div>
+      <div class="Header__navButtons">
+        <a class="HeaderItem__active" href="../ShelterManagement/ShelterManagementPage.html">Manage Shelter</a>
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/mango.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Mango: A new application has been submitted. Click here to
-                view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/cone-head.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Cone Head: There is a new message for this listing. Click
-                here to view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
               </div>
-            </div>
 
-            <div
-              class="Notification__seeAll"
-              onclick="location.href='../Notifications/Notifications.html';"
-            >
-              <div class="Notification__seeAllText">See all notifications</div>
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
             </div>
           </div>
+          <button class="Button__purple" onclick="location.href='../Landing/Landing.html';">Log Out</button>
         </div>
-        <button class="Button__purple">Manage Shelter</button>
       </div>
     </header>
 
@@ -101,7 +106,7 @@
             <div class="Application__mainCol">
               <div class="MessagePage__messages">
                 <h5 class="Message__item">
-                  Johnnay: Hi I am very interested in adopting Mr Mango! I am
+                  <b><u>Johnnay:</u></b> Hi I am very interested in adopting Mr Mango! I am
                   currently a doctor but I have also worked as a lawyer,
                   mechanic, engineer and many more! I am looking for a puppy and
                   I really like corgis so I think Mr Mango would be a great fit
@@ -111,24 +116,24 @@
                   Johnnay
                 </h5>
                 <h5 class="Message__item">
-                  You: Hi Johnnay, I am glad to hear you are interested in
+                  <b><u>You:</u></b> Hi Johnnay, I am glad to hear you are interested in
                   adopting Mango! Before we proceed, what kind of home do you
                   have? Home, Apartment, Farmland, etc
                 </h5>
                 <h5 class="Message__item">
-                  Johnnay: I am currently living in an apartment that has 2
+                  <b><u>Johnnay:</u></b> I am currently living in an apartment that has 2
                   bedrooms with around 800sqft
                 </h5>
                 <h5 class="Message__item">
-                  You: Great that is good to know. Have you ever had a dog
+                  <b><u>You:</u></b> Great that is good to know. Have you ever had a dog
                   before or would this be your first dog?
                 </h5>
                 <h5 class="Message__item">
-                  Johnnay: I had a dog growing up but he passed away when I was
+                  <b><u>Johnnay:</u></b> I had a dog growing up but he passed away when I was
                   young
                 </h5>
                 <h5 class="Message__item">
-                  You: Im sorry to hear that. Okay since it looks like you have
+                  <b><u>You:</u></b> Im sorry to hear that. Okay since it looks like you have
                   experience with dogs you are a pretty good canditate, would
                   you like to meet him first?
                 </h5>
@@ -145,30 +150,6 @@
       </div>
     </div>
 
-    <script>
-      /* When the user clicks on the notifications text, 
-      toggle on/off the notifications */
-      function toggleNotifications() {
-        document
-          .getElementById("notificationsDropdown")
-          .classList.toggle("show");
-      }
-
-      // Close the notifications if the user clicks outside of it
-      window.onclick = function (event) {
-        if (!event.target.matches(".dropbtn")) {
-          var notifications = document.getElementsByClassName(
-            "Notification__dropdown"
-          );
-          var i;
-          for (i = 0; i < notifications.length; i++) {
-            var openNotifications = notifications[i];
-            if (openNotifications.classList.contains("show")) {
-              openNotifications.classList.remove("show");
-            }
-          }
-        }
-      };
-    </script>
+    <script src="../../javascript/NotificationsToggle.js"></script>
   </body>
 </html>

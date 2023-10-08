@@ -128,7 +128,7 @@
 h2,
 h3,
 h4,
-a {
+.info-item a {
   padding-left: 15px;
   padding-top: 20px;
 }

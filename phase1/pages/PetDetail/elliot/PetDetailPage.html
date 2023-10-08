@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
   <head>
@@ -14,61 +14,80 @@
   </head>
   <body style="background-color: white">
     <header>
-      <a class="HeaderItem__active" href="#">Home</a>
-      <a class="HeaderItem" href="#">About</a>
-      <a class="HeaderItem" href="#">services</a>
-      <div class="HeaderItem__manage">
-        <div class="Notification__button">
-          <div class="Notification__dot"></div>
-          <button onclick="toggleNotifications()" class="dropbtn">
-            Notifications
-          </button>
-          <div id="notificationsDropdown" class="Notification__dropdown">
-            <div class="Notification__item">
-              <img
-                src="../../../assets/funny.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mango Puppy: A new application has been submitted. Click here to
-                view.
+      <div
+        class="Header__logo"
+        onclick="location.href='../../Search/SearchPage.html';"
+      >
+        <img
+          src="../../../assets/logo.png"
+          alt="Pet Hub"
+          class="logo-picture"
+        />
+      </div>
+      <div class="Header__navButtons">
+        <a class="HeaderItem__active" href="../../Search/SearchPage.html"
+          >Search</a
+        >
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../../assets/mango.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Mango: A new application has been submitted. Click here to
-                view.
+              <div class="Notification__item">
+                <img
+                  src="../../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../../assets/cone-head.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Cone Head: There is a new message for this listing. Click
-                here to view.
+              <div class="Notification__item">
+                <img
+                  src="../../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
               </div>
-            </div>
 
-            <div
-              class="Notification__seeAll"
-              onclick="location.href='../../Notifications/Notifications.html';"
-            >
-              <div class="Notification__seeAllText">See all notifications</div>
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
             </div>
           </div>
+          <button
+            class="Button__purple"
+            onclick="location.href='../../Landing/Landing.html';"
+          >
+            Log Out
+          </button>
         </div>
-        <button class="Button__purple">Manage Shelter</button>
       </div>
     </header>
 
@@ -107,15 +126,18 @@
           <div>
             <h1>Elliot</h1>
             <br />
-            <a href="#" style="font-size: 18px; color: black">
+            <a class="info-item" href="#" style="font-size: 18px; color: black">
               Jack Russell Terrier & Wirehaired Dachshund Mix</a
             >
             <a
+              class="info-item"
               href="#"
               style="font-size: 18px; color: black; text-decoration: none"
               >•</a
             >
-            <a href="#" style="font-size: 18px; color: black">King City, ON</a>
+            <a class="info-item" href="#" style="font-size: 18px; color: black"
+              >King City, ON</a
+            >
 
             <br />
             <br />
@@ -123,36 +145,43 @@
           <hr />
           <div class="quick-info">
             <a
+              class="info-item"
               href="#"
               style="font-size: 18px; color: black; text-decoration: none"
               >Young</a
             >
             <a
+              class="info-item"
               href="#"
               style="font-size: 18px; color: black; text-decoration: none"
               >•</a
             >
             <a
+              class="info-item"
               href="#"
               style="font-size: 18px; color: black; text-decoration: none"
               >Male
             </a>
             <a
+              class="info-item"
               href="#"
               style="font-size: 18px; color: black; text-decoration: none"
               >•</a
             >
             <a
+              class="info-item"
               href=""
               style="text-decoration: none; font-size: 18px; color: black"
               >Small</a
             >
             <a
+              class="info-item"
               href="#"
               style="font-size: 18px; color: black; text-decoration: none"
               >•</a
             >
             <a
+              class="info-item"
               href=""
               style="text-decoration: none; font-size: 18px; color: black"
               >Tricolor (Brown, Black, & White)</a
@@ -216,6 +245,7 @@
         </div>
       </div>
     </div>
+    <script src="../../../javascript/NotificationsToggle.js"></script>
     <script src="../PetDetailPage.js"></script>
   </body>
 </html>

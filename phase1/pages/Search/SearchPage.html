@@ -10,61 +10,66 @@
   </head>
   <body>
     <header>
-      <a class="HeaderItem__active" href="#">Home</a>
-      <a class="HeaderItem" href="#">About</a>
-      <a class="HeaderItem" href="#">services</a>
-      <div class="HeaderItem__manage">
-        <div class="Notification__button">
-          <div class="Notification__dot"></div>
-          <button onclick="toggleNotifications()" class="dropbtn">
-            Notifications
-          </button>
-          <div id="notificationsDropdown" class="Notification__dropdown">
-            <div class="Notification__item">
-              <img
-                src="../../assets/funny.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mango Puppy: A new application has been submitted. Click here to
-                view.
+      <div class="Header__logo" onclick="location.href='../Search/SearchPage.html';">
+        <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+      </div>
+      <div class="Header__navButtons">
+        <a class="HeaderItem__active" href="../Search/SearchPage.html">Search</a>
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/mango.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Mango: A new application has been submitted. Click here to
-                view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/cone-head.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Cone Head: There is a new message for this listing. Click
-                here to view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
               </div>
-            </div>
 
-            <div
-              class="Notification__seeAll"
-              onclick="location.href='../Notifications/Notifications.html';"
-            >
-              <div class="Notification__seeAllText">See all notifications</div>
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
             </div>
           </div>
+          <button class="Button__purple" onclick="location.href='../Landing/Landing.html';">Log Out</button>
         </div>
-        <button class="Button__purple">Manage Shelter</button>
       </div>
     </header>
 
@@ -100,6 +105,9 @@
                   Description: This buddy is small and goofy. He likes to have
                   his belly rubbed and goes crazy over it.
                 </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
               </div>
             </div>
 
@@ -121,6 +129,9 @@
                   Description: This guy always happy when it comes to photos and
                   loves to represent his home country of Canada.
                 </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
               </div>
             </div>
 
@@ -139,9 +150,11 @@
                 <h4>Breed: Corgi</h4>
                 <h4>Weight: 24lbs</h4>
                 <h4>
-                  Description: This guy just had his balls chopped off which is
-                  why he's wearing a cone.
+                  Description: This guy just got neutered which is why hes wearing a cone on his head.
                 </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
               </div>
             </div>
 
@@ -160,6 +173,9 @@
                 <h4>Breed: Corgi</h4>
                 <h4>Weight: 16lbs</h4>
                 <h4>Description: This guy just looks extremely goofy.</h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
               </div>
             </div>
 
@@ -181,6 +197,9 @@
                   Description: This is supposed to be a parakeet but for some
                   reason she looks liek a tucan.
                 </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
               </div>
             </div>
 
@@ -199,6 +218,9 @@
                 <h4>Breed: Parakeet</h4>
                 <h4>Weight: 1lb</h4>
                 <h4>Description: This is Richard. She is a Parakeet.</h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
               </div>
             </div>
           </div>
@@ -371,31 +393,8 @@
       </div>
     </div>
 
+    <script src="../../javascript/NotificationsToggle.js"></script>
     <script>
-      /* When the user clicks on the notifications text, 
-      toggle on/off the notifications */
-      function toggleNotifications() {
-        document
-          .getElementById("notificationsDropdown")
-          .classList.toggle("show");
-      }
-
-      // Close the notifications if the user clicks outside of it
-      window.onclick = function (event) {
-        if (!event.target.matches(".dropbtn")) {
-          var notifications = document.getElementsByClassName(
-            "Notification__dropdown"
-          );
-          var i;
-          for (i = 0; i < notifications.length; i++) {
-            var openNotifications = notifications[i];
-            if (openNotifications.classList.contains("show")) {
-              openNotifications.classList.remove("show");
-            }
-          }
-        }
-      };
-
       function toggleFilters() {
         let div = document.querySelector(".SearchPage__filters");
 

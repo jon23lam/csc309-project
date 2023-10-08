@@ -11,6 +11,7 @@
   gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 .ShelterManagement__petInfo {
@@ -58,6 +59,7 @@ h4 {
   background-color: var(--light-background);
   border-radius: 24px;
   cursor: pointer;
+  padding-top: 40px;
 }
 
 object {

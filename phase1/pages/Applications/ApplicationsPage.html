@@ -10,61 +10,66 @@
   </head>
   <body>
     <header>
-      <a class="HeaderItem__active" href="#">Home</a>
-      <a class="HeaderItem" href="#">About</a>
-      <a class="HeaderItem" href="#">services</a>
-      <div class="HeaderItem__manage">
-        <div class="Notification__button">
-          <div class="Notification__dot"></div>
-          <button onclick="toggleNotifications()" class="dropbtn">
-            Notifications
-          </button>
-          <div id="notificationsDropdown" class="Notification__dropdown">
-            <div class="Notification__item">
-              <img
-                src="../../assets/funny.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mango Puppy: A new application has been submitted. Click here to
-                view.
+      <div class="Header__logo" onclick="location.href='../ShelterManagement/ShelterManagementPage.html';">
+        <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+      </div>
+      <div class="Header__navButtons">
+        <a class="HeaderItem__active" href="../ShelterManagement/ShelterManagementPage.html">Manage Shelter</a>
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/mango.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Mango: A new application has been submitted. Click here to
-                view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/cone-head.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Cone Head: There is a new message for this listing. Click
-                here to view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
               </div>
-            </div>
 
-            <div
-              class="Notification__seeAll"
-              onclick="location.href='../Notifications/Notifications.html';"
-            >
-              <div class="Notification__seeAllText">See all notifications</div>
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
             </div>
           </div>
+          <button class="Button__purple" onclick="location.href='../Landing/Landing.html';">Log Out</button>
         </div>
-        <button class="Button__purple">Manage Shelter</button>
       </div>
     </header>
 
@@ -100,11 +105,11 @@
             </div>
             <div class="Application__mainCol">
               <h2 class="Application__name">Johnnay Xins</h2>
-              <h5 class="Application__location">Location: Toronto, Onatrio</h5>
-              <h5 class="Application__occupation">Occupation: Doctor</h5>
-              <h5 class="Application__salary">Estimated Salary: $200k</h5>
+              <h5 class="Application__location"><b><u>Location:</u></b> Toronto, Onatrio</h5>
+              <h5 class="Application__occupation"><b><u>Occupation:</u></b> Doctor</h5>
+              <h5 class="Application__salary"><b><u>Estimated Salary:</u></b> $200k</h5>
               <h5 class="Application__initialMessage">
-                Application Message: Hi I am very interested in adopting Mr
+                <b><u>Application Message:</u></b> Hi I am very interested in adopting Mr
                 Mango! I am currently a doctor but I have also worked as a
                 lawyer, mechanic, engineer and many more! I am looking for a
                 puppy and I really like corgis so I think Mr Mango would be a
@@ -156,14 +161,14 @@
             <div class="Application__mainCol">
               <h2 class="Application__name">Busss Ohmygot</h2>
               <h5 class="Application__location">
-                Location: Charlotte, North Carolina
+                <b><u>Location:</u></b> Charlotte, North Carolina
               </h5>
               <h5 class="Application__occupation">
-                Occupation: Professional Streamer
+                <b><u>Occupation:</u></b> Professional Streamer
               </h5>
-              <h5 class="Application__salary">Estimated Salary: $300k</h5>
+              <h5 class="Application__salary"><b><u>Estimated Salary:</u></b> $300k</h5>
               <h5 class="Application__initialMessage">
-                Application Message: Hi my name is Busss Ohmygot and I am a
+                <b><u>Application Message:</u></b> Hi my name is Busss Ohmygot and I am a
                 professional streamer and I am intersted in adopting your puppy
                 Mango. Currently I make 300k a year streaming for my fans. I
                 currently live in Charlotte NC. I love puppies and I think mango
@@ -194,30 +199,6 @@
       </div>
     </div>
 
-    <script>
-      /* When the user clicks on the notifications text, 
-      toggle on/off the notifications */
-      function toggleNotifications() {
-        document
-          .getElementById("notificationsDropdown")
-          .classList.toggle("show");
-      }
-
-      // Close the notifications if the user clicks outside of it
-      window.onclick = function (event) {
-        if (!event.target.matches(".dropbtn")) {
-          var notifications = document.getElementsByClassName(
-            "Notification__dropdown"
-          );
-          var i;
-          for (i = 0; i < notifications.length; i++) {
-            var openNotifications = notifications[i];
-            if (openNotifications.classList.contains("show")) {
-              openNotifications.classList.remove("show");
-            }
-          }
-        }
-      };
-    </script>
+    <script src="../../javascript/NotificationsToggle.js"></script>
   </body>
 </html>
