@@ -9,11 +9,66 @@
   </head>
   <body>
     <header>
-      <a class="HeaderItem__active" href="#">Home</a>
-      <a class="HeaderItem" href="#">About</a>
-      <a class="HeaderItem" href="#">services</a>
-      <div class="HeaderItem__signup">
-        <button class="Button__purple">Sign Out</button>
+      <div class="Header__logo" onclick="location.href='../ShelterManagement/ShelterManagementPage.html';">
+        <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+      </div>
+      <div class="Header__navButtons">
+        <a class="HeaderItem__active" href="../ShelterManagement/ShelterManagementPage.html">Manage Shelter</a>
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
+              </div>
+
+              <div class="Notification__item">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
+              </div>
+
+              <div class="Notification__item">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
+              </div>
+
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="Button__purple" onclick="location.href='../Landing/Landing.html';">Log Out</button>
+        </div>
       </div>
     </header>
     <div class="PageContainer">
@@ -111,10 +166,11 @@
               </div>
             </form>
             <div class="PetCreate__listButton">
-              <button onclick="window.location.href='../ShelterManagment/ShelterManagmentPage.html'" class="Button__purple">List Animal</button>
+              <button onclick="window.location.href='../ShelterManagement/ShelterManagementPage.html'" class="Button__purple">List Animal</button>
             </div>
           </div>
       </div>
     </div>
+    <script src="../../javascript/NotificationsToggle.js"></script>
   </body>
 </html>
