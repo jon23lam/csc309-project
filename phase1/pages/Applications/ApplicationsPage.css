@@ -64,7 +64,7 @@
 h5 {
   margin-top: 0px;
   margin-bottom: 0px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .Application__contact {
@@ -74,7 +74,7 @@ h5 {
 
 .Application__phone,
 .Application__email {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 0.83em;
   color: black;
 }
