@@ -13,7 +13,7 @@
     <div class="Main">
       <h1>Sign Up as Pet Seeker</h1>
       <div class="Signup__fields">
-        <form class="Filters__form">
+        <form class="Filters__form" action="../Search/SearchPage.html" method="GET">
           <div class="Filters__filterItem">
             <label for="firstName" class="signup-labels">First Name:</label>
             <input type="text" id="firstName" name="firstName" class="TextField__PurpleOutline signup-fields" placeholder="First Name" required>
@@ -44,11 +44,11 @@
           </div>
           <div class="Filters__filterItem">
             <label for="password" class="signup-labels">Password:</label>
-            <input type="text" id="password" name="password" class="TextField__PurpleOutline signup-fields" placeholder="Password">
+            <input type="password" id="password" name="password" class="TextField__PurpleOutline signup-fields" placeholder="Password">
           </div>
           <div class="Filters__filterItem">
             <label for="confirmPassword" class="signup-labels">Confirm Password:</label>
-            <input type="text" id="confirmPassword" name="confirmPassword" class="TextField__PurpleOutline signup-fields" placeholder="Confirm Password">
+            <input type="password" id="confirmPassword" name="confirmPassword" class="TextField__PurpleOutline signup-fields" placeholder="Confirm Password">
           </div>
           <div class="signup-button">
             <button class="Button__purpleOutline signup-button">Sign Up</button>
