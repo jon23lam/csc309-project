@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSC309 Project Phase 1</title>
+  <link rel="stylesheet" href="../../BaseStyles.css" />
+  <link rel="stylesheet" href="../Search/SearchPage.css" />
+  <link rel="stylesheet" href="./Signup.css" />
+</head>
+<body>
+  <div class="PageContainer">
+    <div class="Main">
+      <h1>Sign Up as Pet Seeker</h1>
+      <div class="Signup__fields">
+        <form class="Filters__form">
+          <div class="Filters__filterItem">
+            <label for="firstName" class="signup-labels">First Name:</label>
+            <input type="text" id="firstName" name="firstName" class="TextField__PurpleOutline signup-fields" placeholder="First Name" required>
+          </div>
+          <div class="Filters__filterItem">
+            <label for="lastName" class="signup-labels">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" class="TextField__PurpleOutline signup-fields" placeholder="Last Name" required>
+          </div>
+          <div class="Filters__filterItem">
+            <label for="dob" class="signup-labels">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" class="TextField__PurpleOutline special-fields">
+          </div>
+          <div class="Filters__filterItem">
+            <label for="email" class="signup-labels">Email Address:</label>
+            <input type="email" id="email" name="email" class="TextField__PurpleOutline signup-fields" placeholder="Email Address" required>
+          </div>
+          <div class="Filters__filterItem">
+            <label for="gender" class="signup-labels">Gender:</label>
+            <select id="gender" name="gender" class="TextField__PurpleOutline special-fields" required>
+              <option value="Select" selected disabled hidden>Select a Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="Filters__filterItem">
+            <label for="postalCode" class="signup-labels">Postal Code:</label>
+            <input type="text" id="postalCode" name="postalCode" class="TextField__PurpleOutline signup-fields" placeholder="Postal Code" required>
+          </div>
+          <div class="Filters__filterItem">
+            <label for="password" class="signup-labels">Password:</label>
+            <input type="text" id="password" name="password" class="TextField__PurpleOutline signup-fields" placeholder="Password">
+          </div>
+          <div class="Filters__filterItem">
+            <label for="confirmPassword" class="signup-labels">Confirm Password:</label>
+            <input type="text" id="confirmPassword" name="confirmPassword" class="TextField__PurpleOutline signup-fields" placeholder="Confirm Password">
+          </div>
+          <div class="signup-button">
+            <button class="Button__purpleOutline signup-button">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
