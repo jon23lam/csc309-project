@@ -23,3 +23,9 @@
     width: 10rem;
     align-self: center;
 }
+
+.error {
+    color: red;
+    text-align: center;
+    font-size: 12px;
+}

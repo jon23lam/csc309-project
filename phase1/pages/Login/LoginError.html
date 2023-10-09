@@ -13,7 +13,7 @@
     <div class="Main">
       <h1>Login to Pet Adoption</h1>
       <div class="Login__fields">
-        <form class="Filters__form" action="./LoginError.html" method="GET">
+        <form class="Filters__form">
           <div class="Filters__filterItem">
             <label for="email" class="login-labels">Email Address:</label>
             <input type="email" id="email" name="email" placeholder="Email Address" class="TextField__PurpleOutline login-fields">
@@ -23,9 +23,10 @@
             <input type="text" id="password" name="password" placeholder="Password" class="TextField__PurpleOutline login-fields">
           </div>
           <div class="login-button">
-            <button class="Button__purpleOutline login-button">Log In</button>
+            <a href=""><button class="Button__purpleOutline login-button">Log In</button></a>
           </div>
         </form>
+        <p class="error">Invalid Email/Password Combination</p>
       </div>
     </div>
   </div>
