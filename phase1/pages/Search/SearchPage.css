@@ -1,0 +1,165 @@
+:root {
+  --purple-primary: #8c02ec;
+  --purple-secondary: #b304eb;
+  --pink-primary: #ee07a2;
+  --header-text-color: #112333ff;
+  --light-background: rgb(245, 245, 245);
+}
+
+.SearchPage {
+  display: flex;
+  gap: 24px;
+}
+
+.SearchPage__results {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.SearchPage__petInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.SearchPage__petPhotoWrapper {
+  height: 240px;
+  width: 400px;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.SearchPage__petPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.SearchPage__petDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--light-background);
+  border-radius: 24px;
+  padding: 24px;
+  max-width: 400px;
+  box-sizing: border-box;
+  word-break: break-word;
+}
+
+h4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+object {
+  cursor: pointer;
+}
+
+.SearchPage__filters {
+  width: 400px;
+  background-color: var(--light-background);
+  border-radius: 24px;
+  padding: 24px;
+  height: fit-content;
+}
+
+.Filters__headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Filters__header {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.Filters__back {
+  display: none;
+  cursor: pointer;
+  color: var(--purple-primary);
+}
+
+.Filters__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.Filters__filterItem {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.Filters__range {
+  display: flex;
+  gap: 24px;
+}
+
+.TextField__PurpleOutlineRange {
+  padding: 12px 18px;
+  color: var(--purple-primary);
+  font-family: sans-serif;
+  font-size: medium;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid var(--purple-primary);
+  cursor: text;
+  width: calc(50% - 12px);
+}
+
+.Filters__sort {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.descending-text {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: small;
+}
+
+.Filters__descending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SearchPage__FilterButtonWrapper {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .SearchPage__filters {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .SearchPage__petInfo {
+    align-items: center;
+  }
+  .SearchPage__petPhotoWrapper {
+    width: calc(100% - 40px);
+  }
+
+  .SearchPage__petDescription {
+    width: calc(100% - 40px);
+  }
+
+  .SearchPage__FilterButtonWrapper {
+    display: block;
+  }
+
+  .Filters__back {
+    display: block;
+  }
+}

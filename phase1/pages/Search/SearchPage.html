@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link rel="stylesheet" href="../../BaseStyles.css" />
+    <link rel="stylesheet" href="SearchPage.css" />
+  </head>
+  <body>
+    <header>
+      <div class="Header__logo" onclick="location.href='../Search/SearchPage.html';">
+        <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+      </div>
+      <div class="Header__navButtons">
+        <a class="HeaderItem__active" href="../Search/SearchPage.html">Search</a>
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
+              </div>
+
+              <div class="Notification__item">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
+              </div>
+
+              <div class="Notification__item">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
+              </div>
+
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="Button__purple" onclick="location.href='../Landing/Landing.html';">Log Out</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="PageContainer">
+      <div class="Main">
+        <h1 class="HeaderText">Search for your new pet</h1>
+        <div class="SearchPage">
+          <div class="SearchPage__results">
+            <div class="SearchPage__FilterButtonWrapper">
+              <button
+                id="FilterToggle"
+                class="Button__purple"
+                onclick="toggleFilters()"
+              >
+                Search Filters
+              </button>
+            </div>
+            <div class="SearchPage__petInfo">
+              <div class="SearchPage__petPhotoWrapper">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="SearchPage__petPhoto"
+                />
+              </div>
+              <div class="SearchPage__petDescription">
+                <h4>Name: Mango Puppy</h4>
+                <h4>Age: 4 Months</h4>
+                <h4>Sex: Male</h4>
+                <h4>Breed: Corgi</h4>
+                <h4>Weight: 10lbs</h4>
+                <h4>
+                  Description: This buddy is small and goofy. He likes to have
+                  his belly rubbed and goes crazy over it.
+                </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
+              </div>
+            </div>
+
+            <div class="SearchPage__petInfo">
+              <div class="SearchPage__petPhotoWrapper">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="SearchPage__petPhoto"
+                />
+              </div>
+              <div class="SearchPage__petDescription">
+                <h4>Name: Mr Mango</h4>
+                <h4>Age: 6 Months</h4>
+                <h4>Sex: Male</h4>
+                <h4>Breed: Corgi</h4>
+                <h4>Weight: 20lbs</h4>
+                <h4>
+                  Description: This guy always happy when it comes to photos and
+                  loves to represent his home country of Canada.
+                </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
+              </div>
+            </div>
+
+            <div class="SearchPage__petInfo">
+              <div class="SearchPage__petPhotoWrapper">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="SearchPage__petPhoto"
+                />
+              </div>
+              <div class="SearchPage__petDescription">
+                <h4>Name: Mr Cone Head</h4>
+                <h4>Age: 8 Months</h4>
+                <h4>Sex: Male</h4>
+                <h4>Breed: Corgi</h4>
+                <h4>Weight: 24lbs</h4>
+                <h4>
+                  Description: This guy just got neutered which is why hes wearing a cone on his head.
+                </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
+              </div>
+            </div>
+
+            <div class="SearchPage__petInfo">
+              <div class="SearchPage__petPhotoWrapper">
+                <img
+                  src="../../assets/goofyahh.jpeg"
+                  alt="Pet Photo"
+                  class="SearchPage__petPhoto"
+                />
+              </div>
+              <div class="SearchPage__petDescription">
+                <h4>Name: GoofyFace</h4>
+                <h4>Age: 7 Months</h4>
+                <h4>Sex: Male</h4>
+                <h4>Breed: Corgi</h4>
+                <h4>Weight: 16lbs</h4>
+                <h4>Description: This guy just looks extremely goofy.</h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
+              </div>
+            </div>
+
+            <div class="SearchPage__petInfo">
+              <div class="SearchPage__petPhotoWrapper">
+                <img
+                  src="../../assets/richard-tucan.jpeg"
+                  alt="Pet Photo"
+                  class="SearchPage__petPhoto"
+                />
+              </div>
+              <div class="SearchPage__petDescription">
+                <h4>Name: Richard Tucan</h4>
+                <h4>Age: 4 Years</h4>
+                <h4>Sex: Female</h4>
+                <h4>Breed: Parakeet</h4>
+                <h4>Weight: 1lb</h4>
+                <h4>
+                  Description: This is supposed to be a parakeet but for some
+                  reason she looks liek a tucan.
+                </h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
+              </div>
+            </div>
+
+            <div class="SearchPage__petInfo">
+              <div class="SearchPage__petPhotoWrapper">
+                <img
+                  src="../../assets/richard.jpeg"
+                  alt="Pet Photo"
+                  class="SearchPage__petPhoto"
+                />
+              </div>
+              <div class="SearchPage__petDescription">
+                <h4>Name: Richard</h4>
+                <h4>Age: 3 Years</h4>
+                <h4>Sex: Female</h4>
+                <h4>Breed: Parakeet</h4>
+                <h4>Weight: 1lb</h4>
+                <h4>Description: This is Richard. She is a Parakeet.</h4>
+                <button class="Button__purpleOutline" onclick="location.href='../PetDetail/elliot/PetDetailPage.html';">More Info</button>
+                <button class="Button__purpleOutline" onclick="location.href='../ShelterDetail/ShelterDetailPage.html';">See Shelter</button>
+                <button class="Button__purple">Apply</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="SearchPage__filters">
+            <form class="Filters__form">
+              <div class="Filters__headerWrapper">
+                <h2 class="Filters__header">Search Filters</h2>
+                <div class="Filters__back" onClick="toggleFilters()">Back</div>
+              </div>
+              <div class="Filters__filterItem">
+                <label>Sort by:</label>
+                <div class="Filters__sort">
+                  <button class="Button__purpleOutline">Alphabetical</button>
+                  <button class="Button__purpleOutline">Age</button>
+                  <button class="Button__purpleOutline">Size</button>
+                  <div class="Filters__descending">
+                    <label class="descending-text">Descending:</label>
+                    <label class="Toggle">
+                      <input type="checkbox" />
+                      <span class="ToggleSlider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="animal">Animal:</label>
+                <select
+                  name="animal"
+                  id="animal"
+                  class="Dropdown__PurpleOutline"
+                >
+                  <option value="" disabled selected hidden>
+                    Select an animal
+                  </option>
+                  <option value="all">All</option>
+                  <option value="dog">Dog</option>
+                  <option value="cat">Cat</option>
+                  <option value="bird">Bird</option>
+                  <option value="fish">Fish</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="breed">Breed:</label>
+                <select name="breed" id="sex" class="Dropdown__PurpleOutline">
+                  <option value="" disabled selected hidden>
+                    Select a breed
+                  </option>
+                  <option value="any">Any</option>
+                  <option value="any">Corgi</option>
+                  <option value="male">Labrador</option>
+                  <option value="retriever">Retriever</option>
+                  <option value="german-shepherd">German Shepherd</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="sex">Sex:</label>
+                <select name="sex" id="sex" class="Dropdown__PurpleOutline">
+                  <option value="" disabled selected hidden>
+                    Select a sex
+                  </option>
+                  <option value="any">Any</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="province">Province:</label>
+                <select
+                  name="province"
+                  id="province"
+                  class="Dropdown__PurpleOutline"
+                >
+                  <option value="" disabled selected hidden>
+                    Select a Province
+                  </option>
+                  <option value="ontario">Ontario</option>
+                  <option value="british-columbia">British Columbia</option>
+                  <option value="alberta">Alberta</option>
+                  <option value="manitoba">Manitoba</option>
+                  <option value="new-brunswick">New Brunswick</option>
+                  <option value="newfoundland-and-labrador">
+                    Newfoundland and Labrador
+                  </option>
+                  <option value="nova-scotia">Nova Scotia</option>
+                  <option value="prince-edward-island">
+                    Prince Edward Island
+                  </option>
+                  <option value="quebec">Quebec</option>
+                  <option value="saskatchewan">Saskatchewan</option>
+                  <option value="northwest-territories">
+                    Northwest Territories
+                  </option>
+                  <option value="nunavut">Nunavut</option>
+                  <option value="yukon">Yukon</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="address">Address:</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  class="TextField__PurpleOutline"
+                />
+              </div>
+              <div class="Filters__filterItem">
+                <label for="color">Color:</label>
+                <select name="color" id="color" class="Dropdown__PurpleOutline">
+                  <option value="" disabled selected hidden>
+                    Select a color
+                  </option>
+                  <option value="any">Any</option>
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
+                  <option value="Brown">Brown</option>
+                  <option value="sable">Sable</option>
+                </select>
+              </div>
+              <div class="Filters__filterItem">
+                <label>Age:</label>
+                <div class="Filters__range">
+                  <input
+                    type="number"
+                    id="age_from"
+                    name="age_from"
+                    placeholder="From"
+                    class="TextField__PurpleOutlineRange"
+                  />
+                  <input
+                    type="number"
+                    id="age_to"
+                    name="age_to"
+                    placeholder="To"
+                    class="TextField__PurpleOutlineRange"
+                  />
+                </div>
+              </div>
+              <div class="Filters__filterItem">
+                <label>Weight:</label>
+                <div class="Filters__range">
+                  <input
+                    type="number"
+                    id="weight_from"
+                    name="weight_from"
+                    placeholder="From"
+                    class="TextField__PurpleOutlineRange"
+                  />
+                  <input
+                    type="number"
+                    id="weight_to"
+                    name="weight_to"
+                    placeholder="To"
+                    class="TextField__PurpleOutlineRange"
+                  />
+                </div>
+              </div>
+              <div class="Filters__filterItem">
+                <label for="description">Description:</label>
+                <input
+                  type="text"
+                  id="description"
+                  name="description"
+                  class="TextField__PurpleOutline"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../javascript/NotificationsToggle.js"></script>
+    <script>
+      function toggleFilters() {
+        let div = document.querySelector(".SearchPage__filters");
+
+        if (div.style.display === "none" || div.style.display === "") {
+          div.style.display = "block";
+          div = document.querySelector(".SearchPage__results");
+          div.style.display = "none";
+        } else {
+          div.style.display = "none";
+          div = document.querySelector(".SearchPage__results");
+          div.style.display = "flex";
+        }
+      }
+
+      let previousWidth = window.innerWidth;
+
+      function checkScreenWidth() {
+        const currentWidth = window.innerWidth;
+        const threshold = 480;
+
+        if (currentWidth >= threshold && previousWidth < threshold) {
+          // Screen width went from below 480 to above 480
+          let div = document.querySelector(".SearchPage__filters");
+
+          div.style.display = "block";
+          div = document.querySelector(".SearchPage__results");
+          div.style.display = "flex";
+        }
+
+        previousWidth = currentWidth;
+      }
+
+      window.addEventListener("resize", checkScreenWidth);
+    </script>
+  </body>
+</html>

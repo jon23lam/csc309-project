@@ -3,41 +3,46 @@
   --purple-secondary: #b304eb;
   --pink-primary: #ee07a2;
   --header-text-color: #112333ff;
-  --light-background: #f9fafcff;
+  --light-background: rgb(245, 245, 245);
 }
 
-.ShelterManagment {
+.ShelterManagement {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
-.ShelterManagment__petInfo {
+.ShelterManagement__petInfo {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.ShelterManagment__petPhotoWrapper {
+.ShelterManagement__petPhotoWrapper {
   height: 240px;
   width: 400px;
   overflow: hidden;
   border-radius: 24px;
 }
 
-.ShelterManagment__petPhoto {
+.ShelterManagement__petPhoto {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.ShelterManagment__petDescription {
+.ShelterManagement__petDescription {
   display: flex;
   flex-direction: column;
   gap: 12px;
   background: var(--light-background);
   border-radius: 24px;
   padding: 24px;
+  max-width: 400px;
+  box-sizing: border-box;
+  word-break: break-word;
 }
 
 h4 {
@@ -45,7 +50,7 @@ h4 {
   margin-bottom: 0px;
 }
 
-.ShelterManagment__addListing {
+.ShelterManagement__addListing {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,8 +59,22 @@ h4 {
   background-color: var(--light-background);
   border-radius: 24px;
   cursor: pointer;
+  padding-top: 40px;
 }
 
 object {
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .SearchPage__petInfo {
+    align-items: center;
+  }
+  .SearchPage__petPhotoWrapper {
+    width: calc(100% - 40px);
+  }
+
+  .SearchPage__petDescription {
+    width: calc(100% - 40px);
+  }
 }
