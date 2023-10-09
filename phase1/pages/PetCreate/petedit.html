@@ -169,6 +169,16 @@
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" class="TextField__PurpleOutline PetCreate__petDescription"></textarea>
               </div>
+              <div class="Filters__filterItem">
+                <label for="status">Status:</label>
+                <select name="color" id="color" class="Dropdown__PurpleOutline">
+                  <option value="" disabled selected hidden>Select status</option>
+                  <option value="white">Available</option>
+                  <option value="black">Adopted</option>
+                  <option value="Brown">Pending</option>
+                  <option value="sable">Withdrawn</option>
+                </select>
+              </div>
             </form>
             <div class="PetCreate__listButton">
               <button onclick="window.location.href='../ShelterManagement/ShelterManagementPage.html'" class="Button__purple">Update Listing</button>
