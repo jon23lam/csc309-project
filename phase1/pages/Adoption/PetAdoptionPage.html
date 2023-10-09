@@ -14,61 +14,78 @@
   </head>
   <body style="background-color: white">
     <header>
-      <a class="HeaderItem__active" href="#">Home</a>
-      <a class="HeaderItem" href="#">About</a>
-      <a class="HeaderItem" href="#">services</a>
-      <div class="HeaderItem__manage">
-        <div class="Notification__button">
-          <div class="Notification__dot"></div>
-          <button onclick="toggleNotifications()" class="dropbtn">
-            Notifications
-          </button>
-          <div id="notificationsDropdown" class="Notification__dropdown">
-            <div class="Notification__item">
-              <img
-                src="../../assets/funny.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mango Puppy: A new application has been submitted. Click here to
-                view.
+      <div
+        class="Header__logo"
+        onclick="location.href='../ShelterManagement/ShelterManagementPage.html';"
+      >
+        <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+      </div>
+      <div class="Header__navButtons">
+        <a
+          class="HeaderItem__active"
+          href="../ShelterManagement/ShelterManagementPage.html"
+          >Manage Shelter</a
+        >
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/mango.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Mango: A new application has been submitted. Click here to
-                view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
               </div>
-            </div>
 
-            <div class="Notification__item">
-              <img
-                src="../../assets/cone-head.jpeg"
-                alt="Pet Photo"
-                class="Notification__photo"
-              />
-              <div class="Notification__text">
-                Mr Cone Head: There is a new message for this listing. Click
-                here to view.
+              <div class="Notification__item">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
               </div>
-            </div>
 
-            <div
-              class="Notification__seeAll"
-              onclick="location.href='../Notifications/Notifications.html';"
-            >
-              <div class="Notification__seeAllText">See all notifications</div>
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
             </div>
           </div>
+          <button
+            class="Button__purple"
+            onclick="location.href='../Landing/Landing.html';"
+          >
+            Log Out
+          </button>
         </div>
-        <button class="Button__purple">Manage Shelter</button>
       </div>
     </header>
 
@@ -142,6 +159,58 @@
             </div>
 
             <div class="form-group">
+              <label for="address">Your Address:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                placeholder="Enter your address"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="date-of-birth">Date of Birth:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date-of-birth"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Your Gender:</label>
+              <select class="form-control" id="gender" required>
+                <option value="">Select</option>
+                <option value="dog">Male</option>
+                <option value="cat">Female</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="occupation">Your Occupation:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="occupation"
+                placeholder="Enter your occupation"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="salary">Your Estimated Salary:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="salary"
+                placeholder="Enter your estimated salary"
+                required
+              />
+            </div>
+
+            <div class="form-group">
               <label for="numOfPets">Do you have any pets currently?</label>
               <select class="form-control" id="numOfPets" required>
                 <option value="">Select</option>
@@ -195,5 +264,6 @@
         </div>
       </div>
     </div>
+    <script src="../../javascript/NotificationsToggle.js"></script>
   </body>
 </html>
