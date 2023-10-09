@@ -10,60 +10,122 @@
 </head>
 <body>
 <header>
-  <a class="HeaderItem" href="#">Home</a>
-  <a class="HeaderItem" href="#">About</a>
-  <a class="HeaderItem" href="#">Services</a>
-  <div class="HeaderItem__manage">
-    <button class="Button__purple">Find Pets</button>
+  <div class="Header__logo" onclick="location.href='../Search/SearchPage.html';">
+    <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+  </div>
+  <div class="Header__navButtons">
+    <a class="HeaderItem" href="../Search/SearchPage.html">Search</a>
+    <div class="HeaderItem__manage">
+      <div class="Notification__button">
+        <div class="Notification__dot"></div>
+        <button onclick="toggleNotifications()" class="dropbtn">
+          Notifications
+        </button>
+        <div id="notificationsDropdown" class="Notification__dropdown">
+          <div class="Notification__item">
+            <img
+                    src="../../assets/funny.jpeg"
+                    alt="Pet Photo"
+                    class="Notification__photo"
+            />
+            <div class="Notification__text">
+              Mango Puppy: A new application has been submitted. Click here
+              to view.
+            </div>
+          </div>
+
+          <div class="Notification__item">
+            <img
+                    src="../../assets/mango.jpeg"
+                    alt="Pet Photo"
+                    class="Notification__photo"
+            />
+            <div class="Notification__text">
+              Mr Mango: A new application has been submitted. Click here to
+              view.
+            </div>
+          </div>
+
+          <div class="Notification__item">
+            <img
+                    src="../../assets/cone-head.jpeg"
+                    alt="Pet Photo"
+                    class="Notification__photo"
+            />
+            <div class="Notification__text">
+              Mr Cone Head: There is a new message for this listing. Click
+              here to view.
+            </div>
+          </div>
+
+          <div
+                  class="Notification__seeAll"
+                  onclick="location.href='../Notifications/Notifications.html';"
+          >
+            <div class="Notification__seeAllText">
+              See all notifications
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="Button__purple" onclick="location.href='../Landing/Landing.html';">Log Out</button>
+    </div>
   </div>
 </header>
 <div class="PageContainer">
   <div class="Main">
     <h1>Edit Account Details</h1>
     <div class="Signup__fields">
-      <form class="Filters__form">
+      <form class="Filters__form" action="../Search/SearchPage.html" method="GET">
         <div class="Filters__filterItem">
           <label for="firstName" class="signup-labels">First Name:</label>
-          <input type="text" id="firstName" name="firstName" class="TextField__PurpleOutline signup-fields" placeholder="First Name" required>
+          <input value="Jacob" type="text" id="firstName" name="firstName" class="TextField__PurpleOutline signup-fields" placeholder="First Name" required>
         </div>
         <div class="Filters__filterItem">
           <label for="lastName" class="signup-labels">Last Name:</label>
-          <input type="text" id="lastName" name="lastName" class="TextField__PurpleOutline signup-fields" placeholder="Last Name" required>
+          <input value="DeSousa" type="text" id="lastName" name="lastName" class="TextField__PurpleOutline signup-fields" placeholder="Last Name" required>
         </div>
         <div class="Filters__filterItem">
           <label for="dob" class="signup-labels">Date of Birth:</label>
-          <input type="date" id="dob" name="dob" class="TextField__PurpleOutline special-fields">
+          <input value="2003-09-08" type="date" id="dob" name="dob" class="TextField__PurpleOutline special-fields">
         </div>
         <div class="Filters__filterItem">
           <label for="email" class="signup-labels">Email Address:</label>
-          <input type="email" id="email" name="email" class="TextField__PurpleOutline signup-fields" placeholder="Email Address" required>
+          <input value="jacob.desousa@mail.utoronto.ca" type="email" id="email" name="email" class="TextField__PurpleOutline signup-fields" placeholder="Email Address" required>
         </div>
         <div class="Filters__filterItem">
           <label for="gender" class="signup-labels">Gender:</label>
           <select id="gender" name="gender" class="TextField__PurpleOutline special-fields" required>
-            <option value="Select" selected disabled hidden>Select a Gender</option>
-            <option value="Male">Male</option>
+            <option value="Select" disabled hidden>Select a Gender</option>
+            <option value="Male" selected>Male</option>
             <option value="Female">Female</option>
           </select>
         </div>
         <div class="Filters__filterItem">
           <label for="postalCode" class="signup-labels">Postal Code:</label>
-          <input type="text" id="postalCode" name="postalCode" class="TextField__PurpleOutline signup-fields" placeholder="Postal Code" required>
+          <input value="M5R2M2" type="text" id="postalCode" name="postalCode" class="TextField__PurpleOutline signup-fields" placeholder="Postal Code" required>
         </div>
         <div class="Filters__filterItem">
           <label for="password" class="signup-labels">Password:</label>
-          <input type="text" id="password" name="password" class="TextField__PurpleOutline signup-fields" placeholder="Password">
+          <input value="123" type="password" id="password" name="password" class="TextField__PurpleOutline signup-fields" placeholder="Password">
         </div>
         <div class="Filters__filterItem">
           <label for="confirmPassword" class="signup-labels">Confirm Password:</label>
-          <input type="text" id="confirmPassword" name="confirmPassword" class="TextField__PurpleOutline signup-fields" placeholder="Confirm Password">
+          <input value="123" type="password" id="confirmPassword" name="confirmPassword" class="TextField__PurpleOutline signup-fields" placeholder="Confirm Password">
+        </div>
+        <div class="Filters__filterItem">
+          <label for="image">Image:</label>
+          <input type="file" id="image" name="image" class="TextField__PurpleOutline">
         </div>
         <div class="signup-button">
-          <button class="Button__purpleOutline signup-button">Sign Up</button>
+          <button class="Button__purpleOutline signup-button">Save Changes</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<script src="../../javascript/NotificationsToggle.js"></script>
+
 </body>
 </html>
