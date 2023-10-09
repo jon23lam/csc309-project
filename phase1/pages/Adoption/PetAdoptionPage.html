@@ -1,0 +1,246 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC309 Project Phase 1</title>
+    <link rel="stylesheet" href="PetAdoptionPage.css" />
+    <link rel="stylesheet" href="../../BaseStyles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body style="background-color: white">
+    <header>
+      <div
+        class="Header__logo"
+        onclick="location.href='../Search/SearchPage.html';"
+      >
+        <img src="../../assets/logo.png" alt="Pet Hub" class="logo-picture" />
+      </div>
+      <div class="Header__navButtons">
+        <a class="HeaderItem__active" href="../Search/SearchPage.html"
+          >Search</a
+        >
+        <div class="HeaderItem__manage">
+          <div class="Notification__button">
+            <div class="Notification__dot"></div>
+            <button onclick="toggleNotifications()" class="dropbtn">
+              Notifications
+            </button>
+            <div id="notificationsDropdown" class="Notification__dropdown">
+              <div class="Notification__item">
+                <img
+                  src="../../assets/funny.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mango Puppy: A new application has been submitted. Click here
+                  to view.
+                </div>
+              </div>
+
+              <div class="Notification__item">
+                <img
+                  src="../../assets/mango.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Mango: A new application has been submitted. Click here to
+                  view.
+                </div>
+              </div>
+
+              <div class="Notification__item">
+                <img
+                  src="../../assets/cone-head.jpeg"
+                  alt="Pet Photo"
+                  class="Notification__photo"
+                />
+                <div class="Notification__text">
+                  Mr Cone Head: There is a new message for this listing. Click
+                  here to view.
+                </div>
+              </div>
+
+              <div
+                class="Notification__seeAll"
+                onclick="location.href='../../Notifications/Notifications.html';"
+              >
+                <div class="Notification__seeAllText">
+                  See all notifications
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="Button__purple"
+            onclick="location.href='../../Landing/Landing.html';"
+          >
+            Log Out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="PageContainer">
+      <div class="center">
+        <div class="info-card">
+          <h2>Pet Adoption Form</h2>
+          <form>
+            <div class="form-group">
+              <label for="yourName">Your Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="yourName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="age">Your Age:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                placeholder="Enter your age"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="address">Your Address:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                placeholder="Enter your address"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="date-of-birth">Date of Birth:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date-of-birth"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Your Gender:</label>
+              <select class="form-control" id="gender" required>
+                <option value="">Select</option>
+                <option value="dog">Male</option>
+                <option value="cat">Female</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="occupation">Your Occupation:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="occupation"
+                placeholder="Enter your occupation"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="salary">Your Estimated Salary:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="salary"
+                placeholder="Enter your estimated salary"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="numOfPets">Do you have any pets currently?</label>
+              <select class="form-control" id="numOfPets" required>
+                <option value="">Select</option>
+                <option value="dog">0</option>
+                <option value="cat">1</option>
+                <option value="rabbit">2</option>
+                <option value="other">3+</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="outdoorArea"
+                >Does your home have a yard or outdoor area?</label
+              >
+              <select class="form-control" id="outdoorArea" required>
+                <option value="">Select</option>
+                <option value="dog">Yes</option>
+                <option value="cat">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="safeGuard"
+                >Are you willing to put safeguards in your home for your
+                pet?</label
+              >
+              <select class="form-control" id="safeGuard" required>
+                <option value="">Select</option>
+                <option value="dog">Yes</option>
+                <option value="cat">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="description"
+                >Enter a few reasons why you feel you would be good for
+                adoption:</label
+              >
+              <textarea
+                class="form-control"
+                id="description"
+                rows="4"
+                placeholder="Enter 2-3 reasons"
+              ></textarea>
+            </div>
+
+            <div class="center">
+              <button type="submit" class="Button__purple">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="../../javascript/NotificationsToggle.js"></script>
+  </body>
+</html>
