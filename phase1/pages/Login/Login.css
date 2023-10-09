@@ -1,42 +1,25 @@
-.page-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.field-container {
-    background-color: var(--light-background);
-    width: 30vw;
-    height: 30vh;
-    border-radius: 50px;
+.Main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 5rem;
-}
-
-.field-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-items: center;
 }
 
 .login-labels {
-    margin: 0 0 5px 10px;
+    margin: 0 0 5px 0;
     text-align: left;
+    align-self: flex-start;
 }
 
-.login-fields {
-    width: 20rem;
-    margin: 0 10px 20px 10px;
+.Login__fields {
+    width: 400px;
+    background-color: var(--light-background);
+    border-radius: 24px;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
 .login-button {
-    margin-top: 4rem;
     width: 10rem;
     align-self: center;
 }
