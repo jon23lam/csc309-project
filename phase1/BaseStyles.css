@@ -4,6 +4,7 @@
   --pink-primary: #ee07a2;
   --header-text-color: #112333ff;
   --light-background: rgb(245, 245, 245);
+  --red_primary: #c30900;
 }
 
 body {
@@ -91,6 +92,17 @@ header {
   background-color: var(--pink-primary);
   border-radius: 8px;
   border: 1px solid var(--pink-primary);
+  cursor: pointer;
+}
+
+.Button__red {
+  padding: 12px 18px;
+  color: white;
+  font-family: sans-serif;
+  font-size: medium;
+  background-color: var(--red_primary);
+  border-radius: 8px;
+  border: 1px solid var(--red_primary);
   cursor: pointer;
 }
 
