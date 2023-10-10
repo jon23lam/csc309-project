@@ -8,7 +8,7 @@ function toggleNotifications() {
 
 // Close the notifications if the user clicks outside of it
 window.onclick = function (event) {
-  if (!event.target.matches(".dropbtn")) {
+  if (!event.target.matches(".dropbtn") && !event.target.matches(".btn-active"))  {
     var notifications = document.getElementsByClassName(
       "Notification__dropdown"
     );

@@ -130,6 +130,14 @@ header {
   cursor: pointer;
 }
 
+.btn-active {
+  background-color: white;
+  font-size: 19.2px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
 .Notification__button {
   position: relative;
   display: inline-block;
@@ -313,5 +321,9 @@ input:checked + .ToggleSlider:before {
 
   .Header__navButtons {
     margin-right: 0px;
+  }
+
+  .Notification__dropdown {
+    right: -60px;
   }
 }
