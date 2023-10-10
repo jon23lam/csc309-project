@@ -85,7 +85,7 @@ h5 {
 }
 
 .Application__initialMessage {
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .MessagePage__messagesWrapper {

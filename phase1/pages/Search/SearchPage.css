@@ -136,6 +136,11 @@ object {
   display: none;
 }
 
+.SearchPage__description {
+  resize: none;
+  min-height: 100px;
+}
+
 @media (max-width: 480px) {
   .SearchPage__filters {
     display: none;

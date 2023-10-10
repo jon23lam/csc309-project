@@ -9,9 +9,14 @@
 .ShelterManagement {
   display: flex;
   gap: 24px;
-  flex-wrap: wrap;
+}
+
+.ShelterManagement__results {
+  flex: 1;
   justify-content: center;
-  margin-bottom: 40px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .ShelterManagement__petInfo {
