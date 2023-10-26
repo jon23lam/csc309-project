@@ -10,7 +10,6 @@ from .auth import UserIsUpdatingSelf
 class AccountRegistrationView(APIView):
 
     def post(self, request):
-        import pdb; pdb.set_trace()
         serializer = RegisterUserSerializer(data=request.POST)
         if serializer.is_valid():
             user = serializer.save()
