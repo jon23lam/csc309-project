@@ -10,4 +10,4 @@ phase1/pages/test.html
 phase2/env
 phase2/db.sqlite3
 **/__pycache__/
-accounts/migrations/
+accounts/migrations
