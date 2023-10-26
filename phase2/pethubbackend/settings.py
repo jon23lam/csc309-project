@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'accounts'
 ]
+
+AUTH_USER_MODEL = 'accounts.PetHubUser'
 
 REST_FRAEMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

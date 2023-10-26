@@ -8,4 +8,5 @@ phase1/pages/test.html
 .idea/vcs.xml
 .idea/.gitignore
 phase2/env
+phase2/db.sqlite3
 **/__pycache__/
