@@ -8,3 +8,4 @@ phase1/pages/test.html
 .idea/vcs.xml
 .idea/.gitignore
 phase2/env
+**/__pycache__/
