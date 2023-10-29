@@ -3,10 +3,13 @@ from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from .managers import UserManager
 # Create your models here.
+
+ROLE_SHELTER = "shelter"
+ROLE_SEEKER = "seeker"
 class PetHubUser(AbstractUser):
     username = None
     is_active = models.BooleanField(default=True)
-    ROLES = (('seeker', 'Seeker'), ('shelter', 'Shelter'))
+    ROLES = ((ROLE_SEEKER, 'Seeker'), (ROLE_SHELTER, 'Shelter'))
 
     objects = UserManager()
     id = models.AutoField(primary_key=True, unique=True, editable=False)
