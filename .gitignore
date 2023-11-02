@@ -7,7 +7,7 @@ phase1/pages/test.html
 .idea/prettier.xml
 .idea/vcs.xml
 .idea/.gitignore
-phase2/env
-phase2/db.sqlite3
+petpal/env
+petpal/db.sqlite3
 **/__pycache__/
 accounts/migrations
