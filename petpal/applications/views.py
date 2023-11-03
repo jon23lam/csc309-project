@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import Application
+from rest_framework import status
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
@@ -37,10 +38,10 @@ class ApplicationView(UpdateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationUpdateSerializer
 
-    #TODO check this function tomorrow if it works properly
     def update(self, request, *args, **kwargs):
         application = self.get_object()
 
+        # TODO check if the shelter on the pet listing matches the shelter on the application
         if request.user.role == 'shelter':
             serializer = self.get_serializer(application, data=request.data, partial=True)
             if serializer.is_valid():
@@ -49,7 +50,7 @@ class ApplicationView(UpdateAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(
-                {'detail': 'Permission denied. Only users with role "shelter" can update this application.'},
+                {'detail': 'Permission denied. Only users with role shelter can update this application.'},
                 status=status.HTTP_403_FORBIDDEN)
 
     def get(self, request, pk):

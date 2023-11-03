@@ -25,12 +25,6 @@ class ApplicationUpdateSerializer(ModelSerializer):
         read_only_fields = ['applicant', 'occupation', 'salary', 'existing_pets', 'home_yard',
                             'safe_guard', 'message']
 
-    def validate(self, data):
-        if data['applicant'].role != 'shelter':
-            raise ValidationError({'applicant': 'Applicant must be a shelter'})
-        # if data['pet_listing'].status != 'available':
-        #     raise ValidationError({'pet_listing': 'Pet must be available'})
-        return super().validate(data)
 
 
 class ApplicationListSerializer(ModelSerializer):
