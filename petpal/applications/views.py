@@ -6,15 +6,22 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import Application
 
-from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer
+from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
 
 # Create your views here.
 class ApplicationCreateView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         data = request.data.copy()
-        data['applicant'] = request.user.id
+        data['applicant'] = request.user.pk
+
+        # TODO change this to get the shelter name from the pet listing object once its made
+        data['shelter_name'] = request.user.shelter_name
+
+        # TODO check if pet listing is available if not return an error
 
         serializer = CreateApplicationSerializer(data=data)
         if serializer.is_valid():
@@ -24,12 +31,26 @@ class ApplicationCreateView(APIView):
             return Response(serializer.errors, status=400)
 
 
-
-class ApplicationView(APIView):
+class ApplicationView(UpdateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Application.objects.all()
     serializer_class = ApplicationUpdateSerializer
+
+    #TODO check this function tomorrow if it works properly
+    def update(self, request, *args, **kwargs):
+        application = self.get_object()
+
+        if request.user.role == 'shelter':
+            serializer = self.get_serializer(application, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(
+                {'detail': 'Permission denied. Only users with role "shelter" can update this application.'},
+                status=status.HTTP_403_FORBIDDEN)
 
     def get(self, request, pk):
         app = Application.objects.filter(pk=pk)
@@ -37,10 +58,23 @@ class ApplicationView(APIView):
             app = app.first()
 
             if app.applicant == request.user \
-                    or app.pet_listing.shelter == request.user \
-                    or request.user.role == 'admin':
+                    or app.pet_listing.shelter == request.user:
                 return Response(self.serializer_class(app).data, status=200)
             else:
                 return Response({'message': 'You do not have permission to view this application'}, status=401)
         else:
             return Response({'message': 'Application not found'}, status=404)
+
+
+class ApplicationListView(ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = ApplicationListSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+
+        # queryset = Application.objects.filter(shelter_name=user.shelter_name)
+        queryset = Application.objects.all()
+
+        return queryset

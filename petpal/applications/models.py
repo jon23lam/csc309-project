@@ -1,9 +1,13 @@
 from django.db import models
+from django.utils import timezone
+
+
+
 
 # Create your models here.
 class Application(models.Model):
     applicant = models.ForeignKey('accounts.PetHubUser', on_delete=models.CASCADE)
-    pet_listing = models.ForeignKey('petlistings.PetListing', on_delete=models.CASCADE)
+    # pet_listing = models.ForeignKey('petlistings.PetListing', on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True, unique=True, editable=False)
     STATUS_TYPES = (
         ('pending', 'Pending'),
@@ -23,6 +27,7 @@ class Application(models.Model):
         ('no', 'No'),
     )
 
+    shelter_name = models.CharField(max_length=150, blank=True)
     occupation = models.CharField(max_length=150, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_TYPES, default='pending')
     salary = models.TextField(blank=True)
