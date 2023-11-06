@@ -10,7 +10,7 @@ class Notification(models.Model):
   image = models.ImageField(blank=True)
   read = models.BooleanField(default=False)
   created_at = models.DateTimeField(auto_now_add=True)
-  type = models.CharField(choices=(('comment', 'Comment'), ('application', 'Application'), ('status_update', "Status Update")))
+  type = models.CharField(max_length=30, choices=(('comment', 'Comment'), ('application', 'Application'), ('status_update', "Status Update")))
   associated_id = models.IntegerField()
 
   class Meta:

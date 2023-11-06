@@ -3,7 +3,7 @@ from rest_framework import permissions, filters
 from rest_framework.generics import ListCreateAPIView, RetrieveDestroyAPIView
 from .serializers import NotificationSerializer
 from .models import Notification
-from ..accounts.models import PetHubUser
+from accounts.models import PetHubUser
 from rest_framework.serializers import ValidationError
 from .permissions import ValidateUserNotification
 

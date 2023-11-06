@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'accounts',
     'applications',
-    'petlistings'
+    'petlistings',
+    'notifications'
 ]
 
 AUTH_USER_MODEL = 'accounts.PetHubUser'
