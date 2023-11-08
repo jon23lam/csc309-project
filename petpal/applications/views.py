@@ -6,6 +6,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import Application
 from rest_framework import status
+from rest_framework.exceptions import PermissionDenied, APIException
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
@@ -72,10 +73,60 @@ class ApplicationListView(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ApplicationListSerializer
 
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         user = self.request.user
 
+        if user.role == 'seeker':
+            raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
+
+        # TODO uncomment this and search for the objects that have the respective shelter name in the application
         # queryset = Application.objects.filter(shelter_name=user.shelter_name)
         queryset = Application.objects.all()
+
+        return queryset
+
+
+class ApplicationListViewFiltered(ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = ApplicationListSerializer
+
+    def get_queryset(self, *args, **kwargs):
+
+        user = self.request.user
+
+        if user.role == 'seeker':
+            raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
+
+        app_status = self.kwargs['status']
+        if status is not None:
+            return Application.objects.filter(status=app_status)
+
+
+        else:
+            error_message = "No applications found with status: " + app_status + "."
+            raise APIException({'error': error_message})
+
+
+class ApplicationListViewSorted(ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = ApplicationListSerializer
+
+    def get_queryset(self):
+
+        user = self.request.user
+        if user.role == 'seeker':
+            raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
+
+        sort_by = self.kwargs['sort_by']
+
+        if sort_by == 'created':
+            queryset = Application.objects.all().order_by('-created_at')
+        elif sort_by == 'updated':
+            queryset = Application.objects.all().order_by('-last_updated')
+        else:
+            error_message = f"'{sort_by}' is not a valid sort method. Use 'created' or 'updated'."
+            raise APIException({'error': error_message})
 
         return queryset
