@@ -8,7 +8,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .auth import UserIsUpdatingSelf
 # Create your views here.
 class AccountRegistrationView(APIView):
-
+    authentication_classes = []
+    permission_classes = []
     def post(self, request):
         serializer = RegisterUserSerializer(data=request.POST)
         if serializer.is_valid():
@@ -24,18 +25,35 @@ class AccountView(UpdateAPIView):
     queryset = PetHubUser.objects.all()
     serializer_class = UpdateUserSerializer
 
+    requested_role = None
+
     def get(self, request, pk):
+        assert self.requested_role is not None, 'self.requested_role must be set by the sublcass before calling AccountView.get()'
         acc = PetHubUser.objects.filter(pk=pk)
         if acc.exists():
             acc = acc.first()
+            if acc.role != self.requested_role:
+                return Response({'message': f'{"Seeker" if self.requested_role == ROLE_SEEKER else "Shelter"} not found'}, status=404)
+
             # All shelters can be viewed by anyone, users can view themselves, shelters can view users that have an active application open
             if acc.role == ROLE_SHELTER \
                 or acc == request.user:
                 return Response(self.serializer_class(acc).data, status=200)
+            elif acc.role == ROLE_SEEKER \
+                and request.user.role == ROLE_SHELTER \
+                    and False:
+                    # Replace 'False' with a condition that is true when <acc> has an open application for a petlisting belonging to <request.user>
+                return Response(self.serializer_class(acc).data, status=200)
             else:
                 return Response({'message': 'You do not have permission to view this account'}, status=401)
         else:
-            return Response({'message': 'Account not found'}, status=404)
+            return Response({'message': f'{"Seeker" if self.requested_role == ROLE_SEEKER else "Shelter"} not found'}, status=404)
+        
+class ShelterView(AccountView):
+    requested_role = ROLE_SHELTER
+
+class SeekerView(AccountView):
+    requested_role = ROLE_SEEKER
 
 class SheltersListView(ListAPIView):
     authentication_classes = [JWTAuthentication]
