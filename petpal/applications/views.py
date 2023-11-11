@@ -10,6 +10,9 @@ from rest_framework.exceptions import PermissionDenied, APIException
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
+from accounts.models import PetHubUser
+from petlistings.models import PetListing
+
 
 # Create your views here.
 class ApplicationCreateView(APIView):
@@ -18,9 +21,23 @@ class ApplicationCreateView(APIView):
 
     def post(self, request):
         data = request.data.copy()
-        data['applicant'] = request.user.pk
 
-        # TODO change this to get the shelter name from the pet listing object once its made
+        try:
+            applicant = PetHubUser.objects.get(pk=self.request.user)
+        except PetHubUser.DoesNotExist:
+            return Response({'error': 'Applicant does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+        data['applicant'] = applicant.id
+
+        try:
+            pet_listing = PetListing.objects.get(pk=self.request.pet_listing)
+        except PetListing.DoesNotExist:
+            return Response({'error': 'PetListing does not exist or is not available'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        data['pet_listing'] = pet_listing.id
+
+        # TODO chanthe shelter namege this to get  from the pet listing object once its made
         data['shelter_name'] = request.user.shelter_name
 
         # TODO check if pet listing is available if not return an error
