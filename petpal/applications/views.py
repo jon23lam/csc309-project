@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Application
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied, APIException
+from accounts.models import PetHubUser
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
@@ -22,6 +23,7 @@ class ApplicationCreateView(APIView):
 
         # TODO change this to get the shelter name from the pet listing object once its made
         data['shelter_name'] = request.user.shelter_name
+        
 
         # TODO check if pet listing is available if not return an error
 

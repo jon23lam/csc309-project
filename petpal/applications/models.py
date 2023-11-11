@@ -11,7 +11,7 @@ class Application(models.Model):
     STATUSES = ((STATUS_OPEN, 'Open'), (STATUS_CLOSED, 'Closed'))
 
     status = models.CharField(choices=STATUSES, max_length=6)
-    applicant = models.ForeignKey('accounts.PetHubUser', on_delete=models.CASCADE)
+    applicant = models.ForeignKey('accounts.PetHubUser', related_name='applications_as_applicant', on_delete=models.CASCADE)
     # pet_listing = models.ForeignKey('petlistings.PetListing', on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True, unique=True, editable=False)
     STATUS_TYPES = (
@@ -33,6 +33,7 @@ class Application(models.Model):
     )
 
     shelter_name = models.CharField(max_length=150, blank=True)
+    shelter = models.ForeignKey('accounts.PetHubUser', related_name='applications_as_shelter', on_delete=models.CASCADE)
     occupation = models.CharField(max_length=150, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_TYPES, default='pending')
     salary = models.TextField(blank=True)
