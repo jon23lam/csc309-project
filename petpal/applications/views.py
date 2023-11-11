@@ -37,7 +37,7 @@ class ApplicationCreateView(APIView):
 
         data['pet_listing'] = pet_listing.id
 
-        # TODO change this to get the shelter name from the pet listing object once its made
+        # TODO chanthe shelter namege this to get  from the pet listing object once its made
         data['shelter_name'] = request.user.shelter_name
 
         # TODO check if pet listing is available if not return an error
