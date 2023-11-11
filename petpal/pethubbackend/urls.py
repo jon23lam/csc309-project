@@ -25,6 +25,7 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path(f'{API_PREFIX}/admin/', admin.site.urls),
     path(f'{API_PREFIX}/accounts/', include('accounts.urls')),
-    path(f'{API_PREFIX}/notifications/', include('notifications.urls')),
     path(f'{API_PREFIX}/petlisting/', include('petlistings.urls'))
+    path(f'{API_PREFIX}/applications/', include('applications.urls')),
+    path(f'{API_PREFIX}/notifications/', include('notifications.urls'))
 ]
