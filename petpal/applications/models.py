@@ -12,7 +12,7 @@ class Application(models.Model):
 
     status = models.CharField(choices=STATUSES, max_length=6)
     applicant = models.ForeignKey('accounts.PetHubUser', on_delete=models.CASCADE)
-    # pet_listing = models.ForeignKey('petlistings.PetListing', on_delete=models.CASCADE)
+    pet_listing = models.ForeignKey('petlistings.PetListing', on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True, unique=True, editable=False)
     STATUS_TYPES = (
         ('pending', 'Pending'),
@@ -34,7 +34,6 @@ class Application(models.Model):
 
     shelter_name = models.CharField(max_length=150, blank=True)
     occupation = models.CharField(max_length=150, blank=True)
-    status = models.CharField(max_length=10, choices=STATUS_TYPES, default='pending')
     salary = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
@@ -42,5 +41,4 @@ class Application(models.Model):
     home_yard = models.CharField(max_length=10, choices=YES_NO, default='no')
     safe_guard = models.CharField(max_length=10, choices=YES_NO, default='no')
     message = models.TextField(blank=True)
-    pet_listing = models.ForeignKey('petlistings.PetListing', on_delete=models.CASCADE)
     REQUIRED_FIELDS = ['status']
