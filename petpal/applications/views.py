@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Application
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied, APIException, NotFound
+from rest_framework.pagination import PageNumberPagination
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
@@ -142,10 +143,11 @@ class ApplicationListView(ListAPIView):
             if user.role != 'shelter':
                 raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
 
+            paginator = PageNumberPagination()
+            paginator.page_size = 10
+            paginated_queryset = paginator.paginate_queryset(Application.objects.filter(shelter_name=user.shelter_name), self.request)
 
-            queryset = Application.objects.filter(shelter_name=user.shelter_name)
-
-            return queryset
+            return paginated_queryset
 
         except Exception as e:
             raise PermissionDenied(detail='Unable to find applications', code=status.HTTP_500_INTERNAL_SERVER_ERROR) from e
