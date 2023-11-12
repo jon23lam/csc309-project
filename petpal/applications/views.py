@@ -150,7 +150,7 @@ class ApplicationListView(ListAPIView):
             return paginated_queryset
 
         except Exception as e:
-            raise PermissionDenied(detail='Unable to find applications', code=status.HTTP_500_INTERNAL_SERVER_ERROR) from e
+            raise PermissionDenied(detail='Unable to find applications', code=status.HTTP_404_NOT_FOUND) from e
 
 
 class ApplicationListViewFiltered(ListAPIView):
