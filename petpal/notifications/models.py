@@ -12,7 +12,6 @@ class Notification(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
   type = models.CharField(max_length=30, choices=(('application_comment', 'Application Comment'), ('shelter_comment', 'Shelter Comment'), ('application', 'Application'), ('status_update', "Status Update")))
   associated_id = models.IntegerField()
-  pet_listing_id = models.IntegerField(blank=True, null=True)
   application_id = models.IntegerField(blank=True, null=True)
   shelter_id = models.IntegerField(blank=True, null=True)
 
