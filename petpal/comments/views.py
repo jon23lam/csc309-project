@@ -12,20 +12,20 @@ from .serializers import CommentSerializer
 class ShelterCommentListCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, pk):
+    def post(self, request, shelter_id):
         data = request.data.copy()
         data['author'] = request.user.id
         
         serializer = CommentSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(shelter_id=pk, author=request.user)
+            serializer.save(shelter_id=shelter_id, author=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, pk):
+    def get(self, request, shelter_id):
         paginator = PageNumberPagination()
         paginator.page_size = 10
-        comments = Comment.objects.filter(shelter_id=pk)
+        comments = Comment.objects.filter(shelter_id=shelter_id)
         result_page = paginator.paginate_queryset(comments, request)
         serializer = CommentSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
@@ -34,8 +34,8 @@ class ShelterCommentListCreateAPIView(APIView):
 class ApplicationCommentListAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, pk):
-        application = Application.objects.get(id=pk)
+    def get(self, request, application_id):
+        application = Application.objects.get(id=application_id)
 
         if request.user.role == 'seeker' and application.applicant != request.user:
             raise ValidationError(
@@ -53,8 +53,8 @@ class ApplicationCommentListAPIView(APIView):
 
         return paginator.get_paginated_response(serializer.data)
     
-    def post(self, request, pk):
-        application = Application.objects.get(id=pk)
+    def post(self, request, application_id):
+        application = Application.objects.get(id=application_id)
 
         if request.user.role == 'seeker' and application.applicant != request.user:
             raise ValidationError(
@@ -69,7 +69,42 @@ class ApplicationCommentListAPIView(APIView):
 
         serializer = CommentSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(application_id=pk, author=request.user)
+            serializer.save(application_id=application_id, author=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class ShelterCommentGetAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, shelter_id, comment_id):
+        try:
+            comment = Comment.objects.get(id=comment_id, shelter_id=shelter_id) 
+        except Comment.DoesNotExist:
+            return Response({'detail': 'Comment not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+
+class ApplicationCommentGetAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, application_id, comment_id):
+        application = Application.objects.get(id=application_id)
+
+        if request.user.role == 'seeker' and application.applicant != request.user:
+            raise ValidationError(
+                {'seeker': 'You do not have access to this application'})
+        
+        if request.user.role == 'shelter' and application.shelter != request.use:
+            raise ValidationError(
+                {'shelter': 'You do not have access to this application'})
+        
+        try:
+            comment = Comment.objects.get(id=comment_id, application_id=application_id) 
+        except Comment.DoesNotExist:
+            return Response({'detail': 'Comment not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
         

@@ -31,7 +31,13 @@ class NotificationListCreate(ListCreateAPIView):
         serializer.save(receiver=receiver)
 
     def get_queryset(self):
-        return Notification.objects.filter(receiver=self.request.user)
+        queryset = Notification.objects.filter(receiver=self.request.user)
+        read_param = self.request.query_params.get('read')
+
+        if read_param is not None: 
+            read_value = read_param.lower() == 'true'
+            queryset = queryset.filter(read=read_value)
+        return queryset
   
 
 class NotificationRetrieveDestroy(RetrieveDestroyAPIView):
@@ -42,3 +48,18 @@ class NotificationRetrieveDestroy(RetrieveDestroyAPIView):
     def get_queryset(self):
         # Return notifications for the current user only
         return Notification.objects.filter(receiver=self.request.user)
+    
+    def retrieve(self, request, *args, **kwargs):
+        notification = self.get_object()
+        # Mark as read if it's not already
+        if not notification.read:
+            notification.read = True
+            notification.save(update_fields=['read'])
+        serializer = self.get_serializer(notification, context={'request': request})
+        return Response(serializer.data)
+
+    def get_object(self):
+        # You can also add additional logic here if needed to filter objects
+        obj = super().get_object()
+        # Perform custom actions here, like checking permissions specific to the object
+        return obj
