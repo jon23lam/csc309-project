@@ -1,10 +1,8 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import PetListingView
-
-router = DefaultRouter()
-router.register(r'', PetListingView, basename='')
+from . import views
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', views.PetListingView.as_view()),
+    path('<int:pk>/', views.PetListingView.as_view()),
+    path('list/', views.PetListingListView.as_view()),
 ]
