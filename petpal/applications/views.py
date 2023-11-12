@@ -7,9 +7,11 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Application
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied, APIException
-from accounts.models import PetHubUser
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
+
+from accounts.models import PetHubUser
+from petlistings.models import PetListing
 
 
 # Create your views here.
@@ -17,15 +19,31 @@ class ApplicationCreateView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
+    def post(self, request, pet_listing):
         data = request.data.copy()
-        data['applicant'] = request.user.pk
 
-        # TODO change this to get the shelter name from the pet listing object once its made
+        try:
+            applicant = PetHubUser.objects.get(pk=self.request.user.pk)
+        except PetHubUser.DoesNotExist:
+            return Response({'error': 'Applicant does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+        data['applicant'] = applicant.id
+
+        try:
+            pet_listing = PetListing.objects.get(pk=pet_listing)
+        except PetListing.DoesNotExist:
+            return Response({'error': 'PetListing does not exist or is not available'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        data['pet_listing'] = pet_listing.id
+        data['shelter'] = pet_listing.lister.id
+
+        # TODO chanthe shelter namege this to get  from the pet listing object once its made
         data['shelter_name'] = request.user.shelter_name
-        
 
         # TODO check if pet listing is available if not return an error
+
+        print(f"SHELTER DATA: {data}")
 
         serializer = CreateApplicationSerializer(data=data)
         if serializer.is_valid():

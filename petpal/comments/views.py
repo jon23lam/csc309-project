@@ -9,36 +9,33 @@ from rest_framework.serializers import ValidationError
 from .serializers import CommentSerializer
 
 
-class CommentListCreateAPIView(APIView):
+class ShelterCommentListCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, shelter_id):
-        # Logic to create a comment for a shelter
-        # Ensure the commenter is a logged in user/shelter
-        # ...
-        serializer = CommentSerializer(data=request.data)
+    def post(self, request, pk):
+        data = request.data.copy()
+        data['author'] = request.user.id
+        
+        serializer = CommentSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(shelter_id=shelter_id, author=request.user)
+            serializer.save(shelter_id=pk, author=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, shelter_id):
-        # Logic to list comments for a shelter
-        # Pagination
+    def get(self, request, pk):
         paginator = PageNumberPagination()
         paginator.page_size = 10
-        comments = Comment.objects.filter(shelter_id=shelter_id)
+        comments = Comment.objects.filter(shelter_id=pk)
         result_page = paginator.paginate_queryset(comments, request)
         serializer = CommentSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
 
+
 class ApplicationCommentListAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, application_id):
-        # Logic to ensure only specific shelter and pet seeker can see the comments
-        # ...
-        application = Application.objects.get(id=application_id)
+    def get(self, request, pk):
+        application = Application.objects.get(id=pk)
 
         if request.user.role == 'seeker' and application.applicant != request.user:
             raise ValidationError(
@@ -48,12 +45,16 @@ class ApplicationCommentListAPIView(APIView):
             raise ValidationError(
                 {'shelter': 'You do not have access to this application'})
         
-        comments = application.comments.all()
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data)
+        paginator = PageNumberPagination()
+        paginator.page_size = 10
+
+        paginated_queryset = paginator.paginate_queryset(application.comments.all(), request)
+        serializer = CommentSerializer(paginated_queryset, many=True)
+
+        return paginator.get_paginated_response(serializer.data)
     
-    def post(self, request, application_id):
-        application = Application.objects.get(id=application_id)
+    def post(self, request, pk):
+        application = Application.objects.get(id=pk)
 
         if request.user.role == 'seeker' and application.applicant != request.user:
             raise ValidationError(
@@ -63,9 +64,12 @@ class ApplicationCommentListAPIView(APIView):
             raise ValidationError(
                 {'shelter': 'You do not have access to this application'})
         
-        serializer = CommentSerializer(data=request.data)
+        data = request.data.copy()
+        data['author'] = request.user.id
+
+        serializer = CommentSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(application_id=application_id, author=request.user)
+            serializer.save(application_id=pk, author=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
