@@ -32,6 +32,59 @@ class ApplicationCreateView(APIView):
         except PetListing.DoesNotExist:
             return None
 
+    def post(self, request, pk):
+        data = request.data.copy()
+
+        try:
+            applicant = PetHubUser.objects.get(pk=self.request.user.pk)
+        except PetHubUser.DoesNotExist:
+            return Response({'error': 'Applicant does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+        data['applicant'] = applicant.id
+
+        try:
+            pet_listing = PetListing.objects.get(pk=pk)
+        except PetListing.DoesNotExist:
+            return Response({'error': ' The pet you are looking to adopt is either already adopted'
+                                      ' or does not exist'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        data['pet_listing'] = pet_listing.id
+
+
+
+        data['shelter_name'] = pet_listing.lister.shelter_name
+
+
+
+        if pet_listing.status != 'Available':
+            return Response({'error': 'PetListing is not available'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+
+        serializer = CreateApplicationSerializer(data=data)
+        if serializer.is_valid():
+            application = serializer.save()
+            return Response({'message': 'Application created successfully'}, status=200)
+        else:
+            return Response(serializer.errors, status=400)
+
+class ApplicationDetailView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_application(self, pk):
+        try:
+            return Application.objects.get(pk=pk)
+        except Application.DoesNotExist:
+            return None
+
+    def get_pet_listing(self, pk):
+        try:
+            return PetListing.objects.get(pk=pk)
+        except PetListing.DoesNotExist:
+            return None
+
     def get(self, request, pk):
         try:
             application = self.get_application(pk)
@@ -87,45 +140,6 @@ class ApplicationCreateView(APIView):
                 {'detail': 'Permission denied. Only users with role shelter can update this application.'},
                 status=status.HTTP_403_FORBIDDEN)
 
-
-    def post(self, request, pk):
-        data = request.data.copy()
-
-        try:
-            applicant = PetHubUser.objects.get(pk=self.request.user.pk)
-        except PetHubUser.DoesNotExist:
-            return Response({'error': 'Applicant does not exist'}, status=status.HTTP_400_BAD_REQUEST)
-
-        data['applicant'] = applicant.id
-
-        try:
-            pet_listing = PetListing.objects.get(pk=pk)
-        except PetListing.DoesNotExist:
-            return Response({'error': ' The pet you are looking to adopt is either already adopted'
-                                      ' or does not exist'},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-        data['pet_listing'] = pet_listing.id
-
-
-
-        data['shelter_name'] = pet_listing.lister.shelter_name
-
-
-
-        if pet_listing.status != 'Available':
-            return Response({'error': 'PetListing is not available'},
-                            status=status.HTTP_400_BAD_REQUEST)
-
-
-        serializer = CreateApplicationSerializer(data=data)
-        if serializer.is_valid():
-            application = serializer.save()
-            return Response({'message': 'Application created successfully'}, status=200)
-        else:
-            return Response(serializer.errors, status=400)
-
-
 class ApplicationListView(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -144,7 +158,7 @@ class ApplicationListView(ListAPIView):
                 raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
 
             paginator = PageNumberPagination()
-            paginator.page_size = 10
+            paginator.page_size = 12
             paginated_queryset = paginator.paginate_queryset(Application.objects.filter(shelter_name=user.shelter_name), self.request)
 
             return paginated_queryset
