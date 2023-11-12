@@ -7,7 +7,7 @@ class CreateApplicationSerializer(ModelSerializer):
         model = Application
 
         # Add back pet listing once its created
-        fields = ('applicant', 'pet_listing', 'occupation', 'salary', 'existing_pets', 'home_yard', 'safe_guard', 'message', 'shelter')
+        fields = ('applicant', 'pet_listing', 'occupation', 'salary', 'existing_pets', 'home_yard', 'safe_guard', 'message', 'shelter_name', 'shelter')
 
     def validate(self, data):
         if data['applicant'].role != 'seeker':
@@ -20,11 +20,9 @@ class CreateApplicationSerializer(ModelSerializer):
 class ApplicationUpdateSerializer(ModelSerializer):
     class Meta:
         model = Application
-        fields = ['status']
-        # Add back pet listing once its created
-        read_only_fields = ['applicant', 'occupation', 'salary', 'existing_pets', 'home_yard',
-                            'safe_guard', 'message']
-
+        fields = '__all__'
+        read_only_fields = ['applicant', 'pet_listing', 'id', 'shelter_name', 'occupation', 'salary',
+                            'created_at', 'last_updated', 'existing_pets', 'home_yard', 'safe_guard', 'message']
 
 class ApplicationListSerializer(ModelSerializer):
     class Meta:
