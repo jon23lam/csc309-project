@@ -7,7 +7,7 @@ class CreateApplicationSerializer(ModelSerializer):
         model = Application
 
         # Add back pet listing once its created
-        fields = ('applicant', 'pet_listing', 'occupation', 'salary', 'existing_pets', 'home_yard', 'safe_guard', 'message', 'shelter_name')
+        fields = ('applicant', 'pet_listing', 'occupation', 'salary', 'existing_pets', 'home_yard', 'safe_guard', 'message', 'shelter_name', 'shelter')
 
     def validate(self, data):
         if data['applicant'].role != 'seeker':
