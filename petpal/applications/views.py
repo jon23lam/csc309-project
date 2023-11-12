@@ -7,7 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Application
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied, APIException, NotFound
-from rest_framework.pagination import PageNumberPagination
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
@@ -144,45 +145,66 @@ class ApplicationListView(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ApplicationListSerializer
+    queryset = Application.objects.all()
 
-
-    def get_queryset(self, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         user = self.request.user
 
-        # Check if the user's role is recognized
-        if user.role not in ['shelter', 'other_valid_role']:
-            raise PermissionDenied(detail='Invalid user role', code=status.HTTP_401_UNAUTHORIZED)
+        if user.role != 'shelter':
+            raise PermissionDenied(detail='You are not allowed to view applications', code=403)
 
         try:
-            if user.role != 'shelter':
-                raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
 
-            paginator = PageNumberPagination()
-            paginator.page_size = 12
-            paginated_queryset = paginator.paginate_queryset(Application.objects.filter(shelter_name=user.shelter_name), self.request)
 
-            return paginated_queryset
+            queryset = self.filter_queryset(self.get_queryset().filter(shelter_name=user.shelter_name))
+
+            items_per_page = 10
+            paginator = Paginator(queryset, items_per_page)
+
+            page = self.request.query_params.get('page')
+            try:
+                paginated_queryset = paginator.page(page)
+            except PageNotAnInteger:
+                paginated_queryset = paginator.page(1)
+            except EmptyPage:
+                paginated_queryset = []
+
+            serializer = self.get_serializer(paginated_queryset, many=True)
+            return Response(serializer.data)
 
         except Exception as e:
-            raise PermissionDenied(detail='Unable to find applications', code=status.HTTP_404_NOT_FOUND) from e
+            raise PermissionDenied(detail='Unable to find applications', code=404) from e
 
 
 class ApplicationListViewFiltered(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ApplicationListSerializer
+    queryset = Application.objects.all()
 
-    def get_queryset(self, *args, **kwargs):
-
+    def list(self, request, *args, **kwargs):
         user = self.request.user
 
         if user.role == 'seeker':
             raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
 
-        app_status = self.kwargs['status']
-        if status is not None:
-            return Application.objects.filter(status=app_status, shelter_name=user.shelter_name)
+        app_status = self.kwargs.get('status')
+        if app_status is not None:
+            queryset = self.filter_queryset(self.get_queryset().filter(status=app_status, shelter_name=user.shelter_name))
 
+            items_per_page = 10
+            paginator = Paginator(queryset, items_per_page)
+
+            page = self.request.query_params.get('page')
+            try:
+                paginated_queryset = paginator.page(page)
+            except PageNotAnInteger:
+                paginated_queryset = paginator.page(1)
+            except EmptyPage:
+                paginated_queryset = []
+
+            serializer = self.get_serializer(paginated_queryset, many=True)
+            return Response(serializer.data)
 
         else:
             error_message = "No applications found with status: " + app_status + "."
@@ -193,27 +215,34 @@ class ApplicationListViewSorted(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ApplicationListSerializer
+    queryset = Application.objects.all()  # Set the base queryset
 
-
-    def get_pet_listing(self, pk):
-        try:
-            return PetListing.objects.get(pk=pk)
-        except PetListing.DoesNotExist:
-            return None
-    def get_queryset(self):
-
+    def list(self, request, *args, **kwargs):
         user = self.request.user
+
         if user.role == 'seeker':
             raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
 
         sort_by = self.kwargs['sort_by']
 
         if sort_by == 'created':
-            queryset = Application.objects.filter(shelter_name=user.shelter_name).order_by('-created_at')
+            queryset = self.filter_queryset(self.get_queryset().filter(shelter_name=user.shelter_name).order_by('-created_at'))
         elif sort_by == 'updated':
-            queryset = Application.objects.filter(shelter_name=user.shelter_name).order_by('-last_updated')
+            queryset = self.filter_queryset(self.get_queryset().filter(shelter_name=user.shelter_name).order_by('-last_updated'))
         else:
             error_message = f"'{sort_by}' is not a valid sort method. Use 'created' or 'updated'."
             raise APIException({'error': error_message})
 
-        return queryset
+        items_per_page = 10
+        paginator = Paginator(queryset, items_per_page)
+
+        page = self.request.query_params.get('page')
+        try:
+            paginated_queryset = paginator.page(page)
+        except PageNotAnInteger:
+            paginated_queryset = paginator.page(1)
+        except EmptyPage:
+            paginated_queryset = []
+
+        serializer = self.get_serializer(paginated_queryset, many=True)
+        return Response(serializer.data)
