@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from comments.views import ApplicationCommentListAPIView
 
 urlpatterns = [
     path('petlisting/<int:pk>/application/', views.ApplicationCreateView.as_view()),

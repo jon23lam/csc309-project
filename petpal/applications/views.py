@@ -21,6 +21,7 @@ class ApplicationCreateView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+
     def get_application(self, pk):
         try:
             return Application.objects.get(pk=pk)
@@ -51,6 +52,7 @@ class ApplicationCreateView(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
         data['pet_listing'] = pet_listing.id
+        data['shelter'] = pet_listing.lister.id
 
 
 
@@ -62,6 +64,8 @@ class ApplicationCreateView(APIView):
             return Response({'error': 'PetListing is not available'},
                             status=status.HTTP_400_BAD_REQUEST)
 
+
+        print(f"SHELTER DATA: {data}")
 
         serializer = CreateApplicationSerializer(data=data)
         if serializer.is_valid():
