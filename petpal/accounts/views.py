@@ -6,6 +6,7 @@ from .serializers import RegisterUserSerializer, UpdateUserSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .auth import UserIsUpdatingSelf
+from ..applications.models import Application
 # Create your views here.
 class AccountRegistrationView(APIView):
     authentication_classes = []
@@ -41,14 +42,16 @@ class AccountView(UpdateAPIView):
                 return Response(self.serializer_class(acc).data, status=200)
             elif acc.role == ROLE_SEEKER \
                 and request.user.role == ROLE_SHELTER \
-                    and False:
-                    # Replace 'False' with a condition that is true when <acc> has an open application for a petlisting belonging to <request.user>
+                    and Application.objects.filter(pet_listing__lister=request.user, applicant=acc, status=Application.STATUS_OPEN).exists():
                 return Response(self.serializer_class(acc).data, status=200)
             else:
                 return Response({'message': 'You do not have permission to view this account'}, status=401)
         else:
             return Response({'message': f'{"Seeker" if self.requested_role == ROLE_SEEKER else "Shelter"} not found'}, status=404)
         
+    def delete(self, request, pk):
+        request.user.delete()
+        return Response({'message': 'Account deleted successfully'}, status=200)
 class ShelterView(AccountView):
     requested_role = ROLE_SHELTER
 
