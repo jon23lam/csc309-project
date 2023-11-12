@@ -6,7 +6,7 @@ from .serializers import RegisterUserSerializer, UpdateUserSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .auth import UserIsUpdatingSelf
-from ..applications.models import Application
+from applications.models import Application
 # Create your views here.
 class AccountRegistrationView(APIView):
     authentication_classes = []
