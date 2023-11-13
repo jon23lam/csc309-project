@@ -42,7 +42,7 @@ class AccountView(UpdateAPIView):
                 return Response(self.serializer_class(acc).data, status=200)
             elif acc.role == ROLE_SEEKER \
                 and request.user.role == ROLE_SHELTER \
-                    and Application.objects.filter(pet_listing__lister=request.user, applicant=acc, statuss="pending").exists():
+                    and Application.objects.filter(pet_listing__lister=request.user, applicant=acc, status="pending").exists():
                 return Response(self.serializer_class(acc).data, status=200)
             else:
                 return Response({'message': 'You do not have permission to view this account'}, status=401)
