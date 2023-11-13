@@ -44,7 +44,10 @@ class PetListingView(APIView):
             pet_listing = listings.first()
             if pet_listing.lister != request.user:
                 return Response({"error": "Only the lister can edit the pet listing"}, status=401)
-            serializer = self.serializer_class(pet_listing, data={**request.POST.dict(), "image":request.FILES['image']}, partial=True)
+            if 'image' in request.FILES:
+                serializer = self.serializer_class(pet_listing, data={**request.POST.dict(), "image":request.FILES['image']}, partial=True)
+            else: 
+                serializer = self.serializer_class(pet_listing, data={**request.POST.dict()}, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response({'message': 'Pet listing updated successfully'}, status=200)

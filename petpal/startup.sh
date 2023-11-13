@@ -1,5 +1,5 @@
-python -m venv env
+python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
-./manage.py makemigrations
-./manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
