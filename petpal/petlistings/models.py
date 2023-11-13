@@ -37,6 +37,6 @@ class PetListing(models.Model):
     age = models.IntegerField(blank=False, null=False,)
     weight = models.IntegerField(blank=False, null=False,)
     description = models.CharField(max_length=1000)
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.ImageField(upload_to='listing_images/')
     status = models.CharField(max_length=20, choices=((STATUS_AVAILABLE, 'Available'), (STATUS_ADOPTED, 'Adopted'),
                                                      (STATUS_PENDING, 'Pending'), (STATUS_WITHDRAWN, 'Withdrawn')), null=False)

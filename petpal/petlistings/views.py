@@ -22,7 +22,7 @@ class PetListingView(APIView):
         listings = self.queryset.filter(pk=pk)
         if listings.exists():
             pet_listing = listings.first()
-            serializer = self.serializer_class(pet_listing)
+            serializer = self.serializer_class(instance=pet_listing, context={'request': request})
             return Response(serializer.data, status=200)
         else:
             return Response({"error": "Pet listing does not exist"}, status=404)
@@ -31,7 +31,7 @@ class PetListingView(APIView):
         if not request.user.role == ROLE_SHELTER:
             return Response({"error": "Only shelters can create pet listings"}, status=403)
 
-        serializer = self.serializer_class(data={"lister":request.user.id, **request.POST.dict()})
+        serializer = self.serializer_class(data={"lister":request.user.id, **request.POST.dict(), "image":request.FILES['image']})
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'Pet listing created successfully'}, status=200)
@@ -44,7 +44,7 @@ class PetListingView(APIView):
             pet_listing = listings.first()
             if pet_listing.lister != request.user:
                 return Response({"error": "Only the lister can edit the pet listing"}, status=401)
-            serializer = self.serializer_class(pet_listing, data=request.POST, partial=True)
+            serializer = self.serializer_class(pet_listing, data={**request.POST.dict(), "image":request.FILES['image']}, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response({'message': 'Pet listing updated successfully'}, status=200)
@@ -133,5 +133,5 @@ class PetListingListView(APIView):
 
         listings = paginator.paginate_queryset(listings, request)
 
-        serializer = self.serializer_class(listings, many=True)
+        serializer = self.serializer_class(listings, context={'request': request}, many=True)
         return paginator.get_paginated_response(serializer.data)
