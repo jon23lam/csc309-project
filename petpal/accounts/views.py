@@ -50,8 +50,11 @@ class AccountView(UpdateAPIView):
             return Response({'message': f'{"Seeker" if self.requested_role == ROLE_SEEKER else "Shelter"} not found'}, status=404)
         
     def delete(self, request, pk):
-        request.user.delete()
-        return Response({'message': 'Account deleted successfully'}, status=200)
+        if request.user.id == pk:
+            request.user.delete()
+            return Response({'message': 'Account deleted successfully'}, status=200)
+        
+        return Response({'error': 'You can not delete that account'}, status=401)
 class ShelterView(AccountView):
     requested_role = ROLE_SHELTER
 

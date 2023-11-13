@@ -35,7 +35,13 @@ class ApplicationCommentListAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, application_id):
-        application = Application.objects.get(id=application_id)
+        try:
+            application = Application.objects.get(id=application_id)
+        except Application.DoesNotExist:
+            raise ValidationError({
+                'application': 'application does not exist'
+            })
+            
 
         if request.user.role == 'seeker' and application.applicant != request.user:
             raise ValidationError(
@@ -54,7 +60,12 @@ class ApplicationCommentListAPIView(APIView):
         return paginator.get_paginated_response(serializer.data)
     
     def post(self, request, application_id):
-        application = Application.objects.get(id=application_id)
+        try:
+            application = Application.objects.get(id=application_id)
+        except Application.DoesNotExist:
+            raise ValidationError({
+                'application': 'application does not exist'
+            })
 
         if request.user.role == 'seeker' and application.applicant != request.user:
             raise ValidationError(
@@ -90,7 +101,12 @@ class ApplicationCommentGetAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, application_id, comment_id):
-        application = Application.objects.get(id=application_id)
+        try:
+            application = Application.objects.get(id=application_id)
+        except Application.DoesNotExist:
+            raise ValidationError({
+                'application': 'application does not exist'
+            })
 
         if request.user.role == 'seeker' and application.applicant != request.user:
             raise ValidationError(
