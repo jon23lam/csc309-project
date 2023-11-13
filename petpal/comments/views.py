@@ -41,7 +41,7 @@ class ApplicationCommentListAPIView(APIView):
             raise ValidationError(
                 {'seeker': 'You do not have access to this application'})
         
-        if request.user.role == 'shelter' and application.shelter != request.use:
+        if request.user.role == 'shelter' and application.shelter != request.user:
             raise ValidationError(
                 {'shelter': 'You do not have access to this application'})
         
@@ -60,7 +60,7 @@ class ApplicationCommentListAPIView(APIView):
             raise ValidationError(
                 {'seeker': 'You do not have access to this application'})
         
-        if request.user.role == 'shelter' and application.shelter != request.use:
+        if request.user.role == 'shelter' and application.shelter != request.user:
             raise ValidationError(
                 {'shelter': 'You do not have access to this application'})
         
@@ -96,7 +96,7 @@ class ApplicationCommentGetAPIView(APIView):
             raise ValidationError(
                 {'seeker': 'You do not have access to this application'})
         
-        if request.user.role == 'shelter' and application.shelter != request.use:
+        if request.user.role == 'shelter' and application.shelter != request.user:
             raise ValidationError(
                 {'shelter': 'You do not have access to this application'})
         
