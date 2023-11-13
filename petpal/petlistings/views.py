@@ -121,6 +121,9 @@ class PetListingListView(APIView):
         
         if "status" not in filters:
             filters["status"] = STATUS_AVAILABLE
+        
+        if filters["status"] == "any":
+            filters.pop("status")
 
         sort_by, order = self.parse_sort_by(request)
 
