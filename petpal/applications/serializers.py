@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer, ValidationError, CharField
 from .models import Application
+from petlistings.models import STATUS_AVAILABLE
 
 
 class CreateApplicationSerializer(ModelSerializer):
@@ -12,7 +13,7 @@ class CreateApplicationSerializer(ModelSerializer):
     def validate(self, data):
         if data['applicant'].role != 'seeker':
             raise ValidationError({'applicant': 'Applicant must be a seeker'})
-        if data['pet_listing'].status != 'Available':
+        if data['pet_listing'].status != STATUS_AVAILABLE:
             raise ValidationError({'pet_listing': 'Pet must be available'})
         return super().validate(data)
 

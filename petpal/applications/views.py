@@ -1,14 +1,13 @@
-from django.shortcuts import render
-from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import Application
+from petlistings.models import STATUS_AVAILABLE
+from rest_framework.pagination import PageNumberPagination
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied, APIException, NotFound
-
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
@@ -60,7 +59,7 @@ class ApplicationCreateView(APIView):
 
 
 
-        if pet_listing.status != 'Available':
+        if pet_listing.status != STATUS_AVAILABLE:
             return Response({'error': 'PetListing is not available'},
                             status=status.HTTP_400_BAD_REQUEST)
 
@@ -158,23 +157,15 @@ class ApplicationListView(ListAPIView):
             raise PermissionDenied(detail='You are not allowed to view applications', code=403)
 
         try:
+            queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id))
 
+            paginator = PageNumberPagination()
+            paginator.page_size = 10
 
-            queryset = self.filter_queryset(self.get_queryset().filter(shelter_name=user.shelter_name))
+            applications = paginator.paginate_queryset(queryset=queryset, request=request)
 
-            items_per_page = 10
-            paginator = Paginator(queryset, items_per_page)
-
-            page = self.request.query_params.get('page')
-            try:
-                paginated_queryset = paginator.page(page)
-            except PageNotAnInteger:
-                paginated_queryset = paginator.page(1)
-            except EmptyPage:
-                paginated_queryset = []
-
-            serializer = self.get_serializer(paginated_queryset, many=True)
-            return Response(serializer.data)
+            serializer = self.serializer_class(applications, context={'request': request}, many=True)
+            return paginator.get_paginated_response(serializer.data)
 
         except Exception as e:
             raise PermissionDenied(detail='Unable to find applications', code=404) from e
@@ -194,21 +185,15 @@ class ApplicationListViewFiltered(ListAPIView):
 
         app_status = self.kwargs.get('status')
         if app_status is not None:
-            queryset = self.filter_queryset(self.get_queryset().filter(status=app_status, shelter_name=user.shelter_name))
+            queryset = self.filter_queryset(self.get_queryset().filter(status=app_status, shelter=user.id))
 
-            items_per_page = 10
-            paginator = Paginator(queryset, items_per_page)
+            paginator = PageNumberPagination()
+            paginator.page_size = 10
 
-            page = self.request.query_params.get('page')
-            try:
-                paginated_queryset = paginator.page(page)
-            except PageNotAnInteger:
-                paginated_queryset = paginator.page(1)
-            except EmptyPage:
-                paginated_queryset = []
+            applications = paginator.paginate_queryset(queryset=queryset, request=request)
 
-            serializer = self.get_serializer(paginated_queryset, many=True)
-            return Response(serializer.data)
+            serializer = self.serializer_class(applications, context={'request': request}, many=True)
+            return paginator.get_paginated_response(serializer.data)
 
         else:
             error_message = "No applications found with status: " + app_status + "."
@@ -230,23 +215,17 @@ class ApplicationListViewSorted(ListAPIView):
         sort_by = self.kwargs['sort_by']
 
         if sort_by == 'created':
-            queryset = self.filter_queryset(self.get_queryset().filter(shelter_name=user.shelter_name).order_by('-created_at'))
+            queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id).order_by('-created_at'))
         elif sort_by == 'updated':
-            queryset = self.filter_queryset(self.get_queryset().filter(shelter_name=user.shelter_name).order_by('-last_updated'))
+            queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id).order_by('-last_updated'))
         else:
             error_message = f"'{sort_by}' is not a valid sort method. Use 'created' or 'updated'."
             raise APIException({'error': error_message})
 
-        items_per_page = 10
-        paginator = Paginator(queryset, items_per_page)
+        paginator = PageNumberPagination()
+        paginator.page_size = 10
 
-        page = self.request.query_params.get('page')
-        try:
-            paginated_queryset = paginator.page(page)
-        except PageNotAnInteger:
-            paginated_queryset = paginator.page(1)
-        except EmptyPage:
-            paginated_queryset = []
+        applications = paginator.paginate_queryset(queryset=queryset, request=request)
 
-        serializer = self.get_serializer(paginated_queryset, many=True)
-        return Response(serializer.data)
+        serializer = self.serializer_class(applications, context={'request': request}, many=True)
+        return paginator.get_paginated_response(serializer.data)
