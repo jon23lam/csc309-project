@@ -1,0 +1,52 @@
+.Main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+
+  .Login__fields {
+    width: 400px;
+    background-color: var(--light-background);
+    border-radius: 24px;
+    padding: 24px;
+    box-sizing: border-box;
+
+    .Filters__form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .Filters__filterItem {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .login-labels {
+          margin: 0 0 5px 0;
+          text-align: left;
+          align-self: flex-start;
+        }
+
+      }
+
+      .login-button {
+        width: 10rem;
+        align-self: center;
+      }
+
+    }
+
+  }
+
+  .error {
+    color: red;
+    text-align: center;
+    font-size: 12px;
+  }
+
+}
+
+
+
+
