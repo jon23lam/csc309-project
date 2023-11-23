@@ -1,4 +1,4 @@
-import { action, computed, makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 export class RootStore {
   authStore;
@@ -6,12 +6,8 @@ export class RootStore {
   constructor(authStore) {
     this.authStore = authStore;
 
-  
-
     makeAutoObservable(this);
   }
-
-
 }
 
 export default RootStore;

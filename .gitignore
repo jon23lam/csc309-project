@@ -13,6 +13,6 @@ petpal/db.sqlite3
 accounts/migrations
 
 phase3/backend/petpal/env
-phase3/bakcned/petpal/db.sqlite3
+phase3/backend/petpal/db.sqlite3
 
 phase3/frontend/node_modules

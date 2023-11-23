@@ -10,6 +10,7 @@ export async function axiosGet(endpoint, params = {}) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
     },
   });
 
@@ -25,6 +26,7 @@ export async function axiosPost(endpoint, payload, additionalHeaders = {}) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "Bearer token": localStorage.getItem('accessToken'),
       ...additionalHeaders,
     },
   });
@@ -37,6 +39,7 @@ export async function axiosPut(endpoint, payload) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "Bearer token": localStorage.getItem('accessToken')
     },
   });
 
@@ -48,6 +51,19 @@ export async function axiosDelete(endpoint, payload) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "Bearer token": localStorage.getItem('accessToken')
+    },
+  });
+
+  return response;
+}
+
+export async function axiosPostNoAuth(endpoint, payload, additionalHeaders = {}) {
+  const response = await axios.post(endpoint, payload, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      ...additionalHeaders,
     },
   });
 

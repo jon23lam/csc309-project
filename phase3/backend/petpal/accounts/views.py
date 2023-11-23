@@ -19,6 +19,20 @@ class AccountRegistrationView(APIView):
             return Response({'message': 'Account created successfully'}, status=200)
         else:
             return Response(serializer.errors, status=400)
+        
+
+class MeView(UpdateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = UpdateUserSerializer
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_anonymous:
+            return Response({'message': 'User not found'}, status=404)
+
+        serializer = self.serializer_class(user)
+        return Response(serializer.data, status=200)
 
 class AccountView(UpdateAPIView):
     authentication_classes = [JWTAuthentication]

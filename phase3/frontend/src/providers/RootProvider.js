@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthStoreContext } from './AuthenticationProvider';
-import { RootStore } from "../stores/RootStore"
+import React, { useState, useContext } from "react";
+import { AuthStoreContext } from "./AuthenticationProvider";
+import { RootStore } from "../stores/RootStore";
 
 export const RootStoreContext = React.createContext(null);
 
@@ -15,4 +15,4 @@ export function RootProvider({ children }) {
   );
 }
 
-export default RootProvider
+export default RootProvider;
