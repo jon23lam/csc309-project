@@ -65,16 +65,18 @@ export class AuthStore {
   retrieveCurrentUserContext = async () => {
     try {
       const access = localStorage.getItem("accessToken");
-      console.log(access);
+
       if (access) {
         const user = await authenticationService.getMe();
-        console.log(user);
 
         this.setContext({ currentUser: user.data });
         this.setIsAuthenticated(true);
+      } else {
+        localStorage.setItem("accessToken", undefined);
+        this.setIsAuthenticated(false);
       }
     } catch (err) {
-      console.log("cant get user");
+      localStorage.setItem("accessToken", undefined);
       this.setIsAuthenticated(false);
     }
 
