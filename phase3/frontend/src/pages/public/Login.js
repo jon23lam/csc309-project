@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RootStoreContext } from "../../providers/RootProvider";
 
 import "./Login.scss";
+import "../../BaseStyles.scss";
 
 export function Login(props) {
   const navigate = useNavigate();

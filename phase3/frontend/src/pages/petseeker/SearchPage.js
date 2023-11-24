@@ -4,15 +4,15 @@ import { RootStoreContext } from "../../providers/RootProvider";
 
 export const SearchPage = observer((props) => {
   const rootStore = useContext(RootStoreContext);
-  const { authStore } = rootStore;
-  const { context } = authStore;
-  const { currentUser } = context;
+  const { petListingsStore } = rootStore;
+  const { petList } = petListingsStore;
 
   useEffect(() => {
-    console.log(currentUser);
-  }, [context]);
+    petListingsStore.initializeSearchPage();
+  }, []);
 
-  return <div>This is the searchPage</div>;
+  // This is temporary, wanted to keep this here to show everyone how to use observables form stores
+  return <div>{JSON.stringify(petList)}</div>;
 });
 
 export default SearchPage;
