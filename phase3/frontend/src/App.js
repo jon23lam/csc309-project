@@ -6,6 +6,7 @@ import { AuthenticationProvider } from "./providers/AuthenticationProvider";
 import RootProvider from "./providers/RootProvider";
 import AppProvider from "./providers/AppProvider";
 import { Application } from "./pages/petseeker/Application";
+import { CreatePetListing } from "./pages/shelter/CreatePetListing";
 
 import "./App.scss";
 
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/" element={<AuthenticatedRoute />}>
                   <Route path="/search" element={<SearchPage />} />
                   <Route path="/application" element={<Application />} />
+                  <Route path="/createlisting" element={<CreatePetListing />} />
                 </Route>
               </Routes>
             </RootProvider>
