@@ -5,15 +5,18 @@ export class PetListingsStore {
   petList = [];
   petCount = 0;
   isLoading = false;
+  nextPage = null;
 
   constructor() {
     makeObservable(this, {
       petList: observable,
       isLoading: observable,
       petCount: observable,
+      nextPage: observable,
       setIsLoading: action,
       setPetCount: action,
       setPetList: action,
+      setNextPage: action
     });
   }
 
@@ -29,24 +32,81 @@ export class PetListingsStore {
     this.petCount = petCount;
   };
 
+  setNextPage = (nextPage) => {
+    this.nextPage = nextPage;
+  }
+
+  extendPetList = (petList) => {
+    this.petList = [ ...this.petList, ...petList];
+  }
+
+  extendPetCount = (petCount) => {
+    this.petCount = this.petCount + petCount;
+  }
+
   initializeSearchPage = async () => {
     this.setIsLoading(true);
 
     try {
       const response = await petListingsService.getPetListings();
 
-      const { count, results } = response.data;
+      const { count, results, next } = response.data;
 
       this.setPetCount(count);
       this.setPetList(results);
+      if (next) {
+        this.setNextPage(true)
+      }
 
-      console.log(results);
     } catch (err) {
-      console.log("failed to get shelters");
+      console.log("failed to get petlistings");
     }
 
     this.setIsLoading(false);
   };
+
+  getPetListingsFiltered = async (filters) => {
+    this.setIsLoading(true);
+
+    try {
+      const response = await petListingsService.getPetListings(filters);
+
+      const { count, results, next } = response.data;
+
+      this.setPetCount(count);
+      this.setPetList(results);
+      if (next) {
+        this.setNextPage(next);
+      }
+    } catch (err) {
+      console.log("failed to get petlistings");
+    }
+
+    this.setIsLoading(false);
+  }
+
+  getPetListingsNextPage = async () => {
+    this.setIsLoading(true);
+
+    try {
+      const response = await petListingsService.getPetListingsNextPage(this.nextPage);
+
+      const { count, results, next } = response.data;
+      console.log(next)
+
+      this.extendPetCount(count);
+      this.extendPetList(results);
+      if (next) {
+        this.setNextPage(next);
+      } else {
+        this.setNextPage(null);
+      }
+    } catch (err) {
+      console.log("failed to get petlistings");
+    }
+
+    this.setIsLoading(false);
+  }
 }
 
 export default PetListingsStore;
