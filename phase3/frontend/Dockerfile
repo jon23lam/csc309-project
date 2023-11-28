@@ -5,7 +5,7 @@ FROM node:14
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY ./frontend /app
 
 # Install app dependencies
 RUN npm install
