@@ -26,20 +26,16 @@ export const PetListing = observer((props) => {
         </h4>
         <button
           className="Button__purpleOutline"
-          // Commmendted out onclicks until those pages are implemented
-          // onclick="location.href='../PetDetail/elliot/PetDetailPage.html';"
         >
           More Info
         </button>
         <button
           className="Button__purpleOutline"
-          // onclick="location.href='../ShelterDetail/ShelterDetailPage.html';"
         >
           See Shelter
         </button>
         <button
           className="Button__purple"
-          // onclick="location.href='../Adoption/PetAdoptionPage.html';"
         >
           Apply
         </button>

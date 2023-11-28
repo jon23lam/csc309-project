@@ -18,17 +18,10 @@ export const SearchPage = observer((props) => {
   useEffect(() => {
     petListingsStore.initializeSearchPage();
 
-    // function handleResize() {
-    //   setShowFilters(checkWindowSize());
-    // }
-
     window.addEventListener('resize', handleResize);
     setMobileMode(window.innerWidth < 480)
     setShowFilters(window.innerWidth >= 480);
 
-    // return () => {
-    //   window.removeEventListener('resize', handleResize);
-    // };
   }, []);
 
   function handleResize() {
