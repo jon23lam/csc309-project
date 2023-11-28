@@ -16,6 +16,16 @@ export async function postPetListing(payload) {
   return response;
 }
 
+export async function patchPetListing(id, payload) {
+  const response = await axiosRequests.axiosPatch(
+    endpoint(`api/petlistings/${id}/`),
+    payload,
+    {"Content-Type": "multipart/form-data"}, // Must set for file upload
+  );
+
+  return response;
+}
+
 export async function getPetListing(listingId) {
   const response = await axiosRequests.axiosGet(
     GET_PET_LISTING_ENDPOINT(listingId)

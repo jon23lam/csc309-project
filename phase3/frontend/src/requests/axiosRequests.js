@@ -46,6 +46,19 @@ export async function axiosPut(endpoint, payload) {
   return response;
 }
 
+
+export async function axiosPatch(endpoint, payload) {
+  const response = await axios.patch(endpoint, payload, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
+    },
+  });
+
+  return response;
+}
+
 export async function axiosDelete(endpoint, payload) {
   const response = await axios.delete(endpoint, payload, {
     headers: {
