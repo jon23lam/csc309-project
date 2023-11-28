@@ -6,6 +6,16 @@ const GET_PET_LISTING_ENDPOINT = (listingId) =>
 
 const GET_PET_LISTINGS_ENDPOINT = endpoint("api/petlistings/list/");
 
+export async function postPetListing(payload) {
+  const response = await axiosRequests.axiosPost(
+    endpoint("api/petlistings/"),
+    payload,
+    {"Content-Type": "multipart/form-data"}, // Must set for file upload
+  );
+
+  return response;
+}
+
 export async function getPetListing(listingId) {
   const response = await axiosRequests.axiosGet(
     GET_PET_LISTING_ENDPOINT(listingId)

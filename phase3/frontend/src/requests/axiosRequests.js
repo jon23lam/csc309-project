@@ -26,7 +26,7 @@ export async function axiosPost(endpoint, payload, additionalHeaders = {}) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "Bearer token": localStorage.getItem('accessToken'),
+      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`,
       ...additionalHeaders,
     },
   });

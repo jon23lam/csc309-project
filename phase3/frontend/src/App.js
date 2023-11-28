@@ -5,6 +5,7 @@ import { AuthenticatedRoute } from "./routes/AuthenticatedRoute";
 import { AuthenticationProvider } from "./providers/AuthenticationProvider";
 import RootProvider from "./providers/RootProvider";
 import AppProvider from "./providers/AppProvider";
+import { CreatePetListing } from "./pages/shelter/CreatePetListing";
 
 import "./App.scss";
 
@@ -21,6 +22,7 @@ function App() {
                 {/* Put all routes that need authentication in here */}
                 <Route path="/" element={<AuthenticatedRoute />}>
                   <Route path="/search" element={<SearchPage />} />
+                  <Route path="/createlisting" element={<CreatePetListing />} />
                 </Route>
               </Routes>
             </RootProvider>
