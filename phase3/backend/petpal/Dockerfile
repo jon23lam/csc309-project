@@ -16,5 +16,9 @@ EXPOSE 8000
 # Define environment variable
 ENV DJANGO_SETTINGS_MODULE=pethubbackend.settings
 
-# Run app.py when the container launches
+# Apply database migrations
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+
+# Run the development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
