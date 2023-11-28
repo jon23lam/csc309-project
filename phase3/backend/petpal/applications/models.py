@@ -44,4 +44,5 @@ class Application(models.Model):
     home_yard = models.CharField(max_length=10, choices=YES_NO, default='no')
     safe_guard = models.CharField(max_length=10, choices=YES_NO, default='no')
     message = models.TextField(blank=True)
+    age = models.IntegerField(blank=True, null=True)
     REQUIRED_FIELDS = ['status']
