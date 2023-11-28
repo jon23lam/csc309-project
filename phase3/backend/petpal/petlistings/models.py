@@ -32,8 +32,8 @@ class PetListing(models.Model):
                                          ('NT', 'Northwest Territories'), ('YK', 'Yukon'), ('NV', 'Nunavut'),
                                          ('NL', 'Newfoundland and Labrador')))
     address = models.CharField(max_length=200)
-    colour = models.CharField(max_length=20, choices=(('White', 'White'), ('Black', 'Black'), ('Brown', 'Brown'),
-                                                     ('Sable', 'Sable')), null=False)
+    colour = models.CharField(max_length=20, choices=(('white', 'White'), ('black', 'Black'), ('brown', 'Brown'),
+                                                     ('sable', 'Sable')), null=False)
     age = models.IntegerField(blank=False, null=False,)
     weight = models.IntegerField(blank=False, null=False,)
     description = models.CharField(max_length=1000)

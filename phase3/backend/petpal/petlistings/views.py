@@ -31,7 +31,7 @@ class PetListingView(APIView):
         if not request.user.role == ROLE_SHELTER:
             return Response({"error": "Only shelters can create pet listings"}, status=403)
 
-        serializer = self.serializer_class(data={"lister":request.user.id, **request.POST.dict(), "image":request.FILES['image']})
+        serializer = self.serializer_class(data={"lister":request.user.id, **request.POST.dict(), **{"image":request.FILES['image'] if 'image' in request.FILES else None}})
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'Pet listing created successfully'}, status=200)
