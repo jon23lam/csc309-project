@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Login } from "./pages/public/Login";
-import { SearchPage } from "./pages/petseeker/SearchPage";
+import { SearchPage } from "./pages/petseeker/Search/SearchPage";
 import { AuthenticatedRoute } from "./routes/AuthenticatedRoute";
 import { AuthenticationProvider } from "./providers/AuthenticationProvider";
 import RootProvider from "./providers/RootProvider";

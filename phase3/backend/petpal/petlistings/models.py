@@ -40,3 +40,4 @@ class PetListing(models.Model):
     image = models.ImageField(upload_to='listing_images/')
     status = models.CharField(max_length=20, choices=((STATUS_AVAILABLE, 'Available'), (STATUS_ADOPTED, 'Adopted'),
                                                      (STATUS_PENDING, 'Pending'), (STATUS_WITHDRAWN, 'Withdrawn')), null=False)
+    created_at = models.DateTimeField(auto_now_add=True)

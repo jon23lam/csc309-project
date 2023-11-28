@@ -72,7 +72,7 @@ class PetListingListView(APIView):
     queryset = PetListing.objects.all()
     serializer_class = PetListingSerializer
     supported_keys = {"animal", "breed", "lister", "status"}
-    supported_sorters = {"name", "age"}
+    supported_sorters = {"name", "age", "created_at"}
     supported_sort_directions = {"asc", "desc"}
 
     def parse_filters(self, request):
@@ -124,6 +124,9 @@ class PetListingListView(APIView):
         
         if filters["status"] == "any":
             filters.pop("status")
+
+        if "animal" in filters and filters["animal"] == "any":
+            filters.pop("animal")
 
         sort_by, order = self.parse_sort_by(request)
 
