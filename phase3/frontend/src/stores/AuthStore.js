@@ -39,12 +39,15 @@ export class AuthStore {
       const response = await authenticationService.signInUser(payload);
       const { access } = response.data;
 
+      console.log(access)
+
       if (access) {
         localStorage.setItem("accessToken", access);
 
         const user = await authenticationService.getMe();
 
         this.setContext({ currentUser: user.data });
+        console.log("setting isauthenticated")
         this.setIsAuthenticated(true);
         successfulLogin = true;
         message = "Success";
@@ -53,6 +56,7 @@ export class AuthStore {
         this.setIsAuthenticated(false);
       }
     } catch (err) {
+      
       this.setContext({});
       this.setIsAuthenticated(false);
     }
@@ -61,6 +65,17 @@ export class AuthStore {
 
     return { loggedIn: successfulLogin, message: message };
   };
+
+  logoutUser = async () => {
+    this.setIsLoading(true);
+
+    localStorage.setItem("accessToken", undefined);
+    this.setContext({});
+    this.setIsAuthenticated(false);
+
+    this.setIsLoading(false);
+  }
+
 
   retrieveCurrentUserContext = async () => {
     try {

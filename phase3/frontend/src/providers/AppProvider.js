@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthStoreContext } from "./AuthenticationProvider";
+import { AuthStoreContext } from "../contexts/AuthStoreContext";
 
 export const AppContext = React.createContext();
 export const AppConsumer = AppContext.Consumer;

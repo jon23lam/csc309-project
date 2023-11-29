@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthStore } from "../stores/AuthStore"
-
-export const AuthStoreContext = React.createContext(null);
+import { AuthStoreContext } from '../contexts/AuthStoreContext';
 
 export function AuthenticationProvider({ children }) {
   const [authStore] = useState(() => new AuthStore());
