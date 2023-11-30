@@ -10,7 +10,7 @@ export async function postPetListing(payload) {
   const response = await axiosRequests.axiosPost(
     endpoint("api/petlistings/"),
     payload,
-    {"Content-Type": "multipart/form-data"}, // Must set for file upload
+    { "Content-Type": "multipart/form-data" }, // Must set for file upload
   );
 
   return response;
@@ -20,7 +20,7 @@ export async function patchPetListing(id, payload) {
   const response = await axiosRequests.axiosPatch(
     endpoint(`api/petlistings/${id}/`),
     payload,
-    {"Content-Type": "multipart/form-data"}, // Must set for file upload
+    { "Content-Type": "multipart/form-data" }, // Must set for file upload
   );
 
   return response;
@@ -28,9 +28,9 @@ export async function patchPetListing(id, payload) {
 
 export async function getPetListing(listingId) {
   const response = await axiosRequests.axiosGet(
-    GET_PET_LISTING_ENDPOINT(listingId)
+    GET_PET_LISTING_ENDPOINT(listingId),
   );
-
+  console.log(response);
   return response;
 }
 
@@ -48,25 +48,25 @@ export async function getPetListings(filters, page = 1) {
     }
   }
 
-  const filterString = filterParts.length > 0 ? `[${filterParts.join(',')}]` : '[status:any]';
-  const sortString = sortParts.length > 0 ? `${sortParts.join(',')}` : 'created_at:asc';
+  const filterString =
+    filterParts.length > 0 ? `[${filterParts.join(",")}]` : "[status:any]";
+  const sortString =
+    sortParts.length > 0 ? `${sortParts.join(",")}` : "created_at:asc";
   const params = {
     filters: filterString,
     sort_by: sortString,
-    page: page
+    page: page,
   };
   const response = await axiosRequests.axiosGet(
     GET_PET_LISTINGS_ENDPOINT,
-    params
+    params,
   );
 
   return response;
 }
 
 export async function getPetListingsNextPage(requestUrl) {
-  const response = await axiosRequests.axiosGet(
-    requestUrl,
-  )
+  const response = await axiosRequests.axiosGet(requestUrl);
 
   return response;
 }
