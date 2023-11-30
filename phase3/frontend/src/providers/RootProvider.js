@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AuthStoreContext } from "./AuthenticationProvider";
+import { AuthStoreContext } from "../contexts/AuthStoreContext";
 import { RootStore } from "../stores/RootStore";
 
 export const RootStoreContext = React.createContext(null);
