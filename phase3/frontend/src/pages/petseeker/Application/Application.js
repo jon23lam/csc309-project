@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ApplicationPage.scss";
 import "../../../BaseStyles.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { axiosPost } from "../../../requests/axiosRequests";
+import { axiosGet, axiosPost } from "../../../requests/axiosRequests";
 
 const GENDER_OPTIONS = [
   { value: "", label: "Select" },
@@ -33,6 +33,7 @@ const SAFE_GUARD_OPTIONS = [
 
 export function Application(props) {
   const { id } = useParams();
+
   const [formData, setFormData] = useState({
     yourName: "",
     age: "",
