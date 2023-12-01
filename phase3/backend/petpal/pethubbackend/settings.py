@@ -32,7 +32,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-  "http://localhost:3000"
+  "http://localhost:3000",
+  "http://137.184.5.118:3000",
+  "http://petpal.marcomarchesano.com:3000"
 ]
 
 

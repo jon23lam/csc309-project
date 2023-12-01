@@ -33,7 +33,8 @@ export function Login(props) {
     }
   }
 
-  const navigateToSearch = () => {
+  function navigateToSearch () {
+    console.log("Navigating to search")
     navigate("/search");
   };
 

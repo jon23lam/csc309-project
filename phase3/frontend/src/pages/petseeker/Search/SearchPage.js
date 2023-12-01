@@ -26,7 +26,7 @@ export const SearchPage = observer((props) => {
 
   function handleResize() {
     const mobileMode = window.innerWidth < 480;
-    console.log(mobileMode)
+
     setMobileMode(mobileMode) 
   }
 
@@ -39,11 +39,11 @@ export const SearchPage = observer((props) => {
     if (petCount == 0) {
       return (
         <div className="SearchPage__pagination">
-          <h1 class="BoldPurpleText">There are no listings that fit your search criteria</h1>
+          <h1 className="BoldPurpleText">There are no listings that fit your search criteria</h1>
         </div>
       );
     }
-    return petList.map((pet) => <PetListing petInfo={pet} />);
+    return petList.map((pet) => <PetListing key={pet.id} petInfo={pet} />);
   }
 
   function getNextPage() {
@@ -71,7 +71,7 @@ export const SearchPage = observer((props) => {
                 className="SearchPage__pagination"
                 onClick={() => getNextPage()}
               >
-                <h1 class="BoldPurpleText">Load More</h1>
+                <h1 className="BoldPurpleText">Load More</h1>
               </div>
             )}
           </div>

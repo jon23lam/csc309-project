@@ -91,9 +91,9 @@ export const SearchFilters = observer((props) => {
           </div>
         </div>
         <div className="Filters__filterItem">
-          <label for="animal">Animal:</label>
+          <label htmlFor="animal">Animal:</label>
           <select name="animal" id="animal" className="Dropdown__PurpleOutline" onChange={(e) => onFiltersChange("animal", e.target.value)}>
-            <option value="" disabled selected hidden>
+            <option value="" disabled defaultValue hidden>
               Select an animal
             </option>
             <option value="any">All</option>
@@ -104,14 +104,14 @@ export const SearchFilters = observer((props) => {
           </select>
         </div>
         <div className="Filters__filterItem">
-          <label for="breed">Breed:</label>
+          <label htmlFor="breed">Breed:</label>
           <select
             name="breed"
             id="breed"
             onChange={(e) => onFiltersChange("breed", e.target.value)}
             className="Dropdown__PurpleOutline"
           >
-            <option value="" disabled selected hidden>
+            <option value="" disabled defaultValue hidden>
               Select a breed
             </option>
             <option value="any">Any</option>
@@ -122,14 +122,14 @@ export const SearchFilters = observer((props) => {
           </select>
         </div>
         <div className="Filters__filterItem">
-          <label for="breed">Status:</label>
+          <label htmlFor="breed">Status:</label>
           <select
             name="breed"
             id="breed"
             onChange={(e) => onFiltersChange("status", e.target.value)}
             className="Dropdown__PurpleOutline"
           >
-            <option value="" disabled selected hidden>
+            <option value="" disabled defaultValue hidden>
               Select a status
             </option>
             <option value="any">Any</option>
@@ -140,9 +140,9 @@ export const SearchFilters = observer((props) => {
           </select>
         </div>
         <div className="Filters__filterItem">
-          <label for="sex">Sex:</label>
+          <label htmlFor="sex">Sex:</label>
           <select name="sex" id="sex" className="Dropdown__PurpleOutline">
-            <option value="" disabled selected hidden>
+            <option value="" disabled defaultValue hidden>
               Select a sex
             </option>
             <option value="any">Any</option>
@@ -151,13 +151,13 @@ export const SearchFilters = observer((props) => {
           </select>
         </div>
         <div className="Filters__filterItem">
-          <label for="province">Province:</label>
+          <label htmlFor="province">Province:</label>
           <select
             name="province"
             id="province"
             className="Dropdown__PurpleOutline"
           >
-            <option value="" disabled selected hidden>
+            <option value="" disabled defaultValue hidden>
               Select a Province
             </option>
             <option value="ontario">Ontario</option>
@@ -178,7 +178,7 @@ export const SearchFilters = observer((props) => {
           </select>
         </div>
         <div className="Filters__filterItem">
-          <label for="address">Address:</label>
+          <label htmlFor="address">Address:</label>
           <input
             type="text"
             id="address"
@@ -187,9 +187,9 @@ export const SearchFilters = observer((props) => {
           />
         </div>
         <div className="Filters__filterItem">
-          <label for="color">Color:</label>
+          <label htmlFor="color">Color:</label>
           <select name="color" id="color" className="Dropdown__PurpleOutline">
-            <option value="" disabled selected hidden>
+            <option value="" disabled defaultValue hidden>
               Select a color
             </option>
             <option value="any">Any</option>
@@ -238,7 +238,7 @@ export const SearchFilters = observer((props) => {
           </div>
         </div>
         <div className="Filters__filterItem">
-          <label for="description">Description:</label>
+          <label htmlFor="description">Description:</label>
           <textarea
             type="text"
             id="description"

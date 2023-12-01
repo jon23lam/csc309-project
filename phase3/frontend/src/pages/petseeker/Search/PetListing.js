@@ -7,7 +7,7 @@ export const PetListing = observer((props) => {
   const { id, name, age, sex, weight, breed, description, image } = petInfo
 
   return (
-    <div className="SearchPage__petInfo">
+    <div className="SearchPage__petInfo" key={id}>
       <div className="SearchPage__petPhotoWrapper">
         <img
           src={image}
