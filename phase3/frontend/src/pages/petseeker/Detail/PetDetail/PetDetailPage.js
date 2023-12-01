@@ -59,25 +59,13 @@ export function PetDetailPage(props) {
               {petListing.name} (Status: {petListing.status})
             </h1>
             <br />
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black"
-            >
+            <a className="info-item" href="#">
               {petListing.breed}
             </a>
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black; text-decoration: none"
-            >
+            <a className="info-item" href="#">
               •
             </a>
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black"
-            >
+            <a className="info-item" href="#">
               {petListing.address}, {petListing.province}
             </a>
 
@@ -85,57 +73,6 @@ export function PetDetailPage(props) {
             <br />
           </div>
 
-          <div className="quick-info">
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black; text-decoration: none"
-            >
-              Young
-            </a>
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black; text-decoration: none"
-            >
-              •
-            </a>
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black; text-decoration: none"
-            >
-              Male
-            </a>
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black; text-decoration: none"
-            >
-              •
-            </a>
-            <a
-              className="info-item"
-              href=""
-              // style="text-decoration: none; font-size: 18px; color: black"
-            >
-              Small
-            </a>
-            <a
-              className="info-item"
-              href="#"
-              // style="font-size: 18px; color: black; text-decoration: none"
-            >
-              •
-            </a>
-            <a
-              className="info-item"
-              href=""
-              // style="text-decoration: none; font-size: 18px; color: black"
-            >
-              Tricolor (Brown, Black, & White)
-            </a>
-          </div>
           <hr />
           <div>
             <section id="about">
@@ -157,7 +94,7 @@ export function PetDetailPage(props) {
                   <p>Weight: {petListing.weight}</p>
                 </li>
                 <li>
-                  <p>Status: Available</p>
+                  <p>Status: {petListing.status}</p>
                 </li>
               </ul>
             </section>
