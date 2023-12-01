@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ApplicationPage.scss";
+import "./AdoptionForm.scss";
 import "../../../BaseStyles.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { axiosPost } from "../../../requests/axiosRequests";
@@ -30,7 +30,7 @@ const SAFE_GUARD_OPTIONS = [
   { value: "no", label: "No" },
 ];
 
-export function Application(props) {
+export function AdoptionForm(props) {
   const [formData, setFormData] = useState({
     yourName: "",
     age: "",
@@ -56,7 +56,7 @@ export function Application(props) {
 
     try {
       await createApplication(formData);
-      console.log("Application submitted successfully!");
+      console.log("AdoptionForm submitted successfully!");
     } catch (error) {
       console.error("Error submitting application:", error);
     }
