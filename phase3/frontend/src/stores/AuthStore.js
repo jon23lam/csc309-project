@@ -39,7 +39,6 @@ export class AuthStore {
       const response = await authenticationService.signInUser(payload);
       const { access } = response.data;
 
-      console.log(access)
 
       if (access) {
         localStorage.setItem("accessToken", access);
