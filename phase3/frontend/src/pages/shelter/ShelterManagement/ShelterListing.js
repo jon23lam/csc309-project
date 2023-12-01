@@ -18,18 +18,18 @@ export const ShelterListing = observer((props) => {
         <h4>Weight: {weight}</h4>
         <h4>Description: {description}</h4>
         <button
-          class="Button__purpleOutline"
+          className="Button__purpleOutline"
           // onclick="location.href='../Applications/ApplicationsPage.html';"
         >
           See Applications
         </button>
         <button
-          class="Button__purpleOutline"
+          className="Button__purpleOutline"
           // onclick="location.href='../PetCreate/petedit.html';"
         >
           Edit Listing
         </button>
-        <button class="Button__purple">Delete Listing</button>
+        <button className="Button__purple">Delete Listing</button>
       </div>
     </div>
   );

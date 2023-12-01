@@ -41,19 +41,19 @@ export const ShelterManagement = observer((props) => {
   }
 
   return (
-    <div class="PageContainer">
-      <div class="Main">
-        <h1 class="HeaderText">Manage your listings</h1>
-        <div class="ShelterManagement">
-          <div class="ShelterManagement__results">
+    <div className="PageContainer">
+      <div className="Main">
+        <h1 className="HeaderText">Manage your listings</h1>
+        <div className="ShelterManagement">
+          <div className="ShelterManagement__results">
             {renderListings()}
 
             <div
-              class="ShelterManagement__addListing"
-              onclick="location.href='../PetCreate/petcreate.html';"
+              className="ShelterManagement__addListing"
+              // onClick="location.href='../PetCreate/petcreate.html';"
             >
               <img src={AddSvg} alt=""></img>
-              <h1 class="BoldPurpleText">Add Listing</h1>
+              <h1 className="BoldPurpleText">Add Listing</h1>
             </div>
             {nextPage && (
               <div
