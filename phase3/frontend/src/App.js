@@ -12,6 +12,7 @@ import { HeaderRoute } from "./routes/HeaderRoute";
 import { ApplicationsPage } from "./pages/shelter/Applications/ApplicationsPage";
 
 import "./App.scss";
+import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
                     <Route
                       path="/applications"
                       element={<ApplicationsPage />}
+                    />
+                    <Route
+                      path="/applications/:applicationId/messages/"
+                      element={<CommentsPage />}
                     />
                   </Route>
                 </Route>

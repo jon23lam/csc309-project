@@ -65,28 +65,6 @@ export class ApplicationStore {
     this.setIsLoading(false);
   };
 
-  // initializeShelterManagementPage = async (listerId) => {
-  //   this.setIsLoading(true);
-  //
-  //   try {
-  //     const response = await petListingsService.getPetListings({
-  //       filters: { lister: listerId },
-  //     });
-  //
-  //     const { count, results, next } = response.data;
-  //
-  //     this.setPetCount(count);
-  //     this.setPetList(results);
-  //     if (next) {
-  //       this.setNextPage(next);
-  //     }
-  //   } catch (err) {
-  //     console.log("failed to get petlistings");
-  //   }
-  //
-  //   this.setIsLoading(false);
-  // };
-
   getApplicationsFilterd = async (filters) => {
     this.setIsLoading(true);
 
