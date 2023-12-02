@@ -11,6 +11,7 @@ import { ShelterManagement } from "./pages/shelter/ShelterManagement/ShelterMana
 import { HeaderRoute } from "./routes/HeaderRoute" 
 
 import "./App.scss";
+import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
 
 function App() {
   return (
@@ -26,8 +27,12 @@ function App() {
                 <Route path="/" element={<AuthenticatedRoute />}>
                 <Route path="" element={<HeaderRoute />}>
                   <Route path="/search" element={<SearchPage />} />
+                  <Route path="/application/:id/" element={<Application />} />
+                  <Route
+                    path="/editlisting/:id/"
+                    element={<PetListingEditor />}
+                  <Route path="/petdetail/:id/" element={<PetDetailPage />} />
                   <Route path="/manage_shelter" element={<ShelterManagement />} />
-                  <Route path="/application" element={<Application />} />
                   <Route path="/createlisting" element={<PetListingEditor />} />
                   <Route path="/editlisting/:id/" element={<PetListingEditor />} />
                   </Route>
