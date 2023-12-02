@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { RootStoreContext } from "../../../providers/RootProvider";
 import { useParams } from "react-router-dom";
@@ -8,6 +8,10 @@ export const Comments = observer((props) => {
   const rootStore = useContext(RootStoreContext);
   const { commentsStore } = rootStore;
   const { commentList, commentCount, nextPage } = commentsStore;
+  const { seekerShelterStore } = rootStore;
+
+  const [shelterUser, setShelterUser] = useState(null);
+  const [seekerUser, setSeekerUser] = useState(null);
 
   //I have to add to the use effect to get the seeker shelter store to get the user and add it to the message
   useEffect(() => {
@@ -41,6 +45,14 @@ export const Comments = observer((props) => {
     );
   }
 
+  const [newComment, setNewComment] = useState(""); // State to track the new comment text
+
+  const handleCreateComment = () => {
+    commentsStore.createComment(applicationId, newComment);
+
+    setNewComment("");
+  };
+
   return (
     <div className="Application__mainCol">
       <div className="MessagePage__messages">{renderMessages()}</div>
@@ -49,7 +61,10 @@ export const Comments = observer((props) => {
         name="message"
         placeholder="Message Spongeboi here"
         rows="4"
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
       ></textarea>
+      <button onClick={handleCreateComment}>Send</button>
     </div>
   );
 });

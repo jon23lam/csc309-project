@@ -92,15 +92,17 @@ export class CommentsStore {
 
   //This functions wont work to add new comments you will have to come back here and fix it
   createComment = async (applicationId, formData) => {
+    this.setIsLoading(true);
     try {
       const response = await commentsService.postCommentEndpoint(
         applicationId,
-        formData,
+        { content: formData },
       );
       console.log(response.data);
     } catch (error) {
       throw error;
     }
+    this.setIsLoading(false);
   };
 }
 
