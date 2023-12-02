@@ -153,12 +153,12 @@ class ApplicationListView(ListAPIView):
     def list(self, request, *args, **kwargs):
         user = self.request.user
 
-        if user.role != 'shelter':
-            raise PermissionDenied(detail='You are not allowed to view applications', code=403)
 
         try:
-            queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id))
-
+            if user.role == 'shelter':
+                queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id))
+            else:
+                queryset = self.filter_queryset(self.get_queryset().filter(applicant=user.id))
             paginator = PageNumberPagination()
             paginator.page_size = 10
 

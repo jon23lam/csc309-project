@@ -4,45 +4,69 @@ import "../../../BaseStyles.scss";
 import { observer } from "mobx-react";
 import "../Applications/ApplicationsPage.scss";
 import { Comments } from "./Comments";
+import { useLocation } from "react-router-dom";
 
 export const CommentsPage = observer((props) => {
-  //I should add the user info here too
+  const location = useLocation();
+  const { state } = location;
+  const seekerUser = state && state.user;
+  const shelterUser = state && state.shelterUser;
+  const pet = state && state.pet;
 
+  console.log(shelterUser);
   return (
     <div className="PageContainer">
       <div className="Main">
-        <h1 className="HeaderText">Message Spongeboi:</h1>
+        <h1 className="HeaderText">Messages</h1>
         <div className="ApplicationsPage">
           <div className="MessagePage__messagesWrapper">
             <div className="Application__leftCol">
               <div className="Application__photoWrapper">
-                <img
-                  src="../../assets/spongebob.jpeg"
-                  alt="Pet Photo"
-                  className="Application__photo"
-                />
+                {pet && pet.image && (
+                  <img
+                    src={pet.image}
+                    alt="Pet Photo"
+                    className="Application__photo"
+                  />
+                )}
               </div>
               <div className="Application__generalInfo">
                 <h5 className="Application__contact">Contact:</h5>
-                <a
-                  className="Application__email"
-                  href="mailto:Spongeboi.xins@gmail.com"
-                >
-                  spongeboi.xins@gmail.com
-                </a>
-                <a className="Application__phone" href="tel:508-314-4977">
-                  (508)-314-4977
-                </a>
-                <h5 className="Application__address">
-                  120 Homewood Ave, Toronto, ON
-                </h5>
-                <h5 className="Application__dob">
-                  Date of birth: July 8th, 2001
-                </h5>
-                <h5 className="Application__gender">Gender: Male</h5>
+                {seekerUser && seekerUser.email && (
+                  <a
+                    className="Application__email"
+                    href={`mailto:${seekerUser.email}`}
+                  >
+                    {seekerUser.email}
+                  </a>
+                )}
+                {seekerUser && seekerUser.phone && (
+                  <a
+                    className="Application__phone"
+                    href={`tel:${seekerUser.phone}`}
+                  >
+                    {seekerUser.phone}
+                  </a>
+                )}
+                {seekerUser && seekerUser.street_address && (
+                  <h5 className="Application__address">
+                    Address: {seekerUser.street_address}
+                  </h5>
+                )}
+                {seekerUser && seekerUser.dob && (
+                  <h5 className="Application__dob">
+                    Date of birth: {seekerUser.dob}
+                  </h5>
+                )}
+                {seekerUser && seekerUser.gender && (
+                  <h5 className="Application__gender">
+                    Gender: {seekerUser.gender}
+                  </h5>
+                )}
               </div>
             </div>
-            <Comments />
+
+            <Comments seekerUser={seekerUser} shelterUser={shelterUser} />
           </div>
         </div>
       </div>

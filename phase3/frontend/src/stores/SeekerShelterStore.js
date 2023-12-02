@@ -45,12 +45,12 @@ export class SeekerShelterStore {
 
     try {
       const response = await shelters.getShelter(userId);
-      const user = response.data; // Extract user data from the response
-      this.setUser(user); // Set the user data in the store
-      return user; // Return the user data
+      const user = response.data;
+      this.setUser(user);
+      return user;
     } catch (err) {
       console.error("Failed to get shelter", err);
-      throw err; // Rethrow the error to propagate it
+      throw err;
     } finally {
       this.setIsLoading(false);
     }

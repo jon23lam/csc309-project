@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import "./ApplicationsPage.scss";
 import "../../../BaseStyles.scss";
 import ApplicationStore from "../../../stores/ApplicationStore";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Application = observer((props) => {
   const rootStore = useContext(RootStoreContext);
@@ -24,13 +25,14 @@ export const Application = observer((props) => {
     message,
     applicant,
     pet_listing,
-    // shelter,
+    shelter,
     created_at,
   } = applicationInfo;
 
   const [user, setUser] = useState(null);
   const [pet, setPet] = useState(null);
   const [curr_user, setCurrUser] = useState(null);
+  const [shelterUser, setShelterUser] = useState(null);
 
   const timestamp = created_at;
 
@@ -46,6 +48,9 @@ export const Application = observer((props) => {
         setPet(petData);
         const currUserData = await authStore.retrieveCurrentUserContext();
         setCurrUser(currUserData);
+        const shelterUserData =
+          await seekerShelterStore.retrieveShelterUser(shelter);
+        setShelterUser(shelterUserData);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -53,6 +58,13 @@ export const Application = observer((props) => {
 
     fetchData();
   }, [applicant, seekerShelterStore]);
+
+  const navigate = useNavigate();
+  const handleNavigateToMessages = () => {
+    navigate(`${id}/messages/`, {
+      state: { user, curr_user, pet, shelterUser },
+    });
+  };
 
   return (
     <div className="ApplicationsPage__application">
@@ -163,7 +175,8 @@ export const Application = observer((props) => {
               Withdraw Application
             </button>
           )}
-          <button className="Button__purple" onClick={() => {}}>
+
+          <button className="Button__purple" onClick={handleNavigateToMessages}>
             Message {user && user.name ? user.name : "User"}
           </button>
         </div>

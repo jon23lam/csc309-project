@@ -2,18 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { RootStoreContext } from "../../../providers/RootProvider";
 import { useParams } from "react-router-dom";
+import "./Comments.scss";
+import "../../../BaseStyles.scss";
+import "../Applications/ApplicationsPage.scss";
 
 export const Comments = observer((props) => {
   const { applicationId } = useParams();
   const rootStore = useContext(RootStoreContext);
   const { commentsStore } = rootStore;
   const { commentList, commentCount, nextPage } = commentsStore;
-  const { seekerShelterStore } = rootStore;
 
-  const [shelterUser, setShelterUser] = useState(null);
-  const [seekerUser, setSeekerUser] = useState(null);
+  const { seekerUser, shelterUser } = props; // Receive seekerUser and shelterUser as props
 
-  //I have to add to the use effect to get the seeker shelter store to get the user and add it to the message
   useEffect(() => {
     const fetchData = async () => {
       await commentsStore.initializeCommentsPage(applicationId);
@@ -27,7 +27,7 @@ export const Comments = observer((props) => {
       return (
         <div className="ApplicationsPage__pagination">
           <h1 className="BoldPurpleText">
-            There are no messages that fit your search criteria
+            There are no messages for this application
           </h1>
         </div>
       );
@@ -37,8 +37,23 @@ export const Comments = observer((props) => {
       <div className="MessagePage__messages">
         {commentList.map((comment) => (
           <div className="Message__message" key={comment.id}>
-            <h1 className="Message__messageHeader">{comment.user}</h1>
-            <p className="Message__messageBody">{comment.content}</p>
+            {comment.author === seekerUser.id && (
+              <div>
+                <span className="Message__userName">
+                  {seekerUser.first_name} {seekerUser.last_name}:
+                </span>
+                <span>{comment.content}</span>
+              </div>
+            )}
+
+            {comment.author === shelterUser.id && (
+              <div>
+                <span className="Message__userName">
+                  {shelterUser.shelter_name}:
+                </span>
+                <span>{comment.content}</span>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -59,12 +74,14 @@ export const Comments = observer((props) => {
       <textarea
         className="Message__textarea"
         name="message"
-        placeholder="Message Spongeboi here"
+        placeholder="Enter your message here"
         rows="4"
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
       ></textarea>
-      <button onClick={handleCreateComment}>Send</button>
+      <button className="Button__purple" onClick={handleCreateComment}>
+        Send
+      </button>
     </div>
   );
 });

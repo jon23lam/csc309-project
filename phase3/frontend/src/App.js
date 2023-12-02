@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Login } from "./pages/public/Login";
 import { SearchPage } from "./pages/petseeker/Search/SearchPage";
@@ -10,9 +11,9 @@ import { PetListingEditor } from "./pages/shelter/PetListingEditor";
 import { ShelterManagement } from "./pages/shelter/ShelterManagement/ShelterManagement";
 import { HeaderRoute } from "./routes/HeaderRoute";
 import { ApplicationsPage } from "./pages/shelter/Applications/ApplicationsPage";
+import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 
 import "./App.scss";
-import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 
 function App() {
   return (
@@ -22,10 +23,12 @@ function App() {
           <AppProvider>
             <RootProvider>
               <Routes>
+                {/* Public route */}
                 <Route path="/login" element={<Login />} />
 
-                {/* Put all routes that need authentication in here */}
+                {/* Authenticated routes */}
                 <Route path="/" element={<AuthenticatedRoute />}>
+                  {/* HeaderRoute includes routes with headers */}
                   <Route path="" element={<HeaderRoute />}>
                     <Route path="/search" element={<SearchPage />} />
                     <Route
@@ -45,6 +48,8 @@ function App() {
                       path="/applications"
                       element={<ApplicationsPage />}
                     />
+
+                    {/* Nested route for application messages */}
                     <Route
                       path="/applications/:applicationId/messages/"
                       element={<CommentsPage />}
