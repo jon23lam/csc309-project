@@ -11,7 +11,7 @@ export const GET_USER_ENDPOINT = endpoint("api/accounts/me/");
 export async function signInUser(payload) {
   const response = await axiosRequests.axiosPostNoAuth(
     SIGN_IN_ENDPOINT,
-    payload
+    payload,
   );
 
   return response;

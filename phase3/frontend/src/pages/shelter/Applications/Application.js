@@ -1,65 +1,115 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
+import { RootStoreContext } from "../../../providers/RootProvider";
+import { useContext } from "react";
+import { useEffect } from "react";
 
 import "./ApplicationsPage.scss";
 import "../../../BaseStyles.scss";
+import ApplicationStore from "../../../stores/ApplicationStore";
+
 export const Application = observer((props) => {
+  const rootStore = useContext(RootStoreContext);
+  const { seekerShelterStore } = rootStore;
+  const { petListingsStore } = rootStore;
+  const { authStore } = rootStore;
+  const { applicationStore } = rootStore;
+
   const { applicationInfo } = props;
   const {
-    // id,
+    id,
     status,
     occupation,
     salary,
     message,
-    // applicant,
-    // pet_listing,
+    applicant,
+    pet_listing,
     // shelter,
+    created_at,
   } = applicationInfo;
 
-  //Figure out how to also get the pet listing and seeker info
+  const [user, setUser] = useState(null);
+  const [pet, setPet] = useState(null);
+  const [curr_user, setCurrUser] = useState(null);
+
+  const timestamp = created_at;
+
+  const formattedDate = new Date(timestamp).toLocaleDateString("en-US");
+  const formattedTime = new Date(timestamp).toLocaleTimeString("en-US");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userData = await seekerShelterStore.retrieveSeekerUser(applicant);
+        setUser(userData);
+        const petData = await petListingsStore.getPetListingObj(pet_listing);
+        setPet(petData);
+        const currUserData = await authStore.retrieveCurrentUserContext();
+        setCurrUser(currUserData);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchData();
+  }, [applicant, seekerShelterStore]);
 
   return (
     <div className="ApplicationsPage__application">
       <div className="Application__leftCol">
         <div className="Application__photoWrapper">
-          <img
-            src="Leeney01-726.jpg"
-            alt="Pet Photo"
-            className="Application__photo"
-          />
+          {pet && pet.image && (
+            <img
+              src={pet.image}
+              alt="User Photo"
+              className="Application__photo"
+            />
+          )}
         </div>
         <div className="Application__generalInfo">
           <h5 className="Application__contact">Contact:</h5>
-          <a
-            className="Application__email"
-            href="mailto:Spongeboi.xins@gmail.com"
-          >
-            Spongeboi.xins@gmail.com
-          </a>
-          <a className="Application__phone" href="tel:508-314-4977">
-            (508)-314-4977
-          </a>
-          <h5 className="Application__address">
-            120 Homewood Ave, Toronto, ON
-          </h5>
-          <h5 className="Application__dob">Date of birth: July 8th, 2001</h5>
-          <h5 className="Application__gender">Gender: Male</h5>
+          {user && user.email && (
+            <a className="Application__email" href={`mailto:${user.email}`}>
+              Email: {user.email}
+            </a>
+          )}
+          {user && user.phone && (
+            <a className="Application__phone" href={`tel:${user.phone}`}>
+              {user.phone}
+            </a>
+          )}
+          {user && user.street_address && (
+            <h5 className="Application__address">
+              Address: {user.street_address}
+            </h5>
+          )}
+          {user && user.dob && (
+            <h5 className="Application__dob">Date of birth: {user.dob}</h5>
+          )}
+          {user && user.gender && (
+            <h5 className="Application__gender">Gender: {user.gender}</h5>
+          )}
         </div>
       </div>
       <div className="Application__mainCol">
-        <h2 className="Application__name">Spongeboi Xins</h2>
+        {user && user.first_name && user.last_name && (
+          <h2 className="Application__name">
+            {user.first_name} {user.last_name}
+          </h2>
+        )}
         <h5 className="Application__status">
           <b>
             <u>Status:</u>
           </b>{" "}
           {status}
         </h5>
-        <h5 className="Application__location">
+        <h5 className="Application__status">
           <b>
-            <u>Location:</u>
+            <u>Date Created:</u>
           </b>{" "}
-          Toronto, Onatrio
+          {formattedDate} at {formattedTime}
         </h5>
+
         <h5 className="Application__occupation">
           <b>
             <u>Occupation:</u>
@@ -79,12 +129,42 @@ export const Application = observer((props) => {
           {message}
         </h5>
         <div className="Application__actions">
-          <button className="Button__purpleOutline">Deny Application</button>
-          <button
-            className="Button__purple"
-            onClick="location.href='./MessagesPage.html';"
-          >
-            Message Spongeboi
+          {curr_user &&
+            curr_user.role === "shelter" &&
+            status === "pending" && (
+              <>
+                <button
+                  className="Button__purpleOutline"
+                  onClick={() =>
+                    applicationStore.updateApplication(id, { status: "denied" })
+                  }
+                >
+                  Deny Application
+                </button>
+                <button
+                  className="Button__purple"
+                  onClick={() =>
+                    applicationStore.updateApplication(id, {
+                      status: "approved",
+                    })
+                  }
+                >
+                  Accept Application
+                </button>
+              </>
+            )}
+          {curr_user && curr_user.role === "seeker" && status === "pending" && (
+            <button
+              className="Button__purpleOutline"
+              onClick={() =>
+                applicationStore.updateApplication(id, { status: "withdrawn" })
+              }
+            >
+              Withdraw Application
+            </button>
+          )}
+          <button className="Button__purple" onClick={() => {}}>
+            Message {user && user.name ? user.name : "User"}
           </button>
         </div>
       </div>

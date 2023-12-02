@@ -10,6 +10,7 @@ import { RootStoreContext } from "../../../providers/RootProvider";
 export const ApplicationsPage = observer((props) => {
   const rootStore = useContext(RootStoreContext);
   const { applicationStore } = rootStore;
+  const { seekerShelterStore } = rootStore;
   const { applicationList, appCount, nextPage } = applicationStore;
 
   // const [showFilters, setShowFilters] = useState(true);
@@ -44,7 +45,6 @@ export const ApplicationsPage = observer((props) => {
       );
     }
     return applicationList.map((application) => (
-      //I HAVE A FEELING THIS WILL BE WRONG
       <Application key={application.id} applicationInfo={application} />
     ));
   }

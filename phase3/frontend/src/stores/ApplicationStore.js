@@ -132,6 +132,18 @@ export class ApplicationStore {
 
     this.setIsLoading(false);
   };
+
+  updateApplication = async (applicationId, formData) => {
+    try {
+      const response = await applicationService.patchApplication(
+        applicationId,
+        formData,
+      );
+      console.log(response.data);
+    } catch (error) {
+      throw error;
+    }
+  };
 }
 
 export default ApplicationStore;

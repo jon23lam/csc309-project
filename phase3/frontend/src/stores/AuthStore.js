@@ -39,14 +39,13 @@ export class AuthStore {
       const response = await authenticationService.signInUser(payload);
       const { access } = response.data;
 
-
       if (access) {
         localStorage.setItem("accessToken", access);
 
         const user = await authenticationService.getMe();
 
         this.setContext({ currentUser: user.data });
-        console.log("setting isauthenticated")
+        console.log("setting isauthenticated");
         this.setIsAuthenticated(true);
         successfulLogin = true;
         message = "Success";
@@ -55,7 +54,6 @@ export class AuthStore {
         this.setIsAuthenticated(false);
       }
     } catch (err) {
-      
       this.setContext({});
       this.setIsAuthenticated(false);
     }
@@ -73,18 +71,19 @@ export class AuthStore {
     this.setIsAuthenticated(false);
 
     this.setIsLoading(false);
-  }
-
+  };
 
   retrieveCurrentUserContext = async () => {
     try {
       const access = localStorage.getItem("accessToken");
-
       if (access) {
         const user = await authenticationService.getMe();
 
         this.setContext({ currentUser: user.data });
         this.setIsAuthenticated(true);
+
+        //Had to add this line for applications, let me know if it breaks anything
+        return user.data;
       } else {
         localStorage.setItem("accessToken", undefined);
         this.setIsAuthenticated(false);
