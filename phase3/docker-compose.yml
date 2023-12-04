@@ -9,17 +9,22 @@ services:
     volumes:
       - ./backend/petpal:/app
     restart: always
-
+    networks:
+      - my-network
 
   frontend:
     build:
       context: .
       dockerfile: frontend/Dockerfile
     container_name: frontend
-
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/app
       - ./frontend/node_modules:/app/node_modules
     restart: always
+    networks:
+      - my-network
+
+networks:
+  my-network:

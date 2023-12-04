@@ -12,13 +12,16 @@ export async function signInUser(payload) {
   const response = await axiosRequests.axiosPostNoAuth(
     SIGN_IN_ENDPOINT,
     payload,
+    { withCredentials: true },
   );
 
   return response;
 }
 
 export async function getMe() {
-  const response = await axiosRequests.axiosGet(GET_USER_ENDPOINT);
+  const response = await axiosRequests.axiosGet(GET_USER_ENDPOINT, {
+    withCredentials: true,
+  });
 
   return response;
 }

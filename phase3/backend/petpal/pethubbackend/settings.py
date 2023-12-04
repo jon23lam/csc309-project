@@ -35,6 +35,7 @@ CORS_ALLOWED_ORIGINS = [
   "http://localhost:3000",
   "http://137.184.5.118:3000",
   "http://petpal.marcomarchesano.com:3000"
+
 ]
 
 
