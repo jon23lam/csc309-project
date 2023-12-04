@@ -90,18 +90,25 @@ export class CommentsStore {
     this.setIsLoading(false);
   };
 
-  //This functions wont work to add new comments you will have to come back here and fix it
   createComment = async (applicationId, formData) => {
     this.setIsLoading(true);
+
     try {
+      // Post the new comment
       const response = await commentsService.postCommentEndpoint(
         applicationId,
         { content: formData },
       );
-      console.log(response.data);
+
+      const newComment = response.data;
+
+      this.commentList.push(newComment);
+
+      this.commentCount += 1;
     } catch (error) {
-      throw error;
+      console.log("Failed to post comment", error);
     }
+
     this.setIsLoading(false);
   };
 }
