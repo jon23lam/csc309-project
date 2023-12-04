@@ -15,6 +15,7 @@ export const Application = observer((props) => {
   const { petListingsStore } = rootStore;
   const { authStore } = rootStore;
   const { applicationStore } = rootStore;
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const { applicationInfo } = props;
   const {
@@ -64,6 +65,15 @@ export const Application = observer((props) => {
     navigate(`${id}/messages/`, {
       state: { user, curr_user, pet, shelterUser },
     });
+  };
+
+  const handleUpdateNavigation = async (id, formData) => {
+    try {
+      await applicationStore.updateApplication(id, formData);
+      setButtonClicked(true);
+    } catch (error) {
+      console.error("Error updating application:", error);
+    }
   };
 
   return (
@@ -148,18 +158,20 @@ export const Application = observer((props) => {
                 <button
                   className="Button__purpleOutline"
                   onClick={() =>
-                    applicationStore.updateApplication(id, { status: "denied" })
+                    handleUpdateNavigation(id, { status: "denied" })
                   }
+                  disabled={buttonClicked}
                 >
                   Deny Application
                 </button>
                 <button
                   className="Button__purple"
                   onClick={() =>
-                    applicationStore.updateApplication(id, {
+                    handleUpdateNavigation(id, {
                       status: "approved",
                     })
                   }
+                  disabled={buttonClicked}
                 >
                   Accept Application
                 </button>
@@ -169,8 +181,9 @@ export const Application = observer((props) => {
             <button
               className="Button__purpleOutline"
               onClick={() =>
-                applicationStore.updateApplication(id, { status: "withdrawn" })
+                handleUpdateNavigation(id, { status: "withdrawn" })
               }
+              disabled={buttonClicked}
             >
               Withdraw Application
             </button>
