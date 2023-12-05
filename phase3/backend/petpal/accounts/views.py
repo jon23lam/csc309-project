@@ -1,3 +1,4 @@
+import requests
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import UpdateAPIView, ListAPIView
@@ -7,6 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .auth import UserIsUpdatingSelf
 from applications.models import Application
+from django.conf import settings
+
 # Create your views here.
 class AccountRegistrationView(APIView):
     authentication_classes = []
@@ -15,10 +18,31 @@ class AccountRegistrationView(APIView):
         serializer = RegisterUserSerializer(data=request.POST)
         if serializer.is_valid():
             user = serializer.save()
+
+            if user.role == 'shelter':
+                address = f"{user.street_address}, {user.city}, {user.province}"
+                lat, lng = self.get_lat_lng(address)
+                if lat is not None and lng is not None:
+                    user.lat = lat
+                    user.lng = lng
+
             user.save()
             return Response({'message': 'Account created successfully'}, status=200)
         else:
             return Response(serializer.errors, status=400)
+        
+    def get_lat_lng(self, address):
+        params = {
+            'address': address,
+            'key': settings.GOOGLE_GEOCODING_API_KEY
+        }
+        response = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params=params)
+        if response.status_code == 200:
+            data = response.json()
+            if data['status'] == 'OK':
+                location = data['results'][0]['geometry']['location']
+                return location['lat'], location['lng']
+        return None, None
         
 
 class MeView(UpdateAPIView):
