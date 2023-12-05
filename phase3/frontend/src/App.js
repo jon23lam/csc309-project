@@ -12,6 +12,7 @@ import { HeaderRoute } from "./routes/HeaderRoute";
 import { StrayAnimalPage } from "./pages/common/StrayAnimal/StrayAnimalPage";
 
 import "./App.scss";
+import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
 
 function App() {
   return (
@@ -25,22 +26,17 @@ function App() {
 
                 {/* Put all routes that need authentication in here */}
                 <Route path="/" element={<AuthenticatedRoute />}>
-                  <Route path="" element={<HeaderRoute />}>
-                    <Route path="/search" element={<SearchPage />} />
-                    <Route
-                      path="/manage_shelter"
-                      element={<ShelterManagement />}
-                    />
-                    <Route path="/application" element={<Application />} />
-                    <Route
-                      path="/createlisting"
-                      element={<PetListingEditor />}
-                    />
-                    <Route
-                      path="/editlisting/:id/"
-                      element={<PetListingEditor />}
-                    />
-                    <Route
+                <Route path="" element={<HeaderRoute />}>
+                  <Route path="/search" element={<SearchPage />} />
+                  <Route path="/application/:id/" element={<Application />} />
+                  <Route
+                    path="/editlisting/:id/"
+                    element={<PetListingEditor />} />
+                  <Route path="/petdetail/:id/" element={<PetDetailPage />} />
+                  <Route path="/manage_shelter" element={<ShelterManagement />} />
+                  <Route path="/createlisting" element={<PetListingEditor />} />
+                  <Route path="/editlisting/:id/" element={<PetListingEditor />} />
+                  <Route
                       path="/stray_animal_locator"
                       element={<StrayAnimalPage />}
                     />
