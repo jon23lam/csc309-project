@@ -118,7 +118,7 @@ export const SearchFilters = observer((props) => {
             <option value="corgi">Corgi</option>
             <option value="labrador">Labrador</option>
             <option value="retriever">Retriever</option>
-            <option value="german-shepherd">German Shepherd</option>
+            <option value="german shepherd">German Shepherd</option>
           </select>
         </div>
         <div className="Filters__filterItem">

@@ -1,0 +1,55 @@
+.StrayAnimalForm {
+  margin: 0 20px;
+  background-color: var(--light-background);
+  border-radius: 24px;
+  padding: 24px;
+  height: fit-content;
+
+  .StrayAnimalForm__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .StrayAnimalForm__headerWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .StrayAnimalForm__header {
+        margin-bottom: 0px;
+        margin-top: 0px;
+      }
+
+      .StrayAnimalForm__back {
+        cursor: pointer;
+        color: var(--purple-primary);
+      }
+    }
+
+    .StrayAnimalForm__formItem {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      label {
+        margin-bottom: 0px;
+      }
+    }
+
+    .StrayAnimalForm__buttonWrapper {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .StrayAnimalForm__errorText {
+      text-align: center;
+    }
+
+    .show-red-text {
+      color: var(--red_primary);
+    }
+  }
+}
