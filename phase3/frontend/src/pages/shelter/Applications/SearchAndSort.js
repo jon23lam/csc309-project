@@ -16,7 +16,7 @@ export const SearchAndSort = observer((props) => {
   const [statusFilter, setStatusFilter] = useState("");
 
   useEffect(() => {
-    console.log("Filters: ", filters);
+    
     applicationStore.getApplicationsFilterd(filters);
   }, [filters]);
 
