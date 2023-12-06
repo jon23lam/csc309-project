@@ -8,6 +8,12 @@ const GET_APPLICATIONS_ENDPOINT = endpoint(
   "api/applications/application/list/",
 );
 
+const GET_APPLICATIONS_STATUS_ENDPOINT = (status) =>
+  endpoint(`api/applications/application/list/${status}/`);
+
+const GET_APPLICATIONS_SORTED_ENDPOINT = (sort) =>
+  endpoint(`api/applications/application/${sort}/`);
+
 export async function postApplicationEndpoint(payload, listingId) {
   const response = await axiosRequests.axiosPost(
     endpoint(`api/applications/petlisting/${listingId}/application/`),
@@ -37,31 +43,20 @@ export async function getApplication(listingId) {
 }
 // ADD BACK FILTERS AS A PARAMATER AFTER
 export async function getApplications(page = 1) {
-  // let filterParts = [];
-  // let sortParts = [];
+  const response = await axiosRequests.axiosGet(GET_APPLICATIONS_ENDPOINT);
+  return response;
+}
 
-  // for (const [key, value] of Object.entries(filters.filters)) {
-  //   filterParts.push(`${key}:${value}`);
-  // }
-  //
-  // if (filters.sort_by) {
-  //   for (const [key, value] of Object.entries(filters.sort_by)) {
-  //     sortParts.push(`${key}:${value}`);
-  //   }
-  // }
-
-  // const filterString =
-  //   filterParts.length > 0 ? `[${filterParts.join(",")}]` : "[status:any]";
-  // const sortString =
-  //   sortParts.length > 0 ? `${sortParts.join(",")}` : "created_at:asc";
-  // const params = {
-  //   filters: filterString,
-  //   sort_by: sortString,
-  //   page: page,
-  // };
+export async function getApplicationsStatus(status) {
   const response = await axiosRequests.axiosGet(
-    GET_APPLICATIONS_ENDPOINT,
-    //params,
+    GET_APPLICATIONS_STATUS_ENDPOINT(status),
+  );
+  return response;
+}
+
+export async function getApplicationsSorted(sort) {
+  const response = await axiosRequests.axiosGet(
+    GET_APPLICATIONS_SORTED_ENDPOINT(sort),
   );
 
   return response;

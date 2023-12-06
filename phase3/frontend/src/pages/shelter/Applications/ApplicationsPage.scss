@@ -112,6 +112,25 @@ h5 {
   overflow-y: scroll;
 }
 
+
+.Application__pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 400px;
+  background-color: var(--light-background);
+  border-radius: 24px;
+  cursor: pointer;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  @media (max-width: 480px) {
+    width: calc(100% - 40px);
+  }
+}
+
 @media (max-width: 1010px) {
   .ApplicationsPage__application {
     flex-direction: column;
@@ -125,7 +144,79 @@ h5 {
     max-height: none;
   }
 
-  .Application__mainCol {
+.Application__mainCol {
     margin-top: 20px;
   }
 }
+
+.ApplicationsPage__sortingButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.Button__purple.active{
+  background-color: var(--pink-primary);
+  color: white;
+}
+
+.ApplicationsPage__controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ApplicationsPage__sortingButtons,
+.ApplicationsPage__searchBar {
+  display: flex;
+  gap: 10px;
+  height: 4vh;
+}
+
+.ApplicationsPage__searchBar input {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.ApplicationsPage__searchBar button {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Media query for smaller screens (e.g., phones) */
+@media (max-width: 768px) {
+  .ApplicationsPage__controls {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .ApplicationsPage__sortingButtons,
+  .ApplicationsPage__searchBar {
+    width: 100%; /* Take up the full width */
+  }
+
+  .ApplicationsPage__searchBar {
+    margin-top: 10px; /* Add some spacing between the buttons and the search bar */
+  }
+}
+
+.ApplicationsPage__statusFilter select {
+  padding: 12px 18px;
+  margin: 0 3px 0 3px;
+  height: 4vh;
+  color: white;
+  font-family: sans-serif;
+  font-size: medium;
+  background-image: linear-gradient(
+    var(--purple-primary),
+    var(--purple-secondary)
+  );
+  border-radius: 8px;
+  border: 1px solid var(--purple-primary);
+  cursor: pointer;
+
+
+}
+
+

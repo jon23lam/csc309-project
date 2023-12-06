@@ -6,6 +6,7 @@ import { Application } from "./Application";
 import "./ApplicationsPage.scss";
 import "../../../BaseStyles.scss";
 import { RootStoreContext } from "../../../providers/RootProvider";
+import { SearchAndSort } from "./SearchAndSort";
 
 export const ApplicationsPage = observer((props) => {
   const rootStore = useContext(RootStoreContext);
@@ -59,18 +60,18 @@ export const ApplicationsPage = observer((props) => {
         <h1 className="HeaderText">Applications</h1>
         <div className="ApplicationsPage">
           <div className="ApplicationsPage__results">
+            <SearchAndSort />
             <div className="ApplicationsPage__FilterButtonWrapper">
               {/*<h1>Applications Page</h1>*/}
             </div>
             {renderApplications()}
-            <div
-              className="SearchPage__pagination"
-              onClick={() => getNextPage()}
-            >
-              <h1 className="BoldPurpleText">Load More</h1>
-              {/*{(showFilters || !mobileMode) && (*/}
-              {/*  <SearchFilters toggle={toggleFilters} />*/}
-              {/*)}*/}
+            <div className="center">
+              <div
+                className="Application__pagination"
+                onClick={() => getNextPage()}
+              >
+                <h1 className="BoldPurpleText">Load More</h1>
+              </div>
             </div>
           </div>
         </div>

@@ -49,14 +49,14 @@ export class ApplicationStore {
     this.setIsLoading(true);
 
     try {
-      const response = await applicationService.getApplications(); // FIX THIS
+      const response = await applicationService.getApplications();
 
       const { count, results, next } = response.data;
 
       this.setAppCount(count);
       this.setApplicationList(results);
       if (next) {
-        this.setNextPage(true);
+        this.setNextPage(next);
       }
     } catch (err) {
       console.log("failed to get applications");
@@ -67,9 +67,19 @@ export class ApplicationStore {
 
   getApplicationsFilterd = async (filters) => {
     this.setIsLoading(true);
-
+    let response = {};
     try {
-      const response = await applicationService.getApplications(filters); // FIX THIS
+      if (filters.status) {
+        response = await applicationService.getApplicationsStatus(
+          filters.status,
+        );
+      }
+
+      if (filters.sort_by) {
+        response = await applicationService.getApplicationsSorted(
+          filters.sort_by,
+        );
+      }
 
       const { count, results, next } = response.data;
 
@@ -90,7 +100,6 @@ export class ApplicationStore {
 
     try {
       const response = await applicationService.getApplicationsNextPage(
-        // FIX THIS
         this.nextPage,
       );
 
