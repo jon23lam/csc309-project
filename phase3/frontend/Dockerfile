@@ -2,12 +2,14 @@ FROM node:14
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json /app/
+COPY package-lock.json /app/
 
 RUN npm install
 
-COPY . .
+RUN npm install
 
-EXPOSE 3000
+COPY . /app/
 
 CMD ["npm", "start"]
+
