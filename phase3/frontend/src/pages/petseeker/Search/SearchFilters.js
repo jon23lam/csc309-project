@@ -12,11 +12,9 @@ export const SearchFilters = observer((props) => {
   const [mobileMode, setMobileMode] = useState(false);
 
   useEffect(() => {
-    petListingsStore.getPetListingsFiltered(filters);
-
     window.addEventListener('resize', handleResize);
     setMobileMode(handleResize);
-  }, [filters]);
+  }, []);
 
   function handleResize() {
     const mobileMode = window.innerWidth < 480;
@@ -29,7 +27,8 @@ export const SearchFilters = observer((props) => {
       let newFilters = { ...prevFilters.filters };
   
       newFilters[filterType] = filterValue;
-  
+      
+      petListingsStore.getPetListingsFiltered({filters: newFilters});
       return { filters: newFilters };
     });
   }
@@ -44,6 +43,7 @@ export const SearchFilters = observer((props) => {
 
       setSortType(sort);
       
+      petListingsStore.getPetListingsFiltered(newFilters);
       return newFilters
     })
   }
@@ -61,7 +61,8 @@ export const SearchFilters = observer((props) => {
   
       // If sortType is also state-dependent and changes, ensure it's handled correctly
       setSortType(sortType);
-  
+      
+      petListingsStore.getPetListingsFiltered(newFilters);
       return newFilters;
     });
   }
