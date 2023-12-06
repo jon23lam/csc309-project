@@ -15,6 +15,7 @@ export const Header = observer((props) => {
   async function logout() {
     // Add logout logic here
     await authStore.logoutUser()
+    rootStore.resetRootStore()
     navigate("/login")
   }
 

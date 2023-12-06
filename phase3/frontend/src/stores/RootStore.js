@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, action } from "mobx";
 import { PetListingsStore } from "./PetListingsStore";
 import { StrayAnimalsStore } from "./StrayAnimalsStore"
 
@@ -13,6 +13,7 @@ export class RootStore {
     this.longitude = null;
     this.locationOn = null;
     this.locationLoading = true;
+    
 
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -31,9 +32,17 @@ export class RootStore {
       this.locationLoading = false;
     }
 
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      resetRootStore: action
+    });
     
   }
+
+  resetRootStore = () => {
+    this.petListingsStore = new PetListingsStore(this);
+    this.strayAnimalsStore = new StrayAnimalsStore(this);
+  }
+
 }
 
 export default RootStore;

@@ -36,6 +36,7 @@ export class AuthStore {
   loginUser = async (payload) => {
     let successfulLogin = false;
     let message = "Email/Password invliad";
+    let role = null;
 
     try {
       const response = await authenticationService.signInUser(payload);
@@ -47,10 +48,11 @@ export class AuthStore {
         const user = await authenticationService.getMe();
 
         this.setContext({ currentUser: user.data });
-        console.log("setting isauthenticated");
+        
         this.setIsAuthenticated(true);
         successfulLogin = true;
         message = "Success";
+        role = user.data.role;
       } else {
         this.setContext({});
         this.setIsAuthenticated(false);
@@ -62,7 +64,7 @@ export class AuthStore {
 
     this.setIsLoading(false);
 
-    return { loggedIn: successfulLogin, message: message };
+    return { loggedIn: successfulLogin, message: message, role: role };
   };
 
   logoutUser = async () => {

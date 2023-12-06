@@ -9,7 +9,6 @@ export const StrayAnimalForm = observer((props) => {
   const rootStore = useContext(RootStoreContext);
   const { authStore, strayAnimalsStore } = rootStore;
   const { context } = authStore;
-  const { currentUser } = context;
   const { locationSelected, lat, lng, selectedAddress, onCancel } = props;
 
   const [animal, setAnimal] = useState(null);
@@ -25,7 +24,6 @@ export const StrayAnimalForm = observer((props) => {
 
   async function onSubmit() {
     if (!animal || !breed || !address || !description) {
-      console.log(lat);
       setErrorText("Please fill in all fields");
     } else {
       setErrorText(null);

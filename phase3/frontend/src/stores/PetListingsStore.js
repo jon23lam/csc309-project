@@ -48,16 +48,17 @@ export class PetListingsStore {
     this.setIsLoading(true);
 
     try {
-      const response = await petListingsService.getPetListings();
+      const response = await petListingsService.getInitialPetListings();
 
       const { count, results, next } = response.data;
 
       this.setPetCount(count);
       this.setPetList(results);
       if (next) {
-        this.setNextPage(true)
+        this.setNextPage(next)
+      } else {
+        this.setNextPage(null)
       }
-
     } catch (err) {
       console.log("failed to get petlistings");
     }
@@ -76,7 +77,9 @@ export class PetListingsStore {
       this.setPetCount(count);
       this.setPetList(results);
       if (next) {
-        this.setNextPage(next)
+        this.setNextPage(next);
+      } else {
+        this.setNextPage(null);
       }
 
     } catch (err) {
@@ -96,8 +99,11 @@ export class PetListingsStore {
 
       this.setPetCount(count);
       this.setPetList(results);
+
       if (next) {
         this.setNextPage(next);
+      } else {
+        this.setNextPage(null)
       }
     } catch (err) {
       console.log("failed to get petlistings");
@@ -113,10 +119,10 @@ export class PetListingsStore {
       const response = await petListingsService.getPetListingsNextPage(this.nextPage);
 
       const { count, results, next } = response.data;
-      console.log(next)
 
       this.extendPetCount(count);
       this.extendPetList(results);
+
       if (next) {
         this.setNextPage(next);
       } else {
