@@ -1,6 +1,8 @@
 import { action, makeObservable, observable } from "mobx";
 import * as authenticationService from "../requests/authentication";
 
+export const ROLE_SHELTER = "shelter";
+export const ROLE_SEEKER = "seeker";
 export class AuthStore {
   context = {};
   isLoading = true;
@@ -39,14 +41,13 @@ export class AuthStore {
       const response = await authenticationService.signInUser(payload);
       const { access } = response.data;
 
-
       if (access) {
         localStorage.setItem("accessToken", access);
 
         const user = await authenticationService.getMe();
 
         this.setContext({ currentUser: user.data });
-        console.log("setting isauthenticated")
+        console.log("setting isauthenticated");
         this.setIsAuthenticated(true);
         successfulLogin = true;
         message = "Success";
@@ -55,7 +56,6 @@ export class AuthStore {
         this.setIsAuthenticated(false);
       }
     } catch (err) {
-      
       this.setContext({});
       this.setIsAuthenticated(false);
     }
@@ -73,8 +73,7 @@ export class AuthStore {
     this.setIsAuthenticated(false);
 
     this.setIsLoading(false);
-  }
-
+  };
 
   retrieveCurrentUserContext = async () => {
     try {

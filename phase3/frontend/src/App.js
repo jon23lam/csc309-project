@@ -7,8 +7,9 @@ import RootProvider from "./providers/RootProvider";
 import AppProvider from "./providers/AppProvider";
 import { Application } from "./pages/petseeker/Application/Application";
 import { PetListingEditor } from "./pages/shelter/PetListingEditor";
-import { ShelterManagement } from "./pages/shelter/ShelterManagement/ShelterManagement"
-import { HeaderRoute } from "./routes/HeaderRoute" 
+import { ShelterManagement } from "./pages/shelter/ShelterManagement/ShelterManagement";
+import { HeaderRoute } from "./routes/HeaderRoute";
+import { StrayAnimalPage } from "./pages/common/StrayAnimal/StrayAnimalPage";
 
 import "./App.scss";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
@@ -30,11 +31,15 @@ function App() {
                   <Route path="/application/:id/" element={<Application />} />
                   <Route
                     path="/editlisting/:id/"
-                    element={<PetListingEditor />}
+                    element={<PetListingEditor />} />
                   <Route path="/petdetail/:id/" element={<PetDetailPage />} />
                   <Route path="/manage_shelter" element={<ShelterManagement />} />
                   <Route path="/createlisting" element={<PetListingEditor />} />
                   <Route path="/editlisting/:id/" element={<PetListingEditor />} />
+                  <Route
+                      path="/stray_animal_locator"
+                      element={<StrayAnimalPage />}
+                    />
                   </Route>
                 </Route>
               </Routes>

@@ -24,6 +24,10 @@ export const Header = observer((props) => {
     navigate("/search")
   }
 
+  function navigateToStrayAnimals() {
+    navigate("/stray_animal_locator")
+  }
+
   return (
     <header>
       <div
@@ -62,6 +66,12 @@ export const Header = observer((props) => {
               </div>
             </div>
           </div>
+          <button 
+            className="Button__purpleOutline"
+            onClick={() => navigateToStrayAnimals()}
+          >
+            Stray Animals
+          </button>
           <button
             className="Button__purple"
             onClick={() => logout()}
