@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./ApplicationPage.scss";
+import "./AdoptionForm.scss";
 import "../../../BaseStyles.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { axiosGet, axiosPost } from "../../../requests/axiosRequests";
@@ -32,7 +32,7 @@ const SAFE_GUARD_OPTIONS = [
 ];
 
 export function AdoptionForm(props) {
-    const { id } = useParams();
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     yourName: "",
     age: "",

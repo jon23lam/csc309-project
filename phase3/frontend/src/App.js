@@ -9,8 +9,6 @@ import RootProvider from "./providers/RootProvider";
 import AppProvider from "./providers/AppProvider";
 import { AdoptionForm } from "./pages/petseeker/AdoptionForm/AdoptionForm";
 import { PetListingEditor } from "./pages/shelter/PetListingEditor";
-import { ShelterManagement } from "./pages/shelter/ShelterManagement/ShelterManagement";
-import { HeaderRoute } from "./routes/HeaderRoute";
 import { StrayAnimalPage } from "./pages/common/StrayAnimal/StrayAnimalPage";
 import { ShelterRoute } from "./routes/ShelterRoute";
 import { SeekerRoute } from "./routes/SeekerRoute";
@@ -21,6 +19,7 @@ import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 
 import "./App.scss";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
+import { Application } from "./pages/shelter/Applications/Application";
 
 function App() {
   return (
@@ -35,7 +34,7 @@ function App() {
 
                 {/* Put all routes that need authentication in here */}
                 <Route path="/" element={<AuthenticatedRoute />}>
-                <Route path="" element={<HeaderRoute />}>
+                  <Route path="" element={<HeaderRoute />}>
                     <Route path="" element={<ShelterRoute />}>
                       <Route
                         path="/manage_shelter"
