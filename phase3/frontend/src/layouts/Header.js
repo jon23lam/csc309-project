@@ -15,6 +15,7 @@ export const Header = observer((props) => {
   async function logout() {
     // Add logout logic here
     await authStore.logoutUser()
+    rootStore.resetRootStore()
     navigate("/login")
   }
 
@@ -22,6 +23,10 @@ export const Header = observer((props) => {
     // if shelter navigate to shelter management page
     // if petseeker navigate to search page
     navigate("/search")
+  }
+
+  function navigateToStrayAnimals() {
+    navigate("/stray_animal_locator")
   }
 
   return (
@@ -62,6 +67,12 @@ export const Header = observer((props) => {
               </div>
             </div>
           </div>
+          <button 
+            className="Button__purpleOutline"
+            onClick={() => navigateToStrayAnimals()}
+          >
+            Stray Animals
+          </button>
           <button
             className="Button__purple"
             onClick={() => logout()}

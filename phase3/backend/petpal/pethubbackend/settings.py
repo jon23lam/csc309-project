@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-3)j9p_1*k4db1frhp+#vbqeqyxl-z4$*553_ec7ej)jniotrk#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+GOOGLE_GEOCODING_API_KEY = 'AIzaSyBjWiLkYTCFtVmwXdARwdgEYQRfG42rgfs'
+
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -76,7 +78,7 @@ INSTALLED_APPS = [
     'comments',
     'petlistings',
     'notifications',
-    
+    'strayanimals'
 ]
 
 AUTH_USER_MODEL = 'accounts.PetHubUser'

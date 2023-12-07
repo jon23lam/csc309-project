@@ -30,7 +30,23 @@ export async function getPetListing(listingId) {
   const response = await axiosRequests.axiosGet(
     GET_PET_LISTING_ENDPOINT(listingId),
   );
-  console.log(response);
+
+  return response;
+}
+
+export async function getInitialPetListings() {
+  const filterString = "[status:any]";
+  const sortString = "created_at:asc";
+  const params = {
+    filters: filterString,
+    sort_by: sortString,
+  };
+
+  const response = await axiosRequests.axiosGet(
+    GET_PET_LISTINGS_ENDPOINT,
+    params,
+  );
+
   return response;
 }
 

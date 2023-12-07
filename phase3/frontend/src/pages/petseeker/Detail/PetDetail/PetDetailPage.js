@@ -15,7 +15,6 @@ export function PetDetailPage(props) {
   useEffect(() => {
     const fetchPetListing = async () => {
       try {
-        console.log(id);
         const response = await getPetListing(id);
         setPetListing(response.data);
       } catch (error) {

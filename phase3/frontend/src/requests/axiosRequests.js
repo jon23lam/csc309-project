@@ -47,12 +47,13 @@ export async function axiosPut(endpoint, payload) {
 }
 
 
-export async function axiosPatch(endpoint, payload) {
+export async function axiosPatch(endpoint, payload, additionalHeaders = {}) {
   const response = await axios.patch(endpoint, payload, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
+      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`,
+      ...additionalHeaders
     },
   });
 
