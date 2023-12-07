@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./AdoptionForm.scss";
 import "../../../BaseStyles.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -243,9 +243,9 @@ export function AdoptionForm(props) {
               ></textarea>
             </div>
             <div className="center">
-              <button type="submit" className="Button__purple">
-                Submit
-              </button>
+              <Link to={`/applications/`} className="Button__purpleOutline">
+                Send Application
+              </Link>
             </div>
           </form>
         </div>
