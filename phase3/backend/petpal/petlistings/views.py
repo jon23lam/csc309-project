@@ -32,6 +32,7 @@ class PetListingView(APIView):
             return Response({"error": "Only shelters can create pet listings"}, status=403)
 
         serializer = self.serializer_class(data={"lister":request.user.id, **request.POST.dict(), **{"image":request.FILES['image'] if 'image' in request.FILES else None}})
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'Pet listing created successfully'}, status=200)
@@ -71,7 +72,7 @@ class PetListingView(APIView):
 class PetListingListView(APIView):
     queryset = PetListing.objects.all()
     serializer_class = PetListingSerializer
-    supported_keys = {"animal", "breed", "lister", "status"}
+    supported_keys = {"animal", "breed", "lister", "status", "sex", "province", "colour"}
     supported_sorters = {"name", "age", "created_at"}
     supported_sort_directions = {"asc", "desc"}
 
@@ -124,6 +125,15 @@ class PetListingListView(APIView):
         
         if filters["status"] == "any":
             filters.pop("status")
+
+        if "sex" in filters and filters["sex"] == "any":
+            filters.pop("sex")
+
+        if "province" in filters and filters["province"] == "any":
+            filters.pop("province")
+
+        if "colour" in filters and filters["colour"] == "any":
+            filters.pop("colour")
 
         if "animal" in filters and filters["animal"] == "any":
             filters.pop("animal")

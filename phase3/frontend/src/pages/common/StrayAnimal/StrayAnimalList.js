@@ -20,7 +20,7 @@ export const StrayAnimalList = observer((props) => {
 
   function renderAnimalList() {
     return animals.map((animal) => (
-      <div className="StrayAnimalList__item" onClick={() => onClick(animal.id)}>
+      <div className="StrayAnimalList__item" onClick={() => onClick(animal.id)} key={animal.id}>
         <div className="StrayAnimalList__textSection">
           <h6 className="StrayAnimalList__text">
             <b>Last seen at:</b> {animal.address}
