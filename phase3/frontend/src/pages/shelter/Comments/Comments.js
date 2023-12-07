@@ -27,8 +27,9 @@ export const Comments = observer((props) => {
   useEffect(() => {
     const handleScroll = () => {
       if (
+        containerRef.current &&
         containerRef.current.scrollTop + containerRef.current.clientHeight >=
-        containerRef.current.scrollHeight
+          containerRef.current.scrollHeight
       ) {
         if (nextPage) {
           commentsStore.getCommentsNextPage();
@@ -36,10 +37,9 @@ export const Comments = observer((props) => {
       }
     };
 
-    containerRef.current.addEventListener("scroll", handleScroll);
-
+    containerRef.current?.addEventListener("scroll", handleScroll);
     return () => {
-      containerRef.current.removeEventListener("scroll", handleScroll);
+      containerRef.current?.removeEventListener("scroll", handleScroll);
     };
   }, [nextPage, applicationId]);
 
