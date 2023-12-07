@@ -54,7 +54,10 @@ function App() {
                       <Route path="/search" element={<SearchPage />} />
                     </Route>
 
-                    <Route path="/application/:id/" element={<Application />} />
+                    <Route
+                      path="/adoptionForm/:id/"
+                      element={<AdoptionForm />}
+                    />
                     <Route path="/petdetail/:id/" element={<PetDetailPage />} />
                     <Route
                       path="/applications"
