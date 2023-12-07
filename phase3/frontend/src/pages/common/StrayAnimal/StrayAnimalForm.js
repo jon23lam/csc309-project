@@ -17,14 +17,16 @@ export const StrayAnimalForm = observer((props) => {
   const [description, setDescription] = useState(null);
   const [showAddressText, setShowAddressText] = useState(false);
   const [errorText, setErrorText] = useState(null);
+  const [successtext, setSuccessText] = useState(null);
 
   useEffect(() => {
+    setSuccessText(null)
     setAddress(selectedAddress);
   }, [selectedAddress]);
 
   async function onSubmit() {
     if (!animal || !breed || !address || !description) {
-      setErrorText("Please fill in all fields");
+      setErrorText("Please fill in all fields.");
     } else {
       setErrorText(null);
 
@@ -39,6 +41,7 @@ export const StrayAnimalForm = observer((props) => {
       };
 
       await strayAnimalsStore.createStrayAnimal(payload);
+      setSuccessText("Stray animal reported.")
     }
   }
 
@@ -63,7 +66,6 @@ export const StrayAnimalForm = observer((props) => {
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
               <option value="bird">Bird</option>
-              <option value="fish">Fish</option>
               <option value="unknown">Unknown</option>
             </select>
           </div>
@@ -82,6 +84,12 @@ export const StrayAnimalForm = observer((props) => {
               <option value="labrador">Labrador</option>
               <option value="retriever">Retriever</option>
               <option value="german shepherd">German Shepherd</option>
+              <option value="pussycat">Pussycat</option>
+              <option value="persian">Persian</option>
+              <option value="shorthair">Shorthair</option>
+              <option value="sphynx">Sphynx</option>
+              <option value="parakeet">Parakeet</option>
+              <option value="chicken">Chicken</option>
               <option value="unknown">Unknown</option>
             </select>
           </div>
@@ -127,6 +135,11 @@ export const StrayAnimalForm = observer((props) => {
           {errorText && (
             <div className="StrayAnimalForm__errorText">
               <h6 className="show-red-text">{errorText}</h6>
+            </div>
+          )}
+          {successtext && (
+            <div className="StrayAnimalForm__errorText">
+              <h6 className="show-purple-text">{successtext}</h6>
             </div>
           )}
         </div>

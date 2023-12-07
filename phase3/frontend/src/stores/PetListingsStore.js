@@ -70,7 +70,7 @@ export class PetListingsStore {
     this.setIsLoading(true);
 
     try {
-      const response = await petListingsService.getPetListings({ filters: {"lister": listerId} });
+      const response = await petListingsService.getPetListings({ filters: {"lister": listerId, "status": "any"} });
 
       const { count, results, next } = response.data;
 

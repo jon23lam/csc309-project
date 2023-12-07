@@ -1,28 +1,39 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
 import { RootStoreContext } from "../providers/RootProvider";
 import logo from "../assets/logo.png";
+import { ROLE_SHELTER, ROLE_SEEKER } from "../stores/AuthStore";
+
 import "../BaseStyles.scss";
 
 export const Header = observer((props) => {
   const navigate = useNavigate();
-  // So here we should use the RootStore/AuthStore to determine what kind of
-  // User type the user is and customize the header to that user type
   const rootStore = useContext(RootStoreContext);
   const { authStore } = rootStore;
+  const { context } = authStore;
+  const { currentUser } = context;
+
+  const [role, setRole] = useState(ROLE_SEEKER);
+
+  useEffect(() => {
+    if (currentUser) {
+      setRole(currentUser.role);
+    }
+  }, [currentUser]);
 
   async function logout() {
-    // Add logout logic here
     await authStore.logoutUser()
     rootStore.resetRootStore()
     navigate("/login")
   }
 
   function navigateToHome() {
-    // if shelter navigate to shelter management page
-    // if petseeker navigate to search page
-    navigate("/search")
+    if (role == ROLE_SEEKER) {
+      navigate("/search")
+    } else {
+      navigate("/manage_shelter")
+    }
   }
 
   function navigateToStrayAnimals() {
@@ -38,9 +49,6 @@ export const Header = observer((props) => {
         <img src={logo} alt="Pet Hub" className="logo-picture" />
       </div>
       <div className="Header__navButtons">
-        <a className="HeaderItem__active" href="../Search/SearchPage.html">
-          Search
-        </a>
         <a
           className="HeaderItem"
         >

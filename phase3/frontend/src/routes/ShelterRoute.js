@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { observer } from "mobx-react";
 import { AuthStoreContext } from "../contexts/AuthStoreContext";
+import { ROLE_SHELTER } from "../stores/AuthStore";
 
 export const ShelterRoute = observer(() => {
   const authStore = useContext(AuthStoreContext);
@@ -20,7 +21,7 @@ export const ShelterRoute = observer(() => {
   return (
     <div data-testid="ShelterRoute">
       {role !== "" &&
-        (role === "shelter" ? (
+        (role === ROLE_SHELTER ? (
           <Outlet />
         ) : (
           <Navigate to="/search" state={{ from: location }} replace />

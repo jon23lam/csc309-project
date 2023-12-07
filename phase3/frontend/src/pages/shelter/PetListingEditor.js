@@ -15,6 +15,7 @@ const ANIMAL_OPTIONS = [
 	{ value: "cat", display: "Cat" },
 	{ value: "bird", display: "Bird" },
 	{ value: "fish", display: "Fish" },
+	{ value: "other", display: "Other"}
 ];
 
 const BREED_OPTIONS = [
@@ -23,6 +24,14 @@ const BREED_OPTIONS = [
 	{ value: "retriever", display: "Retriever" },
 	{ value: "german shepherd", display: "German Shepherd" },
 	{ value: "pussycat", display: "Pussycat" },
+	{ value: "persian", display: "Persian"},
+	{ value: "shorthair", display: "Shorthair"},
+	{ value: "sphynx", display: "Sphynx" },
+	{ value: "parakeet", display: "Parakeet" },
+	{ value: "chicken", display: "Chicken" },
+	{ value: "bass", display: "Bass" },
+	{ value: "goldfish", display: "Goldfish" },
+	{ value: "other", display: "Other" }
 ];
 
 const SEX_OPTIONS = [
