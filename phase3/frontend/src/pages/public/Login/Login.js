@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { RootStoreContext } from "../../providers/RootProvider";
+import { RootStoreContext } from "../../../providers/RootProvider";
 
 import "./Login.scss";
-import "../../BaseStyles.scss";
+import "../../../BaseStyles.scss";
 
 export function Login(props) {
   const navigate = useNavigate();
@@ -23,10 +23,15 @@ export function Login(props) {
 
     const loginResult = await authStore.loginUser(payload);
 
-    const { loggedIn, message } = loginResult;
+    const { loggedIn, message, role } = loginResult;
 
     if (loggedIn) {
-      navigateToSearch();
+      if (role == "seeker") {
+        navigateToSearch();
+      } else {
+        navigateToShelterManagement();
+      }
+      
     } else {
       setErrorMessage(message);
       setShowErrorMessage(true);
@@ -34,8 +39,11 @@ export function Login(props) {
   }
 
   function navigateToSearch () {
-    console.log("Navigating to search")
     navigate("/search");
+  };
+
+  function navigateToShelterManagement () {
+    navigate("/manage_shelter");
   };
 
   return (
@@ -62,7 +70,7 @@ export function Login(props) {
                 Password:
               </label>
               <input
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 placeholder="Password"

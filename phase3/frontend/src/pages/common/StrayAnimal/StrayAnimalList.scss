@@ -1,0 +1,30 @@
+@import "../../../BaseStyles.scss";
+
+.StrayAnimalList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .StrayAnimalList__item {
+    background-color: var(--light-background);
+    border-radius: 10px;
+    display: flex;
+    padding: 12px;
+    cursor: pointer;
+
+    .StrayAnimalList__textSection {
+      flex: 80%;
+    }
+
+    .StrayAnimalList__buttonSection {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex: 20%;
+    }
+  }
+
+  .StrayAnimalList__item:hover {
+    background-color: var(--purple-secondary-transparent);
+  }
+}

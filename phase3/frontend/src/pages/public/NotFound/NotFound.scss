@@ -1,0 +1,19 @@
+.PetHubLogo {
+  height: 60px;
+  cursor: pointer;
+}
+
+.NotFoundPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-background);
+  border-radius: 16px;
+  padding: 10px;
+
+  .sad-dog-image {
+    width: 50%;
+    border-radius: 16px;
+  }
+}

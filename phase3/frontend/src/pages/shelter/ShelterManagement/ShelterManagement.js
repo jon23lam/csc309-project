@@ -11,7 +11,7 @@ import "../../../BaseStyles.scss";
 export const ShelterManagement = observer((props) => {
   const rootStore = useContext(RootStoreContext);
   const { authStore, petListingsStore } = rootStore;
-  const { petList, petCount, nextPage } = petListingsStore;
+  const { petList, petCount, nextPage  } = petListingsStore;
   const { context } = authStore;
   const { currentUser } = context;
 
@@ -45,6 +45,7 @@ export const ShelterManagement = observer((props) => {
       <div className="Main">
         <h1 className="HeaderText">Manage your listings</h1>
         <div className="ShelterManagement">
+
           <div className="ShelterManagement__results">
             {renderListings()}
 
