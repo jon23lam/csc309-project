@@ -7,28 +7,36 @@ const GET_PET_LISTING_ENDPOINT = (listingId) =>
 const GET_PET_LISTINGS_ENDPOINT = endpoint("api/petlistings/list/");
 
 export async function postPetListing(payload) {
-  const response = await axiosRequests.axiosPost(
-    endpoint("api/petlistings/"),
-    payload,
-    { "Content-Type": "multipart/form-data" }, // Must set for file upload
-  );
+  try {
+    const response = await axiosRequests.axiosPost(
+      endpoint("api/petlistings/"),
+      payload,
+      { "Content-Type": "multipart/form-data" } // Must set for file upload
+    );
 
-  return response;
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 }
 
 export async function patchPetListing(id, payload) {
-  const response = await axiosRequests.axiosPatch(
-    endpoint(`api/petlistings/${id}/`),
-    payload,
-    { "Content-Type": "multipart/form-data" }, // Must set for file upload
-  );
+  try {
+    const response = await axiosRequests.axiosPatch(
+      endpoint(`api/petlistings/${id}/`),
+      payload,
+      { "Content-Type": "multipart/form-data" } // Must set for file upload
+    );
 
-  return response;
+    return response;
+  } catch (err) {
+    return err.response;
+  }
 }
 
 export async function getPetListing(listingId) {
   const response = await axiosRequests.axiosGet(
-    GET_PET_LISTING_ENDPOINT(listingId),
+    GET_PET_LISTING_ENDPOINT(listingId)
   );
 
   return response;
@@ -44,7 +52,7 @@ export async function getInitialPetListings() {
 
   const response = await axiosRequests.axiosGet(
     GET_PET_LISTINGS_ENDPOINT,
-    params,
+    params
   );
 
   return response;
@@ -75,7 +83,7 @@ export async function getPetListings(filters, page = 1) {
   };
   const response = await axiosRequests.axiosGet(
     GET_PET_LISTINGS_ENDPOINT,
-    params,
+    params
   );
 
   return response;
@@ -87,7 +95,16 @@ export async function getPetListingsNextPage(requestUrl) {
   return response;
 }
 
+export async function deletePetListing(listingId) {
+  const response = await axiosRequests.axiosDelete(
+    GET_PET_LISTING_ENDPOINT(listingId)
+  );
+
+  return response;
+}
+
 export default {
   getPetListing,
   getPetListings,
+  deletePetListing,
 };

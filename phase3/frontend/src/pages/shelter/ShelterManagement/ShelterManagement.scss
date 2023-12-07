@@ -46,13 +46,19 @@
         box-sizing: border-box;
         word-break: break-word;
 
+        .description-field {
+          overflow-y: scroll;
+          height: 170px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+        }
+
         h4 {
           margin-top: 0px;
           margin-bottom: 0px;
         }
       }
     }
-
 
     .ShelterManagement__addListing {
       display: flex;
@@ -66,7 +72,7 @@
       padding-top: 40px;
       padding-bottom: 40px;
     }
-  
+
     .ShelterManagement__pagination {
       display: flex;
       flex-direction: column;
@@ -79,7 +85,7 @@
       cursor: pointer;
       padding-top: 40px;
       padding-bottom: 40px;
-  
+
       @media (max-width: 480px) {
         width: calc(100% - 40px);
       }
