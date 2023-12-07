@@ -13,7 +13,6 @@ export const CommentsPage = observer((props) => {
   const shelterUser = state && state.shelterUser;
   const pet = state && state.pet;
 
-  console.log(shelterUser);
   return (
     <div className="PageContainer">
       <div className="Main">

@@ -3,3 +3,10 @@
   margin-right: 5px;
   text-decoration: underline;
 }
+
+.MessagePage__messages {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+

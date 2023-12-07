@@ -65,14 +65,16 @@ export const ApplicationsPage = observer((props) => {
               {/*<h1>Applications Page</h1>*/}
             </div>
             {renderApplications()}
-            <div className="center">
-              <div
-                className="Application__pagination"
-                onClick={() => getNextPage()}
-              >
-                <h1 className="BoldPurpleText">Load More</h1>
+            {nextPage !== null && (
+              <div className="center">
+                <div
+                  className="Application__pagination"
+                  onClick={() => getNextPage()}
+                >
+                  <h1 className="BoldPurpleText">Load More</h1>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

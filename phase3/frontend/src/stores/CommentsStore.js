@@ -56,7 +56,7 @@ export class CommentsStore {
       this.setCommentCount(count);
       this.setCommentList(results);
       if (next) {
-        this.setNextPage(true);
+        this.setNextPage(next);
       }
     } catch (err) {
       console.log("failed to get comments");
@@ -69,10 +69,7 @@ export class CommentsStore {
     this.setIsLoading(true);
 
     try {
-      const response = await commentsService.getCommentsNextPage(
-        // FIX THIS
-        this.nextPage,
-      );
+      const response = await commentsService.getCommentsNextPage(this.nextPage);
 
       const { count, results, next } = response.data;
 

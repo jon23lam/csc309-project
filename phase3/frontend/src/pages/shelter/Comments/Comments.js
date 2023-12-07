@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { observer } from "mobx-react";
 import { RootStoreContext } from "../../../providers/RootProvider";
 import { useParams } from "react-router-dom";
@@ -12,7 +12,9 @@ export const Comments = observer((props) => {
   const { commentsStore } = rootStore;
   const { commentList, commentCount, nextPage } = commentsStore;
 
-  const { seekerUser, shelterUser } = props; // Receive seekerUser and shelterUser as props
+  const { seekerUser, shelterUser } = props;
+
+  const containerRef = useRef(null); // Ref for the container element
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,21 +22,30 @@ export const Comments = observer((props) => {
     };
 
     fetchData();
-  }, []);
+  }, [applicationId]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        containerRef.current.scrollTop + containerRef.current.clientHeight >=
+        containerRef.current.scrollHeight
+      ) {
+        if (nextPage) {
+          commentsStore.getCommentsNextPage();
+        }
+      }
+    };
+
+    containerRef.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      containerRef.current.removeEventListener("scroll", handleScroll);
+    };
+  }, [nextPage, applicationId]);
 
   function renderMessages() {
-    if (commentCount === 0) {
-      return (
-        <div className="ApplicationsPage__pagination">
-          <h1 className="BoldPurpleText">
-            There are no messages for this application
-          </h1>
-        </div>
-      );
-    }
-
     return (
-      <div className="MessagePage__messages">
+      <div className="MessagePage__messages" ref={containerRef}>
         {commentList.map((comment) => (
           <div className="Message__message" key={comment.id}>
             {comment.author === seekerUser.id && (
@@ -60,17 +71,16 @@ export const Comments = observer((props) => {
     );
   }
 
-  const [newComment, setNewComment] = useState(""); // State to track the new comment text
+  const [newComment, setNewComment] = useState("");
 
   const handleCreateComment = () => {
     commentsStore.createComment(applicationId, newComment);
-
     setNewComment("");
   };
 
   return (
     <div className="Application__mainCol">
-      <div className="MessagePage__messages">{renderMessages()}</div>
+      {renderMessages()}
       <textarea
         className="Message__textarea"
         name="message"
