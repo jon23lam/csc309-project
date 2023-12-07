@@ -39,7 +39,7 @@ export function Login(props) {
   }
 
   function navigateToSearch () {
-    navigate("/search");
+    navigate("/search/list/");
   };
 
   function navigateToShelterManagement () {

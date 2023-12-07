@@ -28,6 +28,7 @@ urlpatterns = [
     path(f'{API_PREFIX}/admin/', admin.site.urls),
     path(f'{API_PREFIX}/accounts/', include('accounts.urls')),
     path(f'{API_PREFIX}/petlistings/', include('petlistings.urls')),
+    path(f'{API_PREFIX}/search/', include('petlistings.urls')),
     path(f'{API_PREFIX}/applications/', include('applications.urls')),
     path(f'{API_PREFIX}/notifications/', include('notifications.urls')),
     path(f'{API_PREFIX}/strayanimals/', include('strayanimals.urls'))

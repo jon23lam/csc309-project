@@ -120,7 +120,6 @@ export class PetListingsStore {
     this.setIsLoading(true);
 
     try {
-      console.log(this.nextPage);
       const response = await petListingsService.getPetListingsNextPage(
         this.nextPage,
       );

@@ -126,6 +126,9 @@ class PetListingListView(APIView):
         if filters["status"] == "any":
             filters.pop("status")
 
+        if "breed" in filters and filters["breed"] == "any":
+            filters.pop("breed")
+
         if "sex" in filters and filters["sex"] == "any":
             filters.pop("sex")
 

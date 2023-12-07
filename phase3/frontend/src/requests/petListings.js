@@ -4,7 +4,7 @@ import { endpoint } from "../utils/endpoint";
 const GET_PET_LISTING_ENDPOINT = (listingId) =>
   endpoint(`api/petlistings/${listingId}/`);
 
-const GET_PET_LISTINGS_ENDPOINT = endpoint("api/petlistings/list/");
+const GET_PET_LISTINGS_ENDPOINT = endpoint("api/search/list/");
 
 export async function postPetListing(payload) {
   try {
@@ -45,14 +45,21 @@ export async function getPetListing(listingId) {
 export async function getInitialPetListings() {
   const filterString = "[status:any]";
   const sortString = "created_at:asc";
-  const params = {
-    filters: filterString,
-    sort_by: sortString,
-  };
+
+  const existingParams = new URLSearchParams(window.location.search);
+
+  if (!existingParams.toString()) {
+    existingParams.set("filters", filterString);
+    existingParams.set("sort_by", sortString);
+
+    const newUrl = `${window.location.origin}${window.location.pathname}?${existingParams.toString()}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+  }
+
+  const requestUrl = `${GET_PET_LISTINGS_ENDPOINT}?${existingParams.toString()}`;
 
   const response = await axiosRequests.axiosGet(
-    GET_PET_LISTINGS_ENDPOINT,
-    params
+    requestUrl
   );
 
   return response;
@@ -81,6 +88,11 @@ export async function getPetListings(filters, page = 1) {
     sort_by: sortString,
     page: page,
   };
+  const queryString = new URLSearchParams(params).toString();
+
+  // Update the browser URL without reloading the page
+  const newUrl = `${window.location.origin}${window.location.pathname}?${queryString}`;
+  window.history.pushState({ path: newUrl }, "", newUrl);
   const response = await axiosRequests.axiosGet(
     GET_PET_LISTINGS_ENDPOINT,
     params
