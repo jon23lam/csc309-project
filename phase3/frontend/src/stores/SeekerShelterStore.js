@@ -44,7 +44,7 @@ export class SeekerShelterStore {
     this.setIsLoading(true);
 
     try {
-      const response = await shelters.getShelter(userId);
+      const response = await shelters.getShelter(userId.id);
       const user = response.data;
       this.setUser(user);
       return user;

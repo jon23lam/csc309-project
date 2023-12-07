@@ -19,7 +19,7 @@ import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 
 import "./App.scss";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
-import { Application } from "./pages/shelter/Applications/Application";
+import { ShelterDetail } from "./pages/common/ShelterDetail/ShelterDetail";
 
 function App() {
   return (
@@ -70,6 +70,10 @@ function App() {
                     <Route
                       path="/stray_animal_locator"
                       element={<StrayAnimalPage />}
+                    />
+                    <Route
+                      path="/shelterDetail/:id/"
+                      element={<ShelterDetail />}
                     />
                   </Route>
                 </Route>

@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 export const PetListing = observer((props) => {
   const { petInfo } = props;
-  const { id, name, age, sex, weight, breed, description, image } = petInfo;
+  const { id, name, age, sex, weight, breed, description, image, lister } =
+    petInfo;
 
   return (
     <div className="SearchPage__petInfo" key={id}>
@@ -22,8 +23,13 @@ export const PetListing = observer((props) => {
         <Link to={`/petdetail/${id}/`} className="Button__purpleOutline">
           More Info
         </Link>
-        <button className="Button__purpleOutline">See Shelter</button>
 
+        <Link
+          to={`/shelterDetail/${lister}/`}
+          className="Button__purpleOutline"
+        >
+          See Shelter
+        </Link>
         {/*We have to deal with the case where you cant adopt it*/}
         <Link to={`/adoptionForm/${id}/`} className="Button__purple">
           Apply!
