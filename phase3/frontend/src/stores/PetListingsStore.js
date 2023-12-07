@@ -16,7 +16,7 @@ export class PetListingsStore {
       setIsLoading: action,
       setPetCount: action,
       setPetList: action,
-      setNextPage: action
+      setNextPage: action,
     });
   }
 
@@ -34,15 +34,15 @@ export class PetListingsStore {
 
   setNextPage = (nextPage) => {
     this.nextPage = nextPage;
-  }
+  };
 
   extendPetList = (petList) => {
-    this.petList = [ ...this.petList, ...petList];
-  }
+    this.petList = [...this.petList, ...petList];
+  };
 
   extendPetCount = (petCount) => {
     this.petCount = this.petCount + petCount;
-  }
+  };
 
   initializeSearchPage = async (userId) => {
     this.setIsLoading(true);
@@ -81,13 +81,12 @@ export class PetListingsStore {
       } else {
         this.setNextPage(null);
       }
-
     } catch (err) {
       console.log("failed to get petlistings");
     }
 
     this.setIsLoading(false);
-  }
+  };
 
   getPetListingsFiltered = async (filters) => {
     this.setIsLoading(true);
@@ -116,7 +115,10 @@ export class PetListingsStore {
     this.setIsLoading(true);
 
     try {
-      const response = await petListingsService.getPetListingsNextPage(this.nextPage);
+      console.log(this.nextPage);
+      const response = await petListingsService.getPetListingsNextPage(
+        this.nextPage,
+      );
 
       const { count, results, next } = response.data;
 
@@ -133,7 +135,22 @@ export class PetListingsStore {
     }
 
     this.setIsLoading(false);
-  }
+  };
+
+  getPetListingObj = async (listingId) => {
+    this.setIsLoading(true);
+
+    try {
+      const response = await petListingsService.getPetListing(listingId);
+      const listing = response.data;
+
+      return listing;
+    } catch (err) {
+      console.log("failed to get petlisting");
+    }
+
+    this.setIsLoading(false);
+  };
 }
 
 export default PetListingsStore;

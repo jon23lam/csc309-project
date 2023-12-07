@@ -1,5 +1,8 @@
 import { makeAutoObservable, action } from "mobx";
 import { PetListingsStore } from "./PetListingsStore";
+import { ApplicationStore } from "./ApplicationStore";
+import { SeekerShelterStore } from "./SeekerShelterStore";
+import CommentsStore from "./CommentsStore";
 import { StrayAnimalsStore } from "./StrayAnimalsStore"
 
 export class RootStore {
@@ -13,7 +16,10 @@ export class RootStore {
     this.longitude = null;
     this.locationOn = null;
     this.locationLoading = true;
-    
+    this.applicationStore = new ApplicationStore(this);
+    this.seekerShelterStore = new SeekerShelterStore(this);
+    this.commentsStore = new CommentsStore(this);
+
 
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -35,7 +41,7 @@ export class RootStore {
     makeAutoObservable(this, {
       resetRootStore: action
     });
-    
+
   }
 
   resetRootStore = () => {

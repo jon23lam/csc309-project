@@ -19,7 +19,7 @@ class UpdateUserSerializer(ModelSerializer):
 
     class Meta:
         model = PetHubUser
-        fields = ('id', 'email', 'role', 'first_name', 'last_name', 'gender', 'dob', 'postal_code', 'image', 'shelter_name', 'street_address', 'city', 'province', 'open_time', 'close_time', 'lat', 'lng')
+        fields = ('id', 'email', 'role', 'first_name', 'last_name', 'gender', 'dob', 'postal_code', 'image', 'shelter_name', 'street_address', 'city', 'province', 'open_time', 'close_time', 'lat', 'lng', 'role')
         extra_kwargs = {'email': {'required': False}}
     
     def validate_email(self, email):
