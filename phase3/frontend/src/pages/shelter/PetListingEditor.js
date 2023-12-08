@@ -40,22 +40,6 @@ const SEX_OPTIONS = [
   { value: "M", display: "Male" },
 ];
 
-const PROVINCE_OPTIONS = [
-  { value: "ON", display: "Ontario" },
-  { value: "BC", display: "British Columbia" },
-  { value: "AB", display: "Alberta" },
-  { value: "MB", display: "Manitoba" },
-  { value: "NB", display: "New Brunswick" },
-  { value: "NL", display: "Newfoundland and Labrador" },
-  { value: "NS", display: "Nova Scotia" },
-  { value: "PE", display: "Prince Edward Island" },
-  { value: "QB", display: "Quebec" },
-  { value: "SK", display: "Saskatchewan" },
-  { value: "NT", display: "Northwest Territories" },
-  { value: "NV", display: "Nunavut" },
-  { value: "YK", display: "Yukon" },
-];
-
 const COLOR_OPTIONS = [
   { value: "white", display: "White" },
   { value: "black", display: "Black" },
@@ -79,13 +63,10 @@ export function PetListingEditor(props) {
 
   const { id } = useParams();
   const is_edit_page = id ? true : false;
-
   const [name, setName] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [sex, setSex] = useState("");
-  const [province, setProvince] = useState("");
-  const [address, setAddress] = useState("");
   const [color, setColor] = useState("");
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
@@ -106,8 +87,6 @@ export function PetListingEditor(props) {
       setAnimal(pet_.animal);
       setBreed(pet_.breed);
       setSex(pet_.sex);
-      setProvince(pet_.province);
-      setAddress(pet_.address);
       setColor(pet_.colour);
       setAge(pet_.age);
       setWeight(pet_.weight);
@@ -122,8 +101,6 @@ export function PetListingEditor(props) {
       animal: animal,
       breed: breed,
       sex: sex,
-      province: province,
-      address: address,
       colour: color,
       age: age,
       weight: weight,
@@ -152,9 +129,11 @@ export function PetListingEditor(props) {
     <div className="Main">
       <h1>{is_edit_page ? "Edit Listing" : "List your pet!"}</h1>
       <div className="PetCreate__fields">
-        <div className="PetListingEditor__form">
-          {/* // method="post"
-					// encType="multipart/form-data"> */}
+        <form
+          className="PetListingEditor__form"
+          method="post"
+          encType="multipart/form-data"
+        >
           <div className="PetListingEditor__item">
             <label htmlFor="name">Name:</label>
             <input
@@ -185,23 +164,6 @@ export function PetListingEditor(props) {
             defaultValue={is_edit_page ? sex : null}
             stateCallback={setSex}
           />
-          <SelectField
-            label="Province"
-            options={PROVINCE_OPTIONS}
-            defaultValue={is_edit_page ? province : null}
-            stateCallback={setProvince}
-          />
-          <div className="PetListingEditor__item">
-            <label htmlFor="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              className="TextField__PurpleOutline"
-              onChange={(e) => setAddress(e.target.value)}
-              value={is_edit_page ? address : null}
-            />
-          </div>
           <SelectField
             label="Color"
             options={COLOR_OPTIONS}
@@ -264,7 +226,7 @@ export function PetListingEditor(props) {
             defaultValue={is_edit_page ? status : null}
             stateCallback={setStatus}
           />
-        </div>
+        </form>
         <div className="PetCreate__listButton">
           <button className="Button__purple" onClick={onClick}>
             List Animal
