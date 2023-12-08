@@ -205,13 +205,11 @@ h4,
 
 }
 
-
-/* Media query for mobile devices */
 @media (max-width: 768px) {
   .info-item,
   .dot {
-    margin-right: 0; /* Remove right margin on smaller screens */
-    margin-bottom: 5px; /* Add bottom margin to create a stacking effect */
+    margin-right: 0;
+    margin-bottom: 5px;
   }
 }
 
