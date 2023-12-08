@@ -51,7 +51,7 @@ function App() {
                     </Route>
 
                     <Route path="" element={<SeekerRoute />}>
-                      <Route path="/search" element={<SearchPage />} />
+                      <Route path="/search/list/" element={<SearchPage />} />
                     </Route>
 
                     <Route

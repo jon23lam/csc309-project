@@ -13,12 +13,12 @@ export const PetListing = observer((props) => {
         <img src={image} alt="Pet Photo" className="SearchPage__petPhoto" />
       </div>
       <div className="SearchPage__petDescription">
-        <h4>Name: {name}</h4>
-        <h4>Age: {age}</h4>
-        <h4>Sex: {sex}</h4>
-        <h4>Breed: {breed}</h4>
-        <h4>Weight: {weight}</h4>
-        <h4>Description: {description}</h4>
+        <h4><b>Name:</b> {name}</h4>
+        <h4><b>Age:</b> {age}</h4>
+        <h4><b>Sex:</b> {sex}</h4>
+        <h4><b>Breed:</b> {breed}</h4>
+        <h4><b>Weight:</b> {weight}</h4>
+        <h4 className="description-field"><b>Description:</b> {description}</h4>
         <Link to={`/petdetail/${id}/`} className="Button__purpleOutline">
           More Info
         </Link>

@@ -24,7 +24,7 @@ export const ShelterRoute = observer(() => {
         (role === ROLE_SHELTER ? (
           <Outlet />
         ) : (
-          <Navigate to="/search" state={{ from: location }} replace />
+          <Navigate to="/search/list" state={{ from: location }} replace />
         ))}
     </div>
   );

@@ -317,6 +317,26 @@ body {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
+
+  .errorText {
+    text-align: center;
+  }
+
+  .show-red-text {
+    color: var(--red_primary);
+  }
+
+  .TextField__PurpleOutlineRange {
+    padding: 12px 18px;
+    color: var(--purple-primary);
+    font-family: sans-serif;
+    font-size: medium;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid var(--purple-primary);
+    cursor: text;
+    width: calc(50% - 12px);
+  }
   
   @media (max-width: 480px) {
     .PageContainer {

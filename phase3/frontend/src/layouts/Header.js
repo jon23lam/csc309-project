@@ -30,7 +30,7 @@ export const Header = observer((props) => {
 
   function navigateToHome() {
     if (role == ROLE_SEEKER) {
-      navigate("/search")
+      navigate("/search/list/")
     } else {
       navigate("/manage_shelter")
     }

@@ -46,6 +46,13 @@
         box-sizing: border-box;
         word-break: break-word;
 
+        .description-field {
+          overflow-y: scroll;
+          height: 170px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+        }
+
         h4 {
           margin-top: 0px;
           margin-bottom: 0px;
