@@ -13,6 +13,7 @@ from .serializers import CreateApplicationSerializer, ApplicationUpdateSerialize
 
 from accounts.models import PetHubUser
 from petlistings.models import PetListing
+from notifications.models import Notification
 
 
 # Create your views here.
@@ -69,6 +70,16 @@ class ApplicationCreateView(APIView):
         serializer = CreateApplicationSerializer(data=data)
         if serializer.is_valid():
             application = serializer.save()
+
+            # Create notification for shelter
+            Notification.objects.create(
+                receiver=pet_listing.lister,
+                title='New Application',
+                body_text=f'You have a new application for {pet_listing.name}!',
+                type='application',
+                application=application
+            )
+
             return Response({'message': 'Application created successfully'}, status=200)
         else:
             return Response(serializer.errors, status=400)
@@ -121,15 +132,21 @@ class ApplicationDetailView(APIView):
         if not application:
             return Response({'error': 'Application not found'}, status=status.HTTP_404_NOT_FOUND)
 
-
-        application = self.get_application(pk)
         pet_listing = self.get_pet_listing(application.pet_listing.id)
-
 
         if request.user.role == 'shelter' and pet_listing.lister == request.user:
             serializer = ApplicationUpdateSerializer(application, data=request.data, partial=True)
             if serializer.is_valid():
+                changed_status = application.status != request.data.get('status')
+                Notification.objects.create(
+                    receiver=application.applicant,
+                    title='Application Status Update',
+                    body_text=f'The status of your application for {pet_listing.name} has been updated!' if changed_status else f"Your application for {pet_listing.name} has been updated!",
+                    type='status_update',
+                    application=application
+                )
                 serializer.save()
+
                 return Response(serializer.data)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -137,6 +154,13 @@ class ApplicationDetailView(APIView):
             serializer = ApplicationUpdateSerializer(application, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
+                Notification.objects.create(
+                    receiver=application.shelter,
+                    title="Application Withdrawn",
+                    body_text=f"{application.applicant.first_name} has withdrawn their application for {pet_listing.name}",
+                    type="status_update",
+                    application=application
+                )
                 return Response(serializer.data)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
