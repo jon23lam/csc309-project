@@ -46,16 +46,7 @@ class PetListing(models.Model):
                              null=False)
     sex = models.CharField(max_length=1, choices=(
         ('M', 'Male'), ('F', 'Female')), null=False)
-    province = models.CharField(max_length=2,
-                                choices=(('ON', 'Ontario'), ('BC', 'British Columbia'), ('AB', 'Alberta'),
-                                         ('SK', 'Saskatchewan'), ('MB',
-                                                                  'Manitoba'), ('QB', 'Quebec'),
-                                         ('NS', 'Nova Scotia'), ('NB',
-                                                                 'New Brunswick'), ('PE', 'Prince Edward Island'),
-                                         ('NT', 'Northwest Territories'), ('YK',
-                                                                           'Yukon'), ('NV', 'Nunavut'),
-                                         ('NL', 'Newfoundland and Labrador')))
-    address = models.CharField(max_length=200)
+
     colour = models.CharField(max_length=20, choices=(('white', 'White'), ('black', 'Black'), ('brown', 'Brown'),
                                                       ('sable', 'Sable')), null=False)
     age = models.IntegerField(blank=False, null=False,)

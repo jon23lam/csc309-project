@@ -15,7 +15,11 @@ class AccountRegistrationView(APIView):
     authentication_classes = []
     permission_classes = []
     def post(self, request):
-        serializer = RegisterUserSerializer(data=request.POST)
+        data = request.POST.dict()
+        if data['role'] == 'shelter' and 'image' in request.FILES:
+            data['image'] = request.FILES['image']
+
+        serializer = RegisterUserSerializer(data=data)
         if serializer.is_valid():
             user = serializer.save()
 

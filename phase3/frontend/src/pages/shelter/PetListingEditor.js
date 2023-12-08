@@ -39,22 +39,6 @@ const SEX_OPTIONS = [
 	{ value: "M", display: "Male" },
 ];
 
-const PROVINCE_OPTIONS = [
-	{ value: "ON", display: "Ontario" },
-	{ value: "BC", display: "British Columbia" },
-	{ value: "AB", display: "Alberta" },
-	{ value: "MB", display: "Manitoba" },
-	{ value: "NB", display: "New Brunswick" },
-	{ value: "NL", display: "Newfoundland and Labrador" },
-	{ value: "NS", display: "Nova Scotia" },
-	{ value: "PE", display: "Prince Edward Island" },
-	{ value: "QB", display: "Quebec" },
-	{ value: "SK", display: "Saskatchewan" },
-	{ value: "NT", display: "Northwest Territories" },
-	{ value: "NV", display: "Nunavut" },
-	{ value: "YK", display: "Yukon" },
-];
-
 const COLOR_OPTIONS = [
 	{ value: "white", display: "White" },
 	{ value: "black", display: "Black" },
@@ -81,8 +65,6 @@ export function PetListingEditor(props) {
 	const [animal, setAnimal] = useState("");
 	const [breed, setBreed] = useState("");
 	const [sex, setSex] = useState("");
-	const [province, setProvince] = useState("");
-	const [address, setAddress] = useState("");
 	const [color, setColor] = useState("");
 	const [age, setAge] = useState("");
 	const [weight, setWeight] = useState("");
@@ -103,8 +85,6 @@ export function PetListingEditor(props) {
 			setAnimal(pet_.animal);
 			setBreed(pet_.breed);
 			setSex(pet_.sex);
-			setProvince(pet_.province);
-			setAddress(pet_.address);
 			setColor(pet_.colour);
 			setAge(pet_.age);
 			setWeight(pet_.weight);
@@ -119,8 +99,6 @@ export function PetListingEditor(props) {
 			animal: animal,
 			breed: breed,
 			sex: sex,
-			province: province,
-			address: address,
 			colour: color,
 			age: age,
 			weight: weight,
@@ -179,23 +157,6 @@ export function PetListingEditor(props) {
 						defaultValue={is_edit_page ? sex : null}
 						stateCallback={setSex}
 					/>
-					<SelectField
-						label="Province"
-						options={PROVINCE_OPTIONS}
-						defaultValue={is_edit_page ? province : null}
-						stateCallback={setProvince}
-					/>
-					<div className="Filters__filterItem">
-						<label htmlFor="address">Address</label>
-						<input
-							type="text"
-							id="address"
-							name="address"
-							className="TextField__PurpleOutline"
-							onChange={(e) => setAddress(e.target.value)}
-							value={is_edit_page ? address : null}
-						/>
-					</div>
 					<SelectField
 						label="Color"
 						options={COLOR_OPTIONS}
