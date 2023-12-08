@@ -17,6 +17,7 @@ export class PetListingsStore {
       setPetCount: action,
       setPetList: action,
       setNextPage: action,
+      removePetById: action
     });
   }
 
@@ -44,6 +45,10 @@ export class PetListingsStore {
     this.petCount = this.petCount + petCount;
   };
 
+  removePetById = (petId) => {
+    this.petList = this.petList.filter(pet => pet.id !== petId);
+  }
+
   initializeSearchPage = async (userId) => {
     this.setIsLoading(true);
 
@@ -64,13 +69,13 @@ export class PetListingsStore {
     }
 
     this.setIsLoading(false);
-  };
+};
 
   initializeShelterManagementPage = async (listerId) => {
     this.setIsLoading(true);
 
     try {
-      const response = await petListingsService.getPetListings({ filters: {"lister": listerId} });
+      const response = await petListingsService.getPetListings({ filters: {"lister": listerId, "status": "any"} });
 
       const { count, results, next } = response.data;
 
@@ -115,7 +120,6 @@ export class PetListingsStore {
     this.setIsLoading(true);
 
     try {
-      console.log(this.nextPage);
       const response = await petListingsService.getPetListingsNextPage(
         this.nextPage,
       );
@@ -144,6 +148,7 @@ export class PetListingsStore {
       const response = await petListingsService.getPetListing(listingId);
       const listing = response.data;
 
+      this.setIsLoading(false);
       return listing;
     } catch (err) {
       console.log("failed to get petlisting");
@@ -151,6 +156,21 @@ export class PetListingsStore {
 
     this.setIsLoading(false);
   };
+
+  deletePetListing = async (listingId) => {
+    this.setIsLoading(true);
+
+    try {
+      await petListingsService.deletePetListing(listingId);
+
+      this.removePetById(listingId)
+      this.setIsLoading(false);
+      return true;
+    } catch (err) {
+      this.setIsLoading(false)
+      return false;
+    }
+  }
 }
 
 export default PetListingsStore;

@@ -102,6 +102,7 @@ export const SearchFilters = observer((props) => {
             <option value="cat">Cat</option>
             <option value="bird">Bird</option>
             <option value="fish">Fish</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div className="Filters__filterItem">
@@ -120,6 +121,15 @@ export const SearchFilters = observer((props) => {
             <option value="labrador">Labrador</option>
             <option value="retriever">Retriever</option>
             <option value="german shepherd">German Shepherd</option>
+            <option value="pussycat">Pussycat</option>
+            <option value="persian">Persian</option>
+            <option value="shorthair">Shorthair</option>
+            <option value="sphynx">Sphynx</option>
+            <option value="parakeet">Parakeet</option>
+            <option value="chicken">Chicken</option>
+            <option value="bass">Bass</option>
+            <option value="goldfish">Goldfish</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div className="Filters__filterItem">
@@ -142,13 +152,13 @@ export const SearchFilters = observer((props) => {
         </div>
         <div className="Filters__filterItem">
           <label htmlFor="sex">Sex:</label>
-          <select name="sex" id="sex" className="Dropdown__PurpleOutline">
+          <select name="sex" id="sex" className="Dropdown__PurpleOutline" onChange={(e) => onFiltersChange("sex", e.target.value)}>
             <option value="" disabled defaultValue hidden>
               Select a sex
             </option>
             <option value="any">Any</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
           </select>
         </div>
         <div className="Filters__filterItem">
@@ -157,96 +167,41 @@ export const SearchFilters = observer((props) => {
             name="province"
             id="province"
             className="Dropdown__PurpleOutline"
+            onChange={(e) => onFiltersChange("province", e.target.value)}
           >
             <option value="" disabled defaultValue hidden>
               Select a Province
             </option>
-            <option value="ontario">Ontario</option>
-            <option value="british-columbia">British Columbia</option>
-            <option value="alberta">Alberta</option>
-            <option value="manitoba">Manitoba</option>
-            <option value="new-brunswick">New Brunswick</option>
-            <option value="newfoundland-and-labrador">
+            <option value="any">Any</option>
+            <option value="ON">Ontario</option>
+            <option value="BC">British Columbia</option>
+            <option value="AB">Alberta</option>
+            <option value="MB">Manitoba</option>
+            <option value="NB">New Brunswick</option>
+            <option value="NL">
               Newfoundland and Labrador
             </option>
-            <option value="nova-scotia">Nova Scotia</option>
-            <option value="prince-edward-island">Prince Edward Island</option>
-            <option value="quebec">Quebec</option>
-            <option value="saskatchewan">Saskatchewan</option>
-            <option value="northwest-territories">Northwest Territories</option>
-            <option value="nunavut">Nunavut</option>
-            <option value="yukon">Yukon</option>
+            <option value="NS">Nova Scotia</option>
+            <option value="PE">Prince Edward Island</option>
+            <option value="QB">Quebec</option>
+            <option value="SK">Saskatchewan</option>
+            <option value="NT">Northwest Territories</option>
+            <option value="NV">Nunavut</option>
+            <option value="YK">Yukon</option>
           </select>
         </div>
         <div className="Filters__filterItem">
-          <label htmlFor="address">Address:</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            className="TextField__PurpleOutline"
-          />
-        </div>
-        <div className="Filters__filterItem">
           <label htmlFor="color">Color:</label>
-          <select name="color" id="color" className="Dropdown__PurpleOutline">
+          <select name="color" id="color" className="Dropdown__PurpleOutline" onChange={(e) => onFiltersChange("colour", e.target.value)}>
             <option value="" disabled defaultValue hidden>
               Select a color
             </option>
             <option value="any">Any</option>
             <option value="white">White</option>
             <option value="black">Black</option>
-            <option value="Brown">Brown</option>
+            <option value="brown">Brown</option>
             <option value="sable">Sable</option>
           </select>
-        </div>
-        <div className="Filters__filterItem">
-          <label>Age:</label>
-          <div className="Filters__range">
-            <input
-              type="number"
-              id="age_from"
-              name="age_from"
-              placeholder="From"
-              className="TextField__PurpleOutlineRange"
-            />
-            <input
-              type="number"
-              id="age_to"
-              name="age_to"
-              placeholder="To"
-              className="TextField__PurpleOutlineRange"
-            />
-          </div>
-        </div>
-        <div className="Filters__filterItem">
-          <label>Weight:</label>
-          <div className="Filters__range">
-            <input
-              type="number"
-              id="weight_from"
-              name="weight_from"
-              placeholder="From"
-              className="TextField__PurpleOutlineRange"
-            />
-            <input
-              type="number"
-              id="weight_to"
-              name="weight_to"
-              placeholder="To"
-              className="TextField__PurpleOutlineRange"
-            />
-          </div>
-        </div>
-        <div className="Filters__filterItem">
-          <label htmlFor="description">Description:</label>
-          <textarea
-            type="text"
-            id="description"
-            name="description"
-            className="TextField__PurpleOutline SearchPage__description"
-            placeholder="Enter a description of the pet"
-          ></textarea>
         </div>
       </div>
     </div>
