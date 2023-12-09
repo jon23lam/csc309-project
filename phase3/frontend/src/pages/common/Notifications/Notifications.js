@@ -1,7 +1,7 @@
 import { getNotifications } from "../../../requests/notifications";
 import { useEffect, useState } from "react";
 import icon from "../../../assets/notification-bell.png";
-import unreadIcon from "../../../assets/unread-notification-bell.png"
+import unreadIcon from "../../../assets/notification-bell.png"
 
 import "./Notifications.scss"
 import { axiosGet } from "../../../requests/axiosRequests";

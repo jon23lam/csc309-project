@@ -90,13 +90,12 @@ function App() {
                       element={<StrayAnimalPage />}
                     />
                     <Route
-
                       path="/shelterDetail/:id/"
                       element={<ShelterDetail />}
-
-                      path="/notifications"
-                      element={<Notifications />}
                     />
+                    <Route path="/notifications"
+                      element={<Notifications />}/>
+                        
                   </Route>
                 </Route>
 

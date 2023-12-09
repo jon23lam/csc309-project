@@ -1,18 +1,60 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { RootStoreContext } from "../../../providers/RootProvider";
+import { formatErrors } from "../../../utils/formatErrors";
 import { useParams } from "react-router-dom";
 import "./ShelterDetail.scss";
 
 export const ShelterDetail = observer((props) => {
   const rootStore = useContext(RootStoreContext);
   const { seekerShelterStore } = rootStore;
-  const { user } = seekerShelterStore;
+  const { user, shelterReviews, reviewCount } = seekerShelterStore;
   const id = useParams();
+
+  const [rating, setRating] = useState(null);
+  const [ratingComment, setRatingComment] = useState(null);
+  const [errorText, setErrorText] = useState(null);
 
   useEffect(() => {
     seekerShelterStore.retrieveShelterUser(id.id);
+    seekerShelterStore.getShelterReviews(id.id);
   }, []);
+
+  function renderReviews() {
+    if (reviewCount == 0) {
+      return <div>There are no reviews for this shelter yet</div>
+    }
+    return shelterReviews.map((review) => (
+      <div class="review">
+        <p>
+          "{review.content}"
+        </p>
+        <div class="rating">
+          {Array.from({ length: review.rating }, (_, index) => (
+            <span key={review.id + index} class="star">&#9733;</span>
+          ))}
+        </div>
+      </div>
+    ));
+  }
+
+  function onRatingclick(rating) {
+    setRating(rating);
+  }
+
+  async function submitReview() {
+    if (!rating || !ratingComment) {
+      setErrorText("Plase select a rating and write something above.")
+    } else {
+      setErrorText(null)
+      const payload = {
+        content: ratingComment,
+        rating: rating
+      }
+      await seekerShelterStore.createShelterReview(id.id, payload)
+    }
+  }
+
 
   return (
     <div className="PageContainer">
@@ -72,62 +114,40 @@ export const ShelterDetail = observer((props) => {
             </div>
           </div>
         </div>
-        {/*<div className="center">*/}
-        {/*  <div className="review-card">*/}
-        {/*    <h1 className="center">Reviews</h1>*/}
-        {/*    <br />*/}
-        {/*    <div className="reviews">*/}
-        {/*      <div className="review">*/}
-        {/*        <h1>By Sarah T.</h1>*/}
-        {/*        <p>*/}
-        {/*          I adopted my sweet Luna from Forever Paws Pet Haven, and it*/}
-        {/*          was an amazing experience. The staff were friendly and*/}
-        {/*          helpful, and Luna is the perfect addition to our family.*/}
-        {/*          Thanks, Forever Paws, for bringing us together!*/}
-        {/*        </p>*/}
-        {/*        <div className="rating">*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*        </div>*/}
-        {/*      </div>*/}
-        {/*      <div className="review">*/}
-        {/*        <h1>By David L.</h1>*/}
-        {/*        <p>*/}
-        {/*          Forever Paws Pet Haven is a fantastic shelter. I volunteer*/}
-        {/*          here regularly, and their commitment to animal care is*/}
-        {/*          top-notch. Clean facilities, dedicated staff, and happy*/}
-        {/*          animals. Highly recommended!.*/}
-        {/*        </p>*/}
-        {/*        <div className="rating">*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*        </div>*/}
-        {/*      </div>*/}
-        {/*      <div className="review">*/}
-        {/*        <h1>By Emily R.</h1>*/}
-        {/*        <p>*/}
-        {/*          I adopted Whiskers and Mittens from Forever Paws Pet Haven,*/}
-        {/*          and they've brought so much joy to my life. The shelter's*/}
-        {/*          process was smooth, and it's clear they truly care about their*/}
-        {/*          animals.*/}
-        {/*        </p>*/}
-        {/*        <div className="rating">*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*          <span className="star">&#9733;</span>*/}
-        {/*        </div>*/}
-        {/*      </div>*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+        <div class="center">
+          <div class="review-card">
+            <h1 class="center">Reviews</h1>
+            <br />
+            <div class="reviews">{renderReviews()}</div>
+          </div>
+        </div>
+        <div class="center">
+          <div class="review-card">
+            <h1 class="center">Leave a review for {user.shelter_name}</h1>
+            <div class="rating-review">
+              <span class={`star ${0 < rating ? 'pink-star' : ''}`} onClick={() => onRatingclick(1)}>&#9733;</span>
+              <span class={`star ${1 < rating ? 'pink-star' : ''}`} onClick={() => onRatingclick(2)}>&#9733;</span>
+              <span class={`star ${2 < rating ? 'pink-star' : ''}`} onClick={() => onRatingclick(3)}>&#9733;</span>
+              <span class={`star ${3 < rating ? 'pink-star' : ''}`} onClick={() => onRatingclick(4)}>&#9733;</span>
+              <span class={`star ${4 < rating ? 'pink-star' : ''}`} onClick={() => onRatingclick(5)}>&#9733;</span>
+            </div>
+            <textarea
+              className="Review__textarea"
+              name="message"
+              placeholder="Leave your review here"
+              rows="4"
+              onChange={(e) => setRatingComment(e.target.value)}
+            ></textarea>
+            <div class="Review__submit">
+              <button className="Button__purple" onClick={() => submitReview()}>Submit Review</button>
+            </div>
+            {errorText && (
+            <div className="errorText">
+              <h6 className="show-red-text">{errorText}</h6>
+            </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
