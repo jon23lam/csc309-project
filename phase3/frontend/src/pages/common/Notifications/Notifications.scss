@@ -1,0 +1,39 @@
+:root {
+  --purple-primary: #8c02ec;
+  --purple-secondary: #b304eb;
+  --pink-primary: #ee07a2;
+  --header-text-color: #112333ff;
+  --light-background: rgb(245, 245, 245);
+}
+
+.NotificationsPage {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.NotificationsPage__item {
+  display: flex;
+  background-color: var(--light-background);
+  padding: 12px;
+  border-radius: 16px;
+  width: 60vw;
+  align-items: center;
+  gap: 10px;
+}
+
+.NotificationsPage__item:hover {
+  color: white;
+  background-image: linear-gradient(
+    var(--purple-primary),
+    var(--purple-secondary)
+  );
+}
+
+.NotificationsPage__photo {
+  width: 90px;
+  height: 80px;
+  border-radius: 16px;
+  flex: none;
+}

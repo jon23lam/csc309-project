@@ -20,6 +20,7 @@ import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage"
 import { SeekerSignup } from "./pages/signup/Seeker/Seeker";
 import { ShelterSignup } from "./pages/signup/Shelter/Shelter";
 import { Landing } from "./pages/landing/Landing";
+import { Notifications } from "./pages/common/Notifications/Notifications";
 
 import "./App.scss";
 
@@ -75,6 +76,10 @@ function App() {
                     <Route
                       path="/stray_animal_locator"
                       element={<StrayAnimalPage />}
+                    />
+                    <Route
+                      path="/notifications"
+                      element={<Notifications />}
                     />
                   </Route>
                 </Route>
