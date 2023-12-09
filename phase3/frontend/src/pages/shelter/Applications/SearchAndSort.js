@@ -47,30 +47,21 @@ export const SearchAndSort = observer((props) => {
           Sort by Last Created
         </button>
       </div>
-      <div className="ApplicationsPage__statusFilter">
-        <select
-          value={statusFilter}
-          onChange={(e) => onFiltersChange(e.target.value)}
-          className="form-select"
-        >
-          <option value="">Filter by Status</option>
-          <option value="approved">Approved</option>
-          <option value="withdrawn">Withdrawn</option>
-          <option value="pending">Pending</option>
-          <option value="denied">Denied</option>
-        </select>
-      </div>
 
       <div className="ApplicationsPage__searchBar">
-        <input
-          type="text"
-          placeholder="Search applications..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className="Button__purple" onClick={() => setSearchTerm("")}>
-          Clear
-        </button>
+        <div className="ApplicationsPage__statusFilter">
+          <select
+            value={statusFilter}
+            onChange={(e) => onFiltersChange(e.target.value)}
+            className="form-select"
+          >
+            <option value="">Filter by Status</option>
+            <option value="approved">Approved</option>
+            <option value="withdrawn">Withdrawn</option>
+            <option value="pending">Pending</option>
+            <option value="denied">Denied</option>
+          </select>
+        </div>
       </div>
     </div>
   );

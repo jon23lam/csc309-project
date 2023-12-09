@@ -6,7 +6,6 @@
   padding: 10px;
   border-radius: 10px;
   height: 90%;
-  max-width: 100%;
 }
 
 .slider > div {
@@ -36,7 +35,7 @@
   border-radius: 10px;
   padding: 20px;
   width: 95%;
-  height: 80%;
+  height: 500px;
   margin: 2rem;
   color: rgb(77, 71, 81);
   border: 2px solid var(--purple-primary);
@@ -64,39 +63,60 @@
   right: 0;
 }
 
-.info-card {
-  background-color:  var(--light-background);
-  border-radius: 10px;
-  padding: 20px;
-  width: 70%;
-  border: 2px solid var(--purple-primary);
-  margin: 2rem;
-  color: rgb(77, 71, 81);
+.slide{
+  width: 100%;
 }
 
-.adopt-card {
+.info-card {
   background-color: var(--light-background);
   border-radius: 10px;
   padding: 20px;
-  width: 30%;
+  width: 100%;
+  border: 2px solid var(--purple-primary);
+
+  margin: 2rem;
+  color: rgb(77, 71, 81);
+}
+
+.review-card {
+  background-color: var(--light-background);
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
   margin: 2rem;
   color: rgb(77, 71, 81);
   border: 2px solid var(--purple-primary);
+}
+
+.reviews {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.review {
+  flex: 1;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
   text-align: center;
 }
 
-.adopted{
-  background: #f1baba;
+.review h1 {
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 
-.adopt-button{
-  background: var(--purple-primary);
-  border: 1px solid var(--purple-secondary);
+.review p {
+  font-size: 14px;
+  line-height: 1.5;
 }
-
-.adopt-button:hover{
-  background: var(--pink-primary);
-  border: 1px solid var(--pink-primary);
+.rating {
+  display: inline-block;
+  font-size: 20px;
+  margin-top: 10px;
 }
 
 .quick-info {
@@ -105,12 +125,28 @@
 }
 
 .info-card h1,
-.info-card h2,
-.info-card h3,
-.info-card h4,
+h2,
+h3,
+h4,
 .info-item a {
-
+  padding-left: 15px;
   padding-top: 20px;
+}
+
+.info-item {
+    padding-left: 15px;
+  font-size: 18px;
+  color: black;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.dot {
+  font-size: 18px;
+  color: black;
+  text-decoration: none;
+  margin-right: 5px;
+
 }
 
 .info-card p {
@@ -135,70 +171,53 @@
   animation: rotateCarousel 15s linear infinite;
 }
 
-.slide{
-  width: 100%;
+
+//@media (max-width: 1280px) {
+//  .slider {
+//    padding: 0;
+//    height: auto;
+//    overflow-x: hidden;
+//  }
+//
+//  .slider > div {
+//    width: 100%;
+//  }
+//
+//  .slider-card {
+//    width: 100%;
+//    height: auto;
+//    margin: 1rem 0;
+//  }
+//  .slider-button {
+//    display: none;
+//  }
+//  .reviews {
+//    flex-direction: column;
+//    gap: 20px;
+//  }
+//  .review{
+//    padding-bottom: 5rem;
+//  }
+//}
+
+@media (max-width: 900px) {
+
+
 }
 
-@keyframes rotateCarousel {
-  0% {
-    transform: translateX(0);
-  }
-  33.33% {
-    transform: translateX(-100%);
-  }
-  66.66% {
-    transform: translateX(-200%);
-  }
-  100% {
-    transform: translateX(0);
+@media (max-width: 768px) {
+  .info-item,
+  .dot {
+    margin-right: 0;
+    margin-bottom: 5px;
   }
 }
 
-@media (max-width: 1280px) {
-  .slider {
-    padding: 0;
-    height: auto;
-    overflow-x: hidden;
-  }
-
-
-  .main-content{
+.stack{
     display: flex;
     flex-direction: column;
-  }
-
-  .adopt-card{
-    width: 70%;
-  }
-
-  .slider > div {
-    width: 100%;
-  }
-
-  .slider-card {
-    width: 100%;
-    height: auto;
-    margin: 1rem 0;
-  }
-  .slider-button {
-    display: none;
-  }
-  .reviews {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-}
-
-.PetDetail__image{
-  height: 40vh;
-  width: auto;
-}
-
-@media (max-width: 700px) {
-  .slider img{
-    width: 100%;
-  }
-
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 

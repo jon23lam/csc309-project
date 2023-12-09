@@ -11,6 +11,7 @@ export const Comments = observer((props) => {
   const rootStore = useContext(RootStoreContext);
   const { commentsStore } = rootStore;
   const { commentList, commentCount, nextPage } = commentsStore;
+  const [shouldScrollToLatest, setShouldScrollToLatest] = useState(true);
 
   const { seekerUser, shelterUser } = props;
 
@@ -29,10 +30,12 @@ export const Comments = observer((props) => {
       if (
         containerRef.current &&
         containerRef.current.scrollTop + containerRef.current.clientHeight >=
-          containerRef.current.scrollHeight
+          containerRef.current.scrollHeight - 10
       ) {
         if (nextPage) {
           commentsStore.getCommentsNextPage();
+        } else {
+          setShouldScrollToLatest(false);
         }
       }
     };
@@ -81,6 +84,11 @@ export const Comments = observer((props) => {
   return (
     <div className="Application__mainCol">
       {renderMessages()}
+      {shouldScrollToLatest && (
+        <div className="ScrollNotification">
+          ↓ Scroll to see the latest messages ↓
+        </div>
+      )}
       <textarea
         className="Message__textarea"
         name="message"

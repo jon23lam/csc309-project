@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 export const PetListing = observer((props) => {
   const { petInfo } = props;
-  const { id, name, age, sex, weight, breed, description, image } = petInfo;
+  const { id, name, age, sex, weight, breed, description, image, lister } =
+    petInfo;
 
   return (
     <div className="SearchPage__petInfo" key={id}>
@@ -13,17 +14,34 @@ export const PetListing = observer((props) => {
         <img src={image} alt="Pet Photo" className="SearchPage__petPhoto" />
       </div>
       <div className="SearchPage__petDescription">
-        <h4><b>Name:</b> {name}</h4>
-        <h4><b>Age:</b> {age}</h4>
-        <h4><b>Sex:</b> {sex}</h4>
-        <h4><b>Breed:</b> {breed}</h4>
-        <h4><b>Weight:</b> {weight}</h4>
-        <h4 className="description-field"><b>Description:</b> {description}</h4>
+        <h4>
+          <b>Name:</b> {name}
+        </h4>
+        <h4>
+          <b>Age:</b> {age}
+        </h4>
+        <h4>
+          <b>Sex:</b> {sex}
+        </h4>
+        <h4>
+          <b>Breed:</b> {breed}
+        </h4>
+        <h4>
+          <b>Weight:</b> {weight}
+        </h4>
+        <h4 className="description-field">
+          <b>Description:</b> {description}
+        </h4>
         <Link to={`/petdetail/${id}/`} className="Button__purpleOutline">
           More Info
         </Link>
-        <button className="Button__purpleOutline">See Shelter</button>
 
+        <Link
+          to={`/shelterDetail/${lister}/`}
+          className="Button__purpleOutline"
+        >
+          See Shelter
+        </Link>
         {/*We have to deal with the case where you cant adopt it*/}
         <Link to={`/adoptionForm/${id}/`} className="Button__purple">
           Apply!

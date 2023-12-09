@@ -25,6 +25,7 @@ import { SeekerAccountUpdate } from "./pages/petseeker/AccountUpdate/AccountUpda
 import {Landing} from "./pages/landing/Landing";
 
 import "./App.scss";
+import { ShelterDetail } from "./pages/common/ShelterDetail/ShelterDetail";
 
 function App() {
   return (
@@ -89,6 +90,10 @@ function App() {
                       element={<StrayAnimalPage />}
                     />
                     <Route
+
+                      path="/shelterDetail/:id/"
+                      element={<ShelterDetail />}
+
                       path="/notifications"
                       element={<Notifications />}
                     />
