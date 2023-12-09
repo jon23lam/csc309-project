@@ -3,9 +3,11 @@ import "../../../BaseStyles.scss";
 import "../../petseeker/Search/SearchPage.scss";
 import React, { useState } from "react";
 import { signup } from "../../../requests/signup";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { formatErrors } from "../../../utils/formatErrors";
 
 export function ShelterSignup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     shelter_name: "",
     phone_number: "",
@@ -13,8 +15,6 @@ export function ShelterSignup() {
     city: "",
     province: "",
     postal_code: "",
-    open_time: "",
-    close_time: "",
     email: "",
     password: "",
     password_confirm: "",
@@ -22,6 +22,8 @@ export function ShelterSignup() {
     animals_offered: "",
     role: "shelter",
   });
+
+  const [errorText, setErrorText] = useState(null);
 
   const [image, setImage] = useState({});
 
@@ -60,10 +62,11 @@ export function ShelterSignup() {
       submitData.append("image", image);
       const response = await signup(submitData);
       if (response.status === 200) {
-        redirect("/");
+        navigate("/login");
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.response)
+      setErrorText(formatErrors(err.response.data));
     }
   };
 
@@ -259,7 +262,7 @@ export function ShelterSignup() {
                   type="file"
                   id="image"
                   name="image"
-                  class="TextField__PurpleOutline"
+                  className="TextField__PurpleOutline"
                   onChange={handleImage}
                 ></input>
               </div>
@@ -271,6 +274,11 @@ export function ShelterSignup() {
                   Sign Up
                 </button>
               </div>
+              {errorText && (
+                <div className="errorText">
+                  <h6 className="show-red-text">{errorText}</h6>
+                </div>
+              )}
             </div>
           </div>
         </div>

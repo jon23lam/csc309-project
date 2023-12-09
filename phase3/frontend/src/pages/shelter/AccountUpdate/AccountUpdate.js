@@ -3,14 +3,17 @@ import "../../../BaseStyles.scss";
 import "./AccountUpdate.scss";
 import "../../petseeker/Search/SearchPage.scss";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   deleteAccount,
   shelterUpdateAccount,
 } from "../../../requests/accountUpdate";
 import { getMe } from "../../../requests/authentication";
 import { Link } from "react-router-dom";
+import { formatErrors } from "../../../utils/formatErrors";
 
 export function ShelterAccountUpdate() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     shelter_name: "",
     phone_number: "",
@@ -18,19 +21,21 @@ export function ShelterAccountUpdate() {
     city: "",
     province: "",
     postal_code: "",
-    open_time: "",
-    close_time: "",
     password: "",
     password_confirm: "",
     animals_offered: "",
     description: "",
   });
   const [loading, setLoading] = useState(true);
+  const [errorText, setErrorText] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
       getMe()
         .then((response) => {
+          if (response.data.image) {
+            delete response.data.image
+          }
           setFormData(response.data);
         })
         .finally(() => {
@@ -41,7 +46,7 @@ export function ShelterAccountUpdate() {
     fetchUserData();
   }, []);
 
-  const [image, setImage] = useState({});
+  const [image, setImage] = useState(null);
 
   const PROVINCE_OPTIONS = [
     { value: "", label: "Select" },
@@ -72,8 +77,10 @@ export function ShelterAccountUpdate() {
   const handleDelete = async () => {
     try {
       const response = await deleteAccount(formData.id);
+      setErrorText(null);
+      navigate("/");
     } catch (err) {
-      console.log(err);
+      setErrorText(formatErrors(err.response.data));
     }
   };
 
@@ -81,12 +88,21 @@ export function ShelterAccountUpdate() {
     try {
       let submitData = new FormData();
       for (const entry in formData) {
-        submitData.append(entry, formData[entry]);
+        if (formData[entry]) {
+          submitData.append(entry, formData[entry] );
+        }   
       }
-      submitData.append("image", image);
+      
+      if (image) {
+        console.log(image)
+        submitData.append("image", image);
+      }
+      
       const response = await shelterUpdateAccount(formData.id, submitData);
+      setErrorText(null);
+      navigate("/manage_shelter");
     } catch (err) {
-      console.log(err);
+      setErrorText(formatErrors(err.response.data));
     }
   };
 
@@ -114,8 +130,8 @@ export function ShelterAccountUpdate() {
                   />
                 </div>
                 <div className="Filters__filterItem">
-                  <label htmlFor="shelter_name" className="signup-labels">
-                    Shelter Name:
+                  <label htmlFor="phone_number" className="signup-labels">
+                    Phone Number:
                   </label>
                   <input
                     type="text"
@@ -181,7 +197,7 @@ export function ShelterAccountUpdate() {
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
-                      ),
+                      )
                     )}
                   </select>
                 </div>
@@ -307,27 +323,28 @@ export function ShelterAccountUpdate() {
                   ></input>
                 </div>
                 <div className="AccountDetails__buttons">
-                  <Link to="/login">
-                    <div className="signup-button">
-                      <button
-                        className="Button__redOutline signup-button"
-                        onClick={handleDelete}
-                      >
-                        Delete Account
-                      </button>
-                    </div>
-                  </Link>
-                  <Link to="/manage_shelter">
-                    <div className="signup-button">
-                      <button
-                        className="Button__purpleOutline signup-button"
-                        onClick={handleSubmit}
-                      >
-                        Update Account
-                      </button>
-                    </div>
-                  </Link>
+                  <div className="signup-button">
+                    <button
+                      className="Button__redOutline signup-button"
+                      onClick={handleDelete}
+                    >
+                      Delete Account
+                    </button>
+                  </div>
+                  <div className="signup-button">
+                    <button
+                      className="Button__purpleOutline signup-button"
+                      onClick={handleSubmit}
+                    >
+                      Update Account
+                    </button>
+                  </div>
                 </div>
+                {errorText && (
+                  <div className="errorText">
+                    <h6 className="show-red-text">{errorText}</h6>
+                  </div>
+                )}
               </div>
             </div>
           ) : (

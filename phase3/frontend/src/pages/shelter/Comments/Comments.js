@@ -89,11 +89,6 @@ export const Comments = observer((props) => {
   return (
     <div className="Application__mainCol">
       {renderMessages()}
-      {shouldScrollToLatest && (
-        <div className="ScrollNotification">
-          ↓ Scroll to see the latest messages ↓
-        </div>
-      )}
       <textarea
         className="Message__textarea"
         name="message"

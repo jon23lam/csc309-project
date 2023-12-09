@@ -102,7 +102,7 @@ export class SeekerShelterStore {
 
       this.shelterReviews.push(newComment);
 
-      this.setShelterReviewCount += 1;
+      this.reviewCount += 1;
     } catch (error) {
       console.log("Failed to post comment", error);
     }

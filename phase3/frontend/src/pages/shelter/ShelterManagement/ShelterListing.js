@@ -40,12 +40,6 @@ export const ShelterListing = observer((props) => {
         <h4 className="description-field"><b>Description:</b> {description}</h4>
         <button
           className="Button__purpleOutline"
-          // onclick="location.href='../Applications/ApplicationsPage.html';"
-        >
-          See Applications
-        </button>
-        <button
-          className="Button__purpleOutline"
           onClick={() => onEditClick()}
         >
           Edit Listing

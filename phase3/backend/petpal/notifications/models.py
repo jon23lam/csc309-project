@@ -16,5 +16,5 @@ class Notification(models.Model):
   associated_id = models.IntegerField()
 
   class Meta:
-    ordering = ['-created_at']
+    ordering = ['read', '-created_at']
 

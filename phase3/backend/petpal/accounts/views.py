@@ -90,6 +90,7 @@ class AccountView(UpdateAPIView):
                 return Response({'message': 'You do not have permission to view this account'}, status=401)
         else:
             return Response({'message': f'{"Seeker" if self.requested_role == ROLE_SEEKER else "Shelter"} not found'}, status=404)
+
         
     def delete(self, request, pk):
         if request.user.id == pk:

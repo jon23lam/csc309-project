@@ -25,7 +25,7 @@ class ShelterCommentListCreateAPIView(APIView):
                 Notification.objects.create(
                     receiver=PetHubUser.objects.get(id=shelter_id),
                     title='New comment',
-                    body_text=f'{request.user.username} commented on your shelter profile',
+                    body_text=f'{request.user.first_name} commented on your shelter profile',
                     type='shelter_comment',
                     comment=comment,
                     associated_id=shelter_id
@@ -97,7 +97,7 @@ class ApplicationCommentListAPIView(APIView):
             Notification.objects.create(
                 receiver=(application.applicant if request.user != application.applicant else application.shelter),
                 title='New comment',
-                body_text=f'{request.user.username} commented on your application',
+                body_text=f'{request.user.first_name} commented on your application',
                 type='application_comment',
                 comment=comment,
                 associated_id=application.id
