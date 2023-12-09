@@ -1,0 +1,36 @@
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header__logo {
+  cursor: pointer;
+}
+
+.Header__navButtons {
+  display: flex;
+  gap: 20px;
+}
+
+.HeaderItem{
+  cursor: pointer;
+}
+
+
+.Notification__container:hover .Notification__dropdown {
+  display: block;
+}
+
+/* Styles for mobile devices up to 480px */
+@media (max-width: 480px) {
+  .Header__navButtons {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+}
+
