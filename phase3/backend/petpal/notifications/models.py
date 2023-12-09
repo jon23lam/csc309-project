@@ -13,6 +13,7 @@ class Notification(models.Model):
   type = models.CharField(max_length=30, choices=(('application_comment', 'Application Comment'), ('shelter_comment', 'Shelter Comment'), ('application', 'Application'), ('status_update', "Status Update")))
   application = models.ForeignKey('applications.Application', on_delete=models.CASCADE, blank=True, null=True)
   comment = models.ForeignKey('comments.Comment', on_delete=models.CASCADE, blank=True, null=True)
+  associated_id = models.IntegerField()
 
   class Meta:
     ordering = ['-created_at']
