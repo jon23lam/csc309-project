@@ -94,7 +94,6 @@ function App() {
                       element={<StrayAnimalPage />}
                     />
                     <Route
-
                       path="/shelterDetail/:id/"
                       element={<ShelterDetail />}
                     />

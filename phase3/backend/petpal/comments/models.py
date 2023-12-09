@@ -9,6 +9,7 @@ class Comment(models.Model):
   shelter = models.ForeignKey(PetHubUser, related_name='comments', on_delete=models.CASCADE, null=True, blank=True)
   application = models.ForeignKey(Application, related_name='comments', on_delete=models.CASCADE, null=True, blank=True)
   author = models.ForeignKey(PetHubUser, on_delete=models.CASCADE)
+  rating = models.IntegerField(blank=True, null=True)
 
   class Meta: 
     ordering = ['created_at']
