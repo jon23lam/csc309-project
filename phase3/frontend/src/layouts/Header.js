@@ -36,6 +36,14 @@ export const Header = observer((props) => {
     }
   }
 
+  function navigateToAccountDetails() {
+    if (role == ROLE_SEEKER) {
+      navigate("/seekerAccountDetails")
+    } else {
+      navigate("/shelterAccountDetails")
+    }
+  }
+
   function navigateToStrayAnimals() {
     navigate("/stray_animal_locator")
   }
@@ -51,6 +59,7 @@ export const Header = observer((props) => {
       <div className="Header__navButtons">
         <a
           className="HeaderItem"
+          onClick={() => navigateToAccountDetails()}
         >
           Manage Account
         </a>
