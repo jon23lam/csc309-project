@@ -16,10 +16,12 @@ import { ShelterManagement } from "./pages/shelter/ShelterManagement/ShelterMana
 import { HeaderRoute } from "./routes/HeaderRoute";
 import { ApplicationsPage } from "./pages/shelter/Applications/ApplicationsPage";
 import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
+import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
+import {SeekerSignup} from "./pages/signup/Seeker/Seeker";
+import {ShelterSignup} from "./pages/signup/Shelter/Shelter";
 
 import "./App.scss";
-import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
-import { Application } from "./pages/shelter/Applications/Application";
+
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
               <Routes>
                 {/* Public route */}
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup/seeker" element={<SeekerSignup />} />
+                <Route path="/signup/shelter" element={<ShelterSignup />} />
 
                 {/* Put all routes that need authentication in here */}
                 <Route path="/" element={<AuthenticatedRoute />}>
