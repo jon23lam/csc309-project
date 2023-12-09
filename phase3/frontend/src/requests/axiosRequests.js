@@ -60,15 +60,13 @@ export async function axiosPatch(endpoint, payload, additionalHeaders = {}) {
   return response;
 }
 
-export async function axiosDelete(endpoint, payload, additionalHeaders = {}) {
+export async function axiosDelete(endpoint) {
   const response = await axios.delete(endpoint, {
-    data: payload,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`,
-      ...additionalHeaders
-    },
+      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
+    }
   });
 
   return response;
