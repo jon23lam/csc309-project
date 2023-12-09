@@ -4,16 +4,31 @@ import "../../../BaseStyles.scss";
 import { observer } from "mobx-react";
 import "../Applications/ApplicationsPage.scss";
 import { Comments } from "./Comments";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getApplication, getApplicationUsers } from "../../../requests/applicationRequests";
 
 export const CommentsPage = observer((props) => {
   const location = useLocation();
   const { state } = location;
-  const seekerUser = state && state.user;
-  const shelterUser = state && state.shelterUser;
-  const pet = state && state.pet;
 
-  console.log(seekerUser);
+  const [pet, setPet] = useState(state && state.pet);
+  const [seekerUser, setSeekerUser] = useState(state && state.user);
+  const [shelterUser, setShelterUser] = useState(state && state.shelterUser);
+  const {applicationId} = useParams();
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      if (!seekerUser || !shelterUser || !pet) {
+        const response = await getApplicationUsers(applicationId)
+        setSeekerUser({...response.data.seeker_user.fields, id: response.data.seeker_user.pk});
+        setShelterUser({...response.data.shelter_user.fields, id: response.data.shelter_user.pk});
+        setPet({...response.data.pet_listing.fields, id: response.data.pet_listing.pk, image: process.env.REACT_APP_BACKEND_BASE_URL+'/media/'+response.data.pet_listing.fields.image})
+      }
+    }
+    
+    fetchUsers()
+  })
 
   return (
     <div className="PageContainer">

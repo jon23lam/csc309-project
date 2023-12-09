@@ -5,17 +5,21 @@ import { useParams } from "react-router-dom";
 import "./Comments.scss";
 import "../../../BaseStyles.scss";
 import "../Applications/ApplicationsPage.scss";
+import { getApplicationUsers } from "../../../requests/applicationRequests";
 
 export const Comments = observer((props) => {
   const { applicationId } = useParams();
   const rootStore = useContext(RootStoreContext);
   const { commentsStore } = rootStore;
-  const { commentList, commentCount, nextPage } = commentsStore;
+  const { commentList, commentCount, nextPage, isLoading } = commentsStore;
   const [shouldScrollToLatest, setShouldScrollToLatest] = useState(true);
 
-  const { seekerUser, shelterUser } = props;
+  const seekerUser = props.seekerUser;
+  const shelterUser = props.shelterUser;
 
   const containerRef = useRef(null); // Ref for the container element
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +53,8 @@ export const Comments = observer((props) => {
   function renderMessages() {
     return (
       <div className="MessagePage__messages" ref={containerRef}>
-        {commentList.map((comment) => (
+        {seekerUser && shelterUser ? 
+        commentList.map((comment) => (
           <div className="Message__message" key={comment.id}>
             {comment.author === seekerUser.id && (
               <div>
@@ -69,7 +74,7 @@ export const Comments = observer((props) => {
               </div>
             )}
           </div>
-        ))}
+        )) : <></>}
       </div>
     );
   }

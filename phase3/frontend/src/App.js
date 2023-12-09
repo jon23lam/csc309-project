@@ -70,6 +70,10 @@ function App() {
                         element={<SeekerAccountUpdate />}
                       />
                       <Route path="/search/list/" element={<SearchPage />} />
+                      <Route
+                        path="/seekerAccountDetails"
+                        element={<SeekerAccountUpdate />}
+                      />
                     </Route>
 
                     <Route
@@ -93,9 +97,10 @@ function App() {
                       path="/shelterDetail/:id/"
                       element={<ShelterDetail />}
                     />
-                    <Route path="/notifications"
-                      element={<Notifications />}/>
-                        
+                    <Route
+                      path="/notifications"
+                      element={<Notifications />}
+                    />
                   </Route>
                 </Route>
 
