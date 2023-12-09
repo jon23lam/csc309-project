@@ -8,6 +8,9 @@ from petlistings.models import STATUS_AVAILABLE
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import status
 from rest_framework.exceptions import PermissionDenied, APIException, NotFound
+from django.core import serializers
+import json
+
 
 from .serializers import CreateApplicationSerializer, ApplicationUpdateSerializer, ApplicationListSerializer
 
@@ -77,7 +80,8 @@ class ApplicationCreateView(APIView):
                 title='New Application',
                 body_text=f'You have a new application for {pet_listing.name}!',
                 type='application',
-                application=application
+                application=application,
+                associated_id=application.id
             )
 
             return Response({'message': 'Application created successfully'}, status=200)
@@ -143,7 +147,8 @@ class ApplicationDetailView(APIView):
                     title='Application Status Update',
                     body_text=f'The status of your application for {pet_listing.name} has been updated!' if changed_status else f"Your application for {pet_listing.name} has been updated!",
                     type='status_update',
-                    application=application
+                    application=application,
+                    associated_id=application.id
                 )
                 serializer.save()
 
@@ -159,7 +164,8 @@ class ApplicationDetailView(APIView):
                     title="Application Withdrawn",
                     body_text=f"{application.applicant.first_name} has withdrawn their application for {pet_listing.name}",
                     type="status_update",
-                    application=application
+                    application=application,
+                    associated_id=application.id
                 )
                 return Response(serializer.data)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -267,3 +273,14 @@ class ApplicationListViewSorted(ListAPIView):
 
         serializer = self.serializer_class(applications, context={'request': request}, many=True)
         return paginator.get_paginated_response(serializer.data)
+
+class ApplicationUsers(APIView):
+
+    def get(self, request, pk):
+        application = Application.objects.get(pk=pk)
+        seeker_user = json.loads(serializers.serialize("json", [PetHubUser.objects.get(pk=application.applicant.id)])[1:-1])
+        shelter_user = json.loads(serializers.serialize("json", [PetHubUser.objects.get(pk=application.shelter.id)])[1:-1])
+        pet_listing = serializers.serialize("json", [PetListing.objects.get(pk=application.pet_listing.id)])[1:-1]
+        seeker_user['fields'].pop('password')
+        shelter_user['fields'].pop('password')
+        return Response({"seeker_user": seeker_user, "shelter_user": shelter_user, "pet_listing": json.loads(pet_listing)})
