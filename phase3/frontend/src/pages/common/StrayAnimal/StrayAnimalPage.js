@@ -41,7 +41,8 @@ const INITIAL_ZOOM = 14;
 
 export const StrayAnimalPage = observer((props) => {
   const rootStore = useContext(RootStoreContext);
-  const { authStore, strayAnimalsStore, latitude, longitude } = rootStore;
+  const { authStore, strayAnimalsStore, location, locationLoading } = rootStore;
+  const { locationOn, latitude, longitude } = location;
   const { context } = authStore;
   const { currentUser } = context;
   const { strayAnimals } = strayAnimalsStore;
@@ -58,7 +59,7 @@ export const StrayAnimalPage = observer((props) => {
   const [selectedLat, setSelectedLat] = useState(null);
   const [selectedLng, setSelectedLng] = useState(null);
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [center, setCenter] = useState(defaultCenter);
+  const [center, setCenter] = useState(null);
 
   useEffect(() => {
     async function fetchStrayAnimals(params) {
@@ -84,11 +85,17 @@ export const StrayAnimalPage = observer((props) => {
         fetchStrayAnimals(params);
       }
 
-      if (latitude && longitude) {
-        setCenter({ lat: latitude, lng: longitude });
-      }
+      
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    if (locationOn && latitude && longitude) {
+      setCenter({ lat: latitude, lng: longitude });
+    } else {
+      setCenter(defaultCenter)
+    }
+  }, [location])
 
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -207,7 +214,7 @@ export const StrayAnimalPage = observer((props) => {
       </div>
       <div className="StrayAnimalPage__map">
         <div className="StrayAnimalPage__mapWrapper"></div>
-        {isLoaded ? (
+        {isLoaded && !locationLoading ? (
           <GoogleMap
             mapContainerStyle={containerStyle}
             onClick={(e) => handleMapClick(e)}
@@ -237,7 +244,7 @@ export const StrayAnimalPage = observer((props) => {
             )}
           </GoogleMap>
         ) : (
-          <div>Loading Map</div>
+          <div>Loading Map...</div>
         )}
       </div>
     </div>
