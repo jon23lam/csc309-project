@@ -55,11 +55,39 @@ export async function getApplicationUsers(application_id) {
 
 // ADD BACK FILTERS AS A PARAMATER AFTER
 export async function getApplications(page = 1) {
-  const response = await axiosRequests.axiosGet(GET_APPLICATIONS_ENDPOINT);
-  return response;
+  const existingParams = new URLSearchParams(window.location.search);
+  if (!existingParams.toString()) {
+    const response = await axiosRequests.axiosGet(GET_APPLICATIONS_ENDPOINT);
+    return response;
+  } else {
+    const status = existingParams.get("status")
+    const sort_by = existingParams.get("sort_by")
+
+    if (status) {
+      const response = await axiosRequests.axiosGet(
+        GET_APPLICATIONS_STATUS_ENDPOINT(status),
+      );
+
+      return response;
+    } else if (sort_by) {
+      const response = await axiosRequests.axiosGet(
+        GET_APPLICATIONS_SORTED_ENDPOINT(sort_by),
+      );
+  
+      return response;
+    }
+  }
 }
 
 export async function getApplicationsStatus(status) {
+  const params = {
+    status : status
+  }
+
+  const queryString = new URLSearchParams(params).toString()
+  const newUrl = `${window.location.origin}${window.location.pathname}?${queryString}`;
+  window.history.pushState({ path: newUrl }, "", newUrl);
+
   const response = await axiosRequests.axiosGet(
     GET_APPLICATIONS_STATUS_ENDPOINT(status),
   );
@@ -67,6 +95,14 @@ export async function getApplicationsStatus(status) {
 }
 
 export async function getApplicationsSorted(sort) {
+  const params = {
+    sort_by : sort
+  }
+
+  const queryString = new URLSearchParams(params).toString()
+  const newUrl = `${window.location.origin}${window.location.pathname}?${queryString}`;
+  window.history.pushState({ path: newUrl }, "", newUrl);
+
   const response = await axiosRequests.axiosGet(
     GET_APPLICATIONS_SORTED_ENDPOINT(sort),
   );

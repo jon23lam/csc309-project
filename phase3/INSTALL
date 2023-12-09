@@ -16,4 +16,10 @@ After all of the node modules are installed, you can now run the fronend server 
 You can now go to http://localhost:3000 to view the application.
 In the .env in frontend make sure you have the proper IP address that points to the backend. For the localhost backend use http://localhost:8000, for the production database use http://137.184.5.118:3000/
 
-# Marco talk about deployment and docker container here
+We utilized a docker compose file to make separate containers for the frontend and backend.
+- The front end container is built using the Dockerfile in the frontend directory.
+- The backend container is built using the Dockerfile in the backend directory.
+- The docker compose file is in the root directory of the project.
+- To run the docker compose file, run `docker-compose up` in the root directory of the project.
+
+This will build both the frontend and backend containers and put them on a shared network and run them
