@@ -32,6 +32,10 @@ class PetHubUser(AbstractUser):
     province = models.CharField(max_length=150, blank=True)
     open_time = models.TimeField(blank=True, null=True)
     close_time = models.TimeField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    lng = models.FloatField(blank=True, null=True)
+
+
 
 
     USERNAME_FIELD = 'email'

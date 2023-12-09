@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-3)j9p_1*k4db1frhp+#vbqeqyxl-z4$*553_ec7ej)jniotrk#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+GOOGLE_GEOCODING_API_KEY = 'AIzaSyBjWiLkYTCFtVmwXdARwdgEYQRfG42rgfs'
+
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -35,6 +37,7 @@ CORS_ALLOWED_ORIGINS = [
   "http://localhost:3000",
   "http://137.184.5.118:3000",
   "http://petpal.marcomarchesano.com:3000"
+
 ]
 
 
@@ -56,6 +59,8 @@ CORS_ALLOW_HEADERS = [
     "user-agent",
     "x-csrftoken",
     "x-requested-with",
+    'access-control-allow-headers',
+    'access-control-allow-origin',
 ]
 
 
@@ -76,7 +81,7 @@ INSTALLED_APPS = [
     'comments',
     'petlistings',
     'notifications',
-    
+    'strayanimals'
 ]
 
 AUTH_USER_MODEL = 'accounts.PetHubUser'

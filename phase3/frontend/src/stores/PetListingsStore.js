@@ -16,7 +16,8 @@ export class PetListingsStore {
       setIsLoading: action,
       setPetCount: action,
       setPetList: action,
-      setNextPage: action
+      setNextPage: action,
+      removePetById: action
     });
   }
 
@@ -34,42 +35,25 @@ export class PetListingsStore {
 
   setNextPage = (nextPage) => {
     this.nextPage = nextPage;
-  }
+  };
 
   extendPetList = (petList) => {
-    this.petList = [ ...this.petList, ...petList];
-  }
+    this.petList = [...this.petList, ...petList];
+  };
 
   extendPetCount = (petCount) => {
     this.petCount = this.petCount + petCount;
+  };
+
+  removePetById = (petId) => {
+    this.petList = this.petList.filter(pet => pet.id !== petId);
   }
 
   initializeSearchPage = async (userId) => {
     this.setIsLoading(true);
 
     try {
-      const response = await petListingsService.getPetListings();
-
-      const { count, results, next } = response.data;
-
-      this.setPetCount(count);
-      this.setPetList(results);
-      if (next) {
-        this.setNextPage(true)
-      }
-
-    } catch (err) {
-      console.log("failed to get petlistings");
-    }
-
-    this.setIsLoading(false);
-  };
-
-  initializeShelterManagementPage = async (listerId) => {
-    this.setIsLoading(true);
-
-    try {
-      const response = await petListingsService.getPetListings({ filters: {"lister": listerId} });
+      const response = await petListingsService.getInitialPetListings();
 
       const { count, results, next } = response.data;
 
@@ -77,14 +61,37 @@ export class PetListingsStore {
       this.setPetList(results);
       if (next) {
         this.setNextPage(next)
+      } else {
+        this.setNextPage(null)
       }
-
     } catch (err) {
       console.log("failed to get petlistings");
     }
 
     this.setIsLoading(false);
-  }
+};
+
+  initializeShelterManagementPage = async (listerId) => {
+    this.setIsLoading(true);
+
+    try {
+      const response = await petListingsService.getPetListings({ filters: {"lister": listerId, "status": "any"} });
+
+      const { count, results, next } = response.data;
+
+      this.setPetCount(count);
+      this.setPetList(results);
+      if (next) {
+        this.setNextPage(next);
+      } else {
+        this.setNextPage(null);
+      }
+    } catch (err) {
+      console.log("failed to get petlistings");
+    }
+
+    this.setIsLoading(false);
+  };
 
   getPetListingsFiltered = async (filters) => {
     this.setIsLoading(true);
@@ -96,8 +103,11 @@ export class PetListingsStore {
 
       this.setPetCount(count);
       this.setPetList(results);
+
       if (next) {
         this.setNextPage(next);
+      } else {
+        this.setNextPage(null)
       }
     } catch (err) {
       console.log("failed to get petlistings");
@@ -110,13 +120,15 @@ export class PetListingsStore {
     this.setIsLoading(true);
 
     try {
-      const response = await petListingsService.getPetListingsNextPage(this.nextPage);
+      const response = await petListingsService.getPetListingsNextPage(
+        this.nextPage,
+      );
 
       const { count, results, next } = response.data;
-      console.log(next)
 
       this.extendPetCount(count);
       this.extendPetList(results);
+
       if (next) {
         this.setNextPage(next);
       } else {
@@ -127,6 +139,37 @@ export class PetListingsStore {
     }
 
     this.setIsLoading(false);
+  };
+
+  getPetListingObj = async (listingId) => {
+    this.setIsLoading(true);
+
+    try {
+      const response = await petListingsService.getPetListing(listingId);
+      const listing = response.data;
+
+      this.setIsLoading(false);
+      return listing;
+    } catch (err) {
+      console.log("failed to get petlisting");
+    }
+
+    this.setIsLoading(false);
+  };
+
+  deletePetListing = async (listingId) => {
+    this.setIsLoading(true);
+
+    try {
+      await petListingsService.deletePetListing(listingId);
+
+      this.removePetById(listingId)
+      this.setIsLoading(false);
+      return true;
+    } catch (err) {
+      this.setIsLoading(false)
+      return false;
+    }
   }
 }
 

@@ -1,6 +1,8 @@
 import { action, makeObservable, observable } from "mobx";
 import * as authenticationService from "../requests/authentication";
 
+export const ROLE_SHELTER = "shelter";
+export const ROLE_SEEKER = "seeker";
 export class AuthStore {
   context = {};
   isLoading = true;
@@ -34,11 +36,11 @@ export class AuthStore {
   loginUser = async (payload) => {
     let successfulLogin = false;
     let message = "Email/Password invliad";
+    let role = null;
 
     try {
       const response = await authenticationService.signInUser(payload);
       const { access } = response.data;
-
 
       if (access) {
         localStorage.setItem("accessToken", access);
@@ -46,23 +48,23 @@ export class AuthStore {
         const user = await authenticationService.getMe();
 
         this.setContext({ currentUser: user.data });
-        console.log("setting isauthenticated")
+
         this.setIsAuthenticated(true);
         successfulLogin = true;
         message = "Success";
+        role = user.data.role;
       } else {
         this.setContext({});
         this.setIsAuthenticated(false);
       }
     } catch (err) {
-      
       this.setContext({});
       this.setIsAuthenticated(false);
     }
 
     this.setIsLoading(false);
 
-    return { loggedIn: successfulLogin, message: message };
+    return { loggedIn: successfulLogin, message: message, role: role };
   };
 
   logoutUser = async () => {
@@ -73,8 +75,7 @@ export class AuthStore {
     this.setIsAuthenticated(false);
 
     this.setIsLoading(false);
-  }
-
+  };
 
   retrieveCurrentUserContext = async () => {
     try {
@@ -85,6 +86,9 @@ export class AuthStore {
 
         this.setContext({ currentUser: user.data });
         this.setIsAuthenticated(true);
+
+        //Had to add this line for applications, let me know if it breaks anything
+        return user.data;
       } else {
         localStorage.setItem("accessToken", undefined);
         this.setIsAuthenticated(false);

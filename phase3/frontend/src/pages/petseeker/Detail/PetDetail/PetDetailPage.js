@@ -15,7 +15,6 @@ export function PetDetailPage(props) {
   useEffect(() => {
     const fetchPetListing = async () => {
       try {
-        console.log(id);
         const response = await getPetListing(id);
         setPetListing(response.data);
       } catch (error) {
@@ -39,12 +38,14 @@ export function PetDetailPage(props) {
         <div className="slider-card center">
           <div>
             {petListing ? (
-              <div>
-                <p>
-                  {petListing.image && (
-                    <img src={petListing.image} alt={petListing.name} />
-                  )}
-                </p>
+              <div className="PetDetail__image">
+                {petListing.image && (
+                  <img
+                    src={petListing.image}
+                    alt={petListing.name}
+                    className="PetDetail__image"
+                  />
+                )}
               </div>
             ) : (
               <p>Loading...</p>

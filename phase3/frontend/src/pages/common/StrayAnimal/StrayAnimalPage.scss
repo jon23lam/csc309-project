@@ -1,0 +1,58 @@
+.StrayAnimalPage {
+  position: relative;
+  height: calc(100vh - 140px);
+  display: flex;
+
+  @media (max-width: 780px) {
+    display: block;
+  }
+
+  .StrayAnimalPage__report {
+    min-width: 400px;
+    flex: 3 1;
+    padding: 0 20px;
+    overflow-y: auto;
+    height: calc(100% + 40px);
+    overflow-x: hidden;
+
+    @media (max-width: 780px) {
+      height: auto;
+    }
+
+    .StrayAnimalPage__reportKey {
+      background-color: var(--light-background);
+      border-radius: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      margin-bottom: 10px;
+
+      h6 {
+        margin-bottom: 0px;
+      }
+    }
+
+    .credit-text {
+      margin-bottom: 0px;
+      font-size: 8px;
+      text-align: center;
+      color: var(--purple-primary);
+    }
+  }
+
+  .StrayAnimalPage__map {
+    flex: 8 1;
+    position: relative;
+
+    @media (max-width: 780px) {
+      position: initial;
+    }
+
+    .StrayAnimalPage__mapWrapper {
+      position: relative;
+      overflow: hidden;
+    }
+  }
+}

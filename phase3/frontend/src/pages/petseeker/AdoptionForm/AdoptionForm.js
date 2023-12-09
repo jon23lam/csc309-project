@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import "./ApplicationPage.scss";
+import { Link, useParams } from "react-router-dom";
+import "./AdoptionForm.scss";
 import "../../../BaseStyles.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { axiosGet, axiosPost } from "../../../requests/axiosRequests";
@@ -31,9 +31,8 @@ const SAFE_GUARD_OPTIONS = [
   { value: "no", label: "No" },
 ];
 
-export function Application(props) {
+export function AdoptionForm(props) {
   const { id } = useParams();
-
   const [formData, setFormData] = useState({
     yourName: "",
     age: "",
@@ -59,7 +58,7 @@ export function Application(props) {
 
     try {
       await createApplication(formData);
-      console.log("Application submitted successfully!");
+      console.log("AdoptionForm submitted successfully!");
     } catch (error) {
       console.error("Error submitting application:", error);
     }
@@ -244,9 +243,9 @@ export function Application(props) {
               ></textarea>
             </div>
             <div className="center">
-              <button type="submit" className="Button__purple">
-                Submit
-              </button>
+              <Link to={`/applications/`} className="Button__purpleOutline">
+                Send Application
+              </Link>
             </div>
           </form>
         </div>

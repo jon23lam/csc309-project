@@ -1,0 +1,47 @@
+.Main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.signup-labels {
+  margin: 0 0 5px 0;
+  text-align: left;
+}
+
+.Signup__fields {
+  width: 400px;
+  background-color: var(--light-background);
+  border-radius: 24px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.special-fields {
+  margin: 0 10px 0 0;
+  width: 15rem;
+}
+
+.signup-button {
+  width: 10rem;
+  align-self: center;
+}
+
+.hour-fields {
+  width: 10rem;
+  margin: 0 10px 0 0;
+}
+
+.Filters__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.Filters__filterItem {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
