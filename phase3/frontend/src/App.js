@@ -18,6 +18,8 @@ import "./App.scss";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
 import {SeekerSignup} from "./pages/signup/Seeker/Seeker";
 import {ShelterSignup} from "./pages/signup/Shelter/Shelter";
+import { ShelterAccountUpdate } from "./pages/shelter/AccountUpdate/AccountUpdate";
+import { SeekerAccountUpdate } from "./pages/petseeker/AccountUpdate/AccountUpdate";
 
 function App() {
   return (
@@ -47,10 +49,18 @@ function App() {
                         path="/editlisting/:id/"
                         element={<PetListingEditor />}
                       />
+                      <Route
+                        path="/shelterAccountDetails"
+                        element={<ShelterAccountUpdate />}
+                      />
                     </Route>
 
                     <Route path="" element={<SeekerRoute />}>
                       <Route path="/search" element={<SearchPage />} />
+                      <Route
+                        path="/seekerAccountDetails"
+                        element={<SeekerAccountUpdate />}
+                      />
                     </Route>
 
                     <Route path="/application/:id/" element={<Application />} />

@@ -1,0 +1,16 @@
+.AccountDetails__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Button__redOutline {
+    padding: 12px 18px;
+    color: red;
+    font-family: sans-serif;
+    font-size: medium;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid red;
+    cursor: pointer;
+  }

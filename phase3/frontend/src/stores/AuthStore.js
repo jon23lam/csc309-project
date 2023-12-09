@@ -35,7 +35,7 @@ export class AuthStore {
 
   loginUser = async (payload) => {
     let successfulLogin = false;
-    let message = "Email/Password invliad";
+    let message = "Email/Password invalid";
     let role = null;
 
     try {
