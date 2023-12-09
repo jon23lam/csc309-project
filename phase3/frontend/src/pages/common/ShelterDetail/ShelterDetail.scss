@@ -24,6 +24,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .Review__textarea {
+    margin-top: inherit;
+    width: -webkit-fill-available;
+  }
 }
 
 .slider::-webkit-scrollbar {
@@ -119,15 +124,42 @@
   margin-top: 10px;
 }
 
+.rating-review {
+  display: inline-block;
+  font-size: 40px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+
+  .star {
+    color: var(--purple-secondary-transparent)
+  }
+  
+  .star:hover {
+    cursor: pointer;
+    color: var(--pink-primary);
+  }
+
+  .pink-star {
+    cursor: pointer;
+    color: var(--pink-primary);
+  }
+}
+
+.Review__submit {
+  display: flex;
+  justify-content: center;
+}
+
 .quick-info {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .info-card h1,
-h2,
-h3,
-h4,
+.info-card h2,
+.info-card h3,
+.info-card h4,
 .info-item a {
   padding-left: 15px;
   padding-top: 20px;
