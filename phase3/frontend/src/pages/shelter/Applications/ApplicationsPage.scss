@@ -1,0 +1,234 @@
+
+:root {
+  --purple-primary: #8c02ec;
+  --purple-secondary: #b304eb;
+  --pink-primary: #ee07a2;
+  --header-text-color: #112333ff;
+  --light-background: rgb(245, 245, 245);
+}
+
+.ApplicationsPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
+  width: 80%;
+}
+
+.ApplicationsPage__application {
+  background-color: var(--light-background);
+  border: 2px solid var(--purple-primary);
+  border-radius: 10px;
+  display: flex;
+  padding: 10px;
+  max-height: 480px;
+  margin: 20px 0 20px 0;
+
+}
+
+.Application__leftCol {
+  margin: 0px 10px;
+  flex: 0 0 30%;
+}
+
+.Application__generalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+
+}
+
+.Application__photoWrapper {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.Application__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Application__generalInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.Application__mainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+h5 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+.Application__contact {
+  margin-top: 10px;
+  margin-bottom: 6px;
+
+}
+
+.Application__phone,
+.Application__email {
+
+}
+
+.Application__actions {
+  margin-top: auto;
+  align-self: end;
+}
+
+.Application__initialMessage {
+  overflow-y: scroll;
+}
+
+.MessagePage__messagesWrapper {
+  background-color: var(--light-background);
+  border: 2px solid var(--purple-primary);
+  border-radius: 10px;
+  display: flex;
+  padding: 10px;
+}
+
+.Message__textarea {
+  margin-top: auto;
+}
+
+.MessagePage__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+
+.Application__pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 400px;
+  background-color: var(--light-background);
+  border-radius: 24px;
+  cursor: pointer;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  @media (max-width: 480px) {
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 1010px) {
+  .ApplicationsPage__application {
+    flex-direction: column;
+    max-height: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .MessagePage__messagesWrapper {
+    flex-direction: column;
+    max-height: none;
+  }
+
+.Application__mainCol {
+    margin-top: 20px;
+  }
+}
+
+.ApplicationsPage__sortingButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.Button__purple.active{
+  background-color: var(--pink-primary);
+  color: white;
+}
+
+.ApplicationsPage__controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ApplicationsPage__sortingButtons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.ApplicationsPage__searchBar {
+  display: flex;
+  gap: 10px;
+  //height: 4vh;
+}
+
+.ApplicationsPage__searchBar input {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.ApplicationsPage__searchBar button {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Media query for smaller screens (e.g., phones) */
+@media (max-width: 1000px) {
+  .ApplicationsPage__controls {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .ApplicationsPage__sortingButtons{
+    width: 100%;
+  }
+  .ApplicationsPage__searchBar {
+    width: 100%; /* Take up the full width */
+  }
+  .ApplicationsPage__statusFilter select {
+    width: 75%;
+  }
+
+  .ApplicationsPage__searchBar {
+    margin-top: 10px; /* Add some spacing between the buttons and the search bar */
+  }
+}
+
+
+
+
+.ApplicationsPage__statusFilter select {
+  padding: 12px 18px;
+  margin: 0 3px 0 3px;
+  height: 3.5vh;
+  color: white;
+  font-family: sans-serif;
+  font-size: medium;
+  background-image: linear-gradient(
+    var(--purple-primary),
+    var(--purple-secondary)
+  );
+  border-radius: 8px;
+  border: 1px solid var(--purple-primary);
+  cursor: pointer;
+
+
+}
+
+

@@ -38,12 +38,14 @@ export function PetDetailPage(props) {
         <div className="slider-card center">
           <div>
             {petListing ? (
-              <div>
-                <p>
-                  {petListing.image && (
-                    <img src={petListing.image} alt={petListing.name} />
-                  )}
-                </p>
+              <div className="PetDetail__image">
+                {petListing.image && (
+                  <img
+                    src={petListing.image}
+                    alt={petListing.name}
+                    className="PetDetail__image"
+                  />
+                )}
               </div>
             ) : (
               <p>Loading...</p>

@@ -51,9 +51,11 @@ body {
   
   .Button__purple {
     padding: 12px 18px;
+    margin: 0 3px 0 3px;
     color: white;
     font-family: sans-serif;
     font-size: medium;
+    text-align: center;
     background-image: linear-gradient(
       var(--purple-primary),
       var(--purple-secondary)
@@ -73,6 +75,7 @@ body {
     padding: 12px 18px;
     color: var(--purple-primary);
     font-family: sans-serif;
+    text-align: center;
     font-size: medium;
     border-radius: 8px;
     background-color: white;
@@ -313,6 +316,26 @@ body {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+  }
+
+  .errorText {
+    text-align: center;
+  }
+
+  .show-red-text {
+    color: var(--red_primary);
+  }
+
+  .TextField__PurpleOutlineRange {
+    padding: 12px 18px;
+    color: var(--purple-primary);
+    font-family: sans-serif;
+    font-size: medium;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid var(--purple-primary);
+    cursor: text;
+    width: calc(50% - 12px);
   }
   
   @media (max-width: 480px) {
