@@ -19,9 +19,9 @@ import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
 import {SeekerSignup} from "./pages/signup/Seeker/Seeker";
 import {ShelterSignup} from "./pages/signup/Shelter/Shelter";
+import {Landing} from "./pages/landing/Landing";
 
 import "./App.scss";
-
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
               <Routes>
                 {/* Public route */}
                 <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Landing />} />
                 <Route path="/signup/seeker" element={<SeekerSignup />} />
                 <Route path="/signup/shelter" element={<ShelterSignup />} />
 
