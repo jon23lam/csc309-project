@@ -3,6 +3,7 @@ from rest_framework import permissions, filters
 from rest_framework.generics import ListCreateAPIView, RetrieveDestroyAPIView
 from .serializers import NotificationSerializer
 from .models import Notification
+from comments.models import Comment
 from accounts.models import PetHubUser
 from rest_framework.serializers import ValidationError
 from .permissions import ValidateUserNotification
@@ -37,6 +38,7 @@ class NotificationListCreate(ListCreateAPIView):
         if read_param is not None: 
             read_value = read_param.lower() == 'true'
             queryset = queryset.filter(read=read_value)
+
         return queryset
   
 

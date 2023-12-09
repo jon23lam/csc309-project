@@ -6,11 +6,11 @@ from accounts.models import PetHubUser
 
 class NotificationSerializer(ModelSerializer):
     receiver = PrimaryKeyRelatedField(queryset=PetHubUser.objects.all())
-    associated_link = SerializerMethodField() 
+    # associated_link = SerializerMethodField() 
 
     class Meta:
         model = Notification
-        fields = ('id', 'receiver', 'title', 'body_text', 'image', 'read', 'created_at', 'type', 'associated_id', 'application_id', 'shelter_id', 'associated_link')
+        fields = ('id', 'receiver', 'title', 'body_text', 'image', 'read', 'created_at', 'type', 'application', 'comment', 'associated_id')
 
     def create(self, validated_data):
         return Notification.objects.create(**validated_data)
