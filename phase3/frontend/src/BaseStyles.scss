@@ -82,6 +82,9 @@ body {
     border: 1px solid var(--purple-primary);
     cursor: pointer;
   }
+  .hidden{
+    display: none;
+  }
   
   .Button__purpleOutline:hover {
     color: white;

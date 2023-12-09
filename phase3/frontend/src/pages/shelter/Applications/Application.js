@@ -35,6 +35,10 @@ export const Application = observer((props) => {
   const [curr_user, setCurrUser] = useState(null);
   const [shelterUser, setShelterUser] = useState(null);
 
+  const [isWithdrawButtonClicked, setIsWithdrawButtonClicked] = useState(false);
+  const [isDenyButtonClicked, setIsDenyButtonClicked] = useState(false);
+  const [isAcceptButtonClicked, setIsAcceptButtonClicked] = useState(false);
+
   const timestamp = created_at;
 
   const formattedDate = new Date(timestamp).toLocaleDateString("en-US");
@@ -70,6 +74,15 @@ export const Application = observer((props) => {
   const handleUpdateNavigation = async (id, formData) => {
     try {
       await applicationStore.updateApplication(id, formData);
+
+      if (formData.status === "withdrawn") {
+        setIsWithdrawButtonClicked(true);
+      } else if (formData.status === "denied") {
+        setIsDenyButtonClicked(true);
+      } else if (formData.status === "approved") {
+        setIsAcceptButtonClicked(true);
+      }
+
       setButtonClicked(true);
     } catch (error) {
       console.error("Error updating application:", error);
@@ -156,7 +169,9 @@ export const Application = observer((props) => {
             status === "pending" && (
               <>
                 <button
-                  className="Button__purpleOutline"
+                  className={`Button__purpleOutline ${
+                    buttonClicked ? "hidden" : ""
+                  }`}
                   onClick={() =>
                     handleUpdateNavigation(id, { status: "denied" })
                   }
@@ -165,7 +180,9 @@ export const Application = observer((props) => {
                   Deny Application
                 </button>
                 <button
-                  className="Button__purple"
+                  className={`Button__purpleOutline ${
+                    buttonClicked ? "hidden" : ""
+                  }`}
                   onClick={() =>
                     handleUpdateNavigation(id, {
                       status: "approved",
@@ -179,7 +196,9 @@ export const Application = observer((props) => {
             )}
           {curr_user && curr_user.role === "seeker" && status === "pending" && (
             <button
-              className="Button__purpleOutline"
+              className={`Button__purpleOutline ${
+                buttonClicked ? "hidden" : ""
+              }`}
               onClick={() =>
                 handleUpdateNavigation(id, { status: "withdrawn" })
               }
