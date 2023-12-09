@@ -7,7 +7,7 @@ from applications.models import Application
 from accounts.models import PetHubUser
 from rest_framework.serializers import ValidationError
 from .serializers import CommentSerializer
-
+from notifications.models import Notification
 
 class ShelterCommentListCreateAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -18,7 +18,17 @@ class ShelterCommentListCreateAPIView(APIView):
         
         serializer = CommentSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(shelter_id=shelter_id, author=request.user)
+            comment = serializer.save(shelter_id=shelter_id, author=request.user)
+
+            # Create notification if the commenter is not the shelter itself
+            if shelter_id != request.user.id:
+                Notification.objects.create(
+                    receiver=PetHubUser.objects.get(id=shelter_id),
+                    title='New comment',
+                    body_text=f'{request.user.username} commented on your shelter profile',
+                    type='shelter_comment',
+                    comment=comment
+                )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -80,7 +90,17 @@ class ApplicationCommentListAPIView(APIView):
 
         serializer = CommentSerializer(data=data)
         if serializer.is_valid():
-            serializer.save(application_id=application_id, author=request.user)
+            comment = serializer.save(application_id=application_id, author=request.user)
+
+            # Create notification
+            Notification.objects.create(
+                receiver=(application.applicant if request.user != application.applicant else application.shelter),
+                title='New comment',
+                body_text=f'{request.user.username} commented on your application',
+                type='application_comment',
+                comment=comment
+            )
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     

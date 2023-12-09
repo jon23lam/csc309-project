@@ -37,6 +37,7 @@ CORS_ALLOWED_ORIGINS = [
   "http://localhost:3000",
   "http://137.184.5.118:3000",
   "http://petpal.marcomarchesano.com:3000"
+
 ]
 
 
@@ -58,6 +59,8 @@ CORS_ALLOW_HEADERS = [
     "user-agent",
     "x-csrftoken",
     "x-requested-with",
+    'access-control-allow-headers',
+    'access-control-allow-origin',
 ]
 
 

@@ -39,7 +39,7 @@ export async function axiosPut(endpoint, payload) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "Bearer token": localStorage.getItem('accessToken')
+      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`,
     },
   });
 
@@ -60,12 +60,23 @@ export async function axiosPatch(endpoint, payload, additionalHeaders = {}) {
   return response;
 }
 
+<<<<<<< HEAD
 export async function axiosDelete(endpoint) {
   const response = await axios.delete(endpoint, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
       "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
+=======
+export async function axiosDelete(endpoint, payload, additionalHeaders = {}) {
+  const response = await axios.delete(endpoint, {
+    data: payload,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Authorization": `Bearer ${localStorage.getItem('accessToken')}`,
+      ...additionalHeaders
+>>>>>>> 31b5b017758dab978a66a4960ab2ff27825281fd
     },
   });
 

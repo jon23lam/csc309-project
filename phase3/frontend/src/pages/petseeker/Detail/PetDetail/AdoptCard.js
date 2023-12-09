@@ -49,7 +49,7 @@ const AdoptCard = () => {
       <div className="d-flex justify-content-center">
         {petListing?.status === "available" ? (
           <Link
-            to={`/application/${id}/`}
+            to={`/adoptionForm/${id}/`}
             className="btn btn-primary adopt-button"
           >
             Adopt now!

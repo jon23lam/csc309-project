@@ -71,7 +71,7 @@ class PetListingView(APIView):
 class PetListingListView(APIView):
     queryset = PetListing.objects.all()
     serializer_class = PetListingSerializer
-    supported_keys = {"animal", "breed", "lister", "status"}
+    supported_keys = {"animal", "breed", "lister", "status", "sex", "colour"}
     supported_sorters = {"name", "age", "created_at"}
     supported_sort_directions = {"asc", "desc"}
 
@@ -124,6 +124,15 @@ class PetListingListView(APIView):
         
         if filters["status"] == "any":
             filters.pop("status")
+
+        if "breed" in filters and filters["breed"] == "any":
+            filters.pop("breed")
+
+        if "sex" in filters and filters["sex"] == "any":
+            filters.pop("sex")
+
+        if "colour" in filters and filters["colour"] == "any":
+            filters.pop("colour")
 
         if "animal" in filters and filters["animal"] == "any":
             filters.pop("animal")

@@ -11,14 +11,14 @@ export const GET_USER_ENDPOINT = endpoint("api/accounts/me/");
 export async function signInUser(payload) {
   const response = await axiosRequests.axiosPostNoAuth(
     SIGN_IN_ENDPOINT,
-    payload
+    payload,
   );
 
   return response;
 }
 
 export async function getMe() {
-  const response = await axiosRequests.axiosGet(GET_USER_ENDPOINT);
+  const response = await axiosRequests.axiosGet(GET_USER_ENDPOINT, {});
 
   return response;
 }

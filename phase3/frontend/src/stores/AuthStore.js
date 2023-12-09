@@ -48,7 +48,7 @@ export class AuthStore {
         const user = await authenticationService.getMe();
 
         this.setContext({ currentUser: user.data });
-        
+
         this.setIsAuthenticated(true);
         successfulLogin = true;
         message = "Success";
@@ -86,6 +86,9 @@ export class AuthStore {
 
         this.setContext({ currentUser: user.data });
         this.setIsAuthenticated(true);
+
+        //Had to add this line for applications, let me know if it breaks anything
+        return user.data;
       } else {
         localStorage.setItem("accessToken", undefined);
         this.setIsAuthenticated(false);
