@@ -21,6 +21,7 @@
   width: 60vw;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .NotificationsPage__item:hover {
@@ -38,6 +39,10 @@
   flex: none;
 }
 
+.Notification__text {
+  width: 100%;
+}
+
 
 .Notifications__pagination {
   display: flex;
@@ -51,4 +56,18 @@
   cursor: pointer;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.Notification__deleteContainer{
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.Notification__deleteButton {
+  cursor: pointer;
+  align-self: flex-end;
+  height: 15px;
+  width: 15px;
 }

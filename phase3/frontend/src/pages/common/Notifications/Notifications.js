@@ -1,7 +1,8 @@
-import { getNotifications, readNotification } from "../../../requests/notifications";
+import { deleteNotification, getNotifications, readNotification } from "../../../requests/notifications";
 import { useEffect, useState } from "react";
 import icon from "../../../assets/notification-bell.png";
-import unreadIcon from "../../../assets/unread-notification-bell.png"
+import unreadIcon from "../../../assets/unread-notification-bell.png";
+import delete_button from "../../../assets/notification-delete.png";
 import { useNavigate } from "react-router-dom";
 
 import "./Notifications.scss"
@@ -40,25 +41,41 @@ export function Notifications() {
       }
     }
 
+    const handleDelete = async (notification_id) => {
+      await deleteNotification(notification_id)
+
+      getNotifications().then((response) => {
+        setNotifications(response.data.results);
+        setNextPage(response.data.next);
+      }).finally();
+    }
+
     return (
       <div className="PageContainer">
         <div className="Main">
           <h1 className="HeaderText">Notifications</h1>
           <div className="NotificationsPage">
           {notifications.map((notification) => 
-            <div class="NotificationsPage__item" onClick={() => handleClick(notification)}>
+            <div class="NotificationsPage__item">
               {notification.read ? <img
                 src={icon}
                 alt="Notification Icon"
-                class="NotificationsPage__photo"
+                className="NotificationsPage__photo"
+                onClick={() => handleClick(notification)}
               /> : 
               <img
                 src={unreadIcon}
                 alt="Notification Icon"
-                class="NotificationsPage__photo"
+                className="NotificationsPage__photo"
+                onClick={() => handleClick(notification)}
               />}
-              <div class="Notification__text">
+              <div class="Notification__text" onClick={() => handleClick(notification)}>
                 {notification.title}: {notification.body_text}
+              </div>
+
+              <div className="Notification__deleteContainer" onClick={() => handleDelete(notification.id)}>
+                <img src={delete_button} alt="Delete Notification" className="Notification__deleteButton">
+                </img>
               </div>
             </div>
           )}
