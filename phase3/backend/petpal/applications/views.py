@@ -205,11 +205,17 @@ class ApplicationListViewFiltered(ListAPIView):
         user = self.request.user
 
         if user.role == 'seeker':
-            raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
+            search_param = 'applicant'
+        else:
+            search_param = 'shelter'
 
         app_status = self.kwargs.get('status')
         if app_status is not None:
-            queryset = self.filter_queryset(self.get_queryset().filter(status=app_status, shelter=user.id))
+
+            if search_param == 'applicant':
+                queryset = self.filter_queryset(self.get_queryset().filter(status=app_status, applicant=user.id))
+            elif search_param == 'shelter':
+                queryset = self.filter_queryset(self.get_queryset().filter(status=app_status, shelter=user.id))
 
             paginator = PageNumberPagination()
             paginator.page_size = 10
@@ -234,14 +240,22 @@ class ApplicationListViewSorted(ListAPIView):
         user = self.request.user
 
         if user.role == 'seeker':
-            raise PermissionDenied(detail='You are not allowed to view applications', code=status.HTTP_401_UNAUTHORIZED)
+            search_param = 'applicant'
+        else:
+            search_param = 'shelter'
 
         sort_by = self.kwargs['sort_by']
 
         if sort_by == 'created':
-            queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id).order_by('-created_at'))
+            if search_param == 'applicant':
+                queryset = self.filter_queryset(self.get_queryset().filter(applicant=user.id).order_by('-created_at'))
+            elif search_param == 'shelter':
+                queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id).order_by('-created_at'))
         elif sort_by == 'updated':
-            queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id).order_by('-last_updated'))
+            if search_param == 'applicant':
+                queryset = self.filter_queryset(self.get_queryset().filter(applicant=user.id).order_by('-last_updated'))
+            elif search_param == 'shelter':
+                queryset = self.filter_queryset(self.get_queryset().filter(shelter=user.id).order_by('-last_updated'))
         else:
             error_message = f"'{sort_by}' is not a valid sort method. Use 'created' or 'updated'."
             raise APIException({'error': error_message})

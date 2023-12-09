@@ -8,7 +8,7 @@ const GET_SHELTERS_ENDPOINT = endpoint("api/accounts/shelters/");
 
 export async function getShelter(shelterId) {
   const response = await axiosRequests.axiosGet(
-    GET_SHELTER_ENDPOINT(shelterId)
+    GET_SHELTER_ENDPOINT(shelterId),
   );
 
   return response;

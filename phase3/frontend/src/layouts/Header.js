@@ -6,6 +6,7 @@ import logo from "../assets/logo.png";
 import { ROLE_SHELTER, ROLE_SEEKER } from "../stores/AuthStore";
 
 import "../BaseStyles.scss";
+import "./Header.scss";
 
 export const Header = observer((props) => {
   const navigate = useNavigate();
@@ -23,65 +24,66 @@ export const Header = observer((props) => {
   }, [currentUser]);
 
   async function logout() {
-    await authStore.logoutUser()
-    rootStore.resetRootStore()
-    navigate("/login")
+    await authStore.logoutUser();
+    rootStore.resetRootStore();
+    navigate("/login");
   }
 
   function navigateToHome() {
     if (role == ROLE_SEEKER) {
-      navigate("/search/list/")
+      navigate("/search/list/");
     } else {
-      navigate("/manage_shelter")
+      navigate("/manage_shelter");
     }
   }
 
   function navigateToAccountDetails() {
     if (role == ROLE_SEEKER) {
-      navigate("/seekerAccountDetails")
+      navigate("/seekerAccountDetails");
     } else {
-      navigate("/shelterAccountDetails")
+      navigate("/shelterAccountDetails");
     }
+  }
+  function navigateToApplications() {
+    navigate("/applications");
   }
 
   function navigateToStrayAnimals() {
-    navigate("/stray_animal_locator")
+    navigate("/stray_animal_locator");
   }
 
   return (
     <header>
-      <div
-        className="Header__logo"
-        onClick={() => navigateToHome()}
-      >
+      <div className="Header__logo" onClick={() => navigateToHome()}>
         <img src={logo} alt="Pet Hub" className="logo-picture" />
       </div>
       <div className="Header__navButtons">
-        <a
-          className="HeaderItem"
-          onClick={() => navigateToAccountDetails()}
-        >
+        <a className="HeaderItem" onClick={() => navigateToAccountDetails()}>
           Manage Account
+        </a>
+        <a className="HeaderItem" onClick={() => navigateToApplications()}>
+          Applications
         </a>
         <div className="HeaderItem__manage">
           <div className="Notification__button">
             <div className="Notification__dot"></div>
+            <button
+              // Add onclick for notifications
+              className="dropbtn"
+            >
             <button 
               onClick={() => navigate('/notifications')}
               className="dropbtn">
               Notifications
             </button>
           </div>
-          <button 
+          <button
             className="Button__purpleOutline"
             onClick={() => navigateToStrayAnimals()}
           >
             Stray Animals
           </button>
-          <button
-            className="Button__purple"
-            onClick={() => logout()}
-          >
+          <button className="Button__purple" onClick={() => logout()}>
             Log Out
           </button>
         </div>

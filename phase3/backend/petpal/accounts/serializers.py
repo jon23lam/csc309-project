@@ -6,7 +6,7 @@ class RegisterUserSerializer(ModelSerializer):
     password_confirm = CharField()
     class Meta:
         model = PetHubUser
-        fields = ('id', 'email', 'role', 'password', 'password_confirm', 'first_name', 'last_name', 'gender', 'dob', 'postal_code', 'image', 'shelter_name', 'street_address', 'city', 'province', 'open_time', 'close_time', 'lat', 'lng')
+        fields = ('id', 'email', 'role', 'password', 'password_confirm', 'first_name', 'last_name', 'gender', 'dob', 'postal_code', 'image', 'shelter_name', 'street_address', 'city', 'province', 'open_time', 'close_time', 'lat', 'lng', 'phone_number', 'description', "animals_offered")
 
     def validate(self, data):
         if data['password'] != data['password_confirm']:
@@ -19,7 +19,7 @@ class UpdateUserSerializer(ModelSerializer):
 
     class Meta:
         model = PetHubUser
-        fields = ('id', 'email', 'role', 'first_name', 'last_name', 'gender', 'dob', 'postal_code', 'image', 'shelter_name', 'street_address', 'city', 'province', 'open_time', 'close_time', 'lat', 'lng', 'role')
+        fields = ('id', 'email', 'role', 'first_name', 'last_name', 'gender', 'dob', 'postal_code', 'image', 'shelter_name', 'street_address', 'city', 'province', 'open_time', 'close_time', 'lat', 'lng', 'role', 'phone_number', 'description', "animals_offered")
         extra_kwargs = {'email': {'required': False}}
     
     def validate_email(self, email):

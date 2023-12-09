@@ -34,6 +34,11 @@ class PetHubUser(AbstractUser):
     close_time = models.TimeField(blank=True, null=True)
     lat = models.FloatField(blank=True, null=True)
     lng = models.FloatField(blank=True, null=True)
+    phone_number = models.CharField(max_length=150, blank=True)
+    description = models.TextField(blank=True)
+    animals_offered = models.TextField(blank=True)
+
+
 
 
 
