@@ -13,4 +13,7 @@ To run the frontend server you must have node and nvm installed on your local se
 You can install nvm v0.39.5 and use node v16.13.1. This will give you access to the node modules we used.
 In order to install the dependencies we used in the frontened run `npm i` or `npm  install` in the `/frontend` repository.
 After all of the node modules are installed, you can now run the fronend server using the command `npm start` in the `/frontend` repository
-You can now go to localhost:3000 to view the application.
+You can now go to http://localhost:3000 to view the application.
+In the .env in frontend make sure you have the proper IP address that points to the backend. For the localhost backend use http://localhost:8000, for the production database use http://137.184.5.118:3000/
+
+# Marco talk about deployment and docker container here

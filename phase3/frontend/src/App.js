@@ -21,9 +21,9 @@ import {SeekerSignup} from "./pages/signup/Seeker/Seeker";
 import {ShelterSignup} from "./pages/signup/Shelter/Shelter";
 import { ShelterAccountUpdate } from "./pages/shelter/AccountUpdate/AccountUpdate";
 import { SeekerAccountUpdate } from "./pages/petseeker/AccountUpdate/AccountUpdate";
+import {Landing} from "./pages/landing/Landing";
 
 import "./App.scss";
-
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
               <Routes>
                 {/* Public route */}
                 <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Landing />} />
                 <Route path="/signup/seeker" element={<SeekerSignup />} />
                 <Route path="/signup/shelter" element={<ShelterSignup />} />
 
@@ -61,15 +62,12 @@ function App() {
                     </Route>
 
                     <Route path="" element={<SeekerRoute />}>
-<<<<<<< HEAD
                       <Route path="/search" element={<SearchPage />} />
                       <Route
                         path="/seekerAccountDetails"
                         element={<SeekerAccountUpdate />}
                       />
-=======
                       <Route path="/search/list/" element={<SearchPage />} />
->>>>>>> 31b5b017758dab978a66a4960ab2ff27825281fd
                     </Route>
 
                     <Route
