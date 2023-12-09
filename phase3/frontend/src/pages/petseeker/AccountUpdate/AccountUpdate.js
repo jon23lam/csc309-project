@@ -20,6 +20,7 @@ export function SeekerAccountUpdate () {
         password_confirm: ""
     });
     const [loading, setLoading] = useState(true);
+    const [image, setImage] = useState({});
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -45,6 +46,10 @@ export function SeekerAccountUpdate () {
         setFormData({...formData, [id]: value});
     }
 
+    const handleImage = (event) => {
+        setImage(event.target.files[0]);
+    }
+
     const handleDelete = async () => {
         try {
             const response = await deleteAccount(formData.id);
@@ -55,7 +60,12 @@ export function SeekerAccountUpdate () {
 
     const handleSubmit = async () => {
         try {
-            const response = await seekerUpdateAccount(formData.id, formData);
+            let submitData = new FormData();
+            for (const entry in formData) {
+                submitData.append(entry, formData[entry])
+            }
+            submitData.append("image", image);
+            const response = await seekerUpdateAccount(formData.id, submitData);
         } catch (err) {
             console.log(err);
         }
@@ -120,6 +130,10 @@ export function SeekerAccountUpdate () {
                                 <label htmlFor="password_confirm" className="signup-labels">Confirm Password:</label>
                                 <input type="password" id="password_confirm" name="password_confirm"
                                     className="TextField__PurpleOutline signup-fields" placeholder="Confirm Password" onChange={handleChange} required />
+                            </div>
+                            <div>
+                                <label for="image">Image:</label>
+                                <input type="file" id="image" name="image" class="TextField__PurpleOutline" onChange={handleImage}></input>
                             </div>
                             <div className="AccountDetails__buttons">
                                 <Link to='/login'>
