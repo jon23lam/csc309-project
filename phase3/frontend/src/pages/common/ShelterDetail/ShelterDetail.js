@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import { RootStoreContext } from "../../../providers/RootProvider";
 import { useParams } from "react-router-dom";
 import "./ShelterDetail.scss";
+
 export const ShelterDetail = observer((props) => {
   const rootStore = useContext(RootStoreContext);
   const { seekerShelterStore } = rootStore;
@@ -10,7 +11,7 @@ export const ShelterDetail = observer((props) => {
   const id = useParams();
 
   useEffect(() => {
-    seekerShelterStore.retrieveShelterUser(id);
+    seekerShelterStore.retrieveShelterUser(id.id);
   }, []);
 
   return (
@@ -22,7 +23,7 @@ export const ShelterDetail = observer((props) => {
               <div className="PetDetail__image">
                 {user.image && (
                   <img
-                    src={user.image}
+                    src={`${process.env.REACT_APP_BACKEND_BASE_URL}${user.image}`}
                     alt={user.name}
                     className="PetDetail__image"
                   />
