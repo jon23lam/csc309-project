@@ -19,8 +19,11 @@ export function ShelterSignup () {
         password: "",
         password_confirm: "",
         description: "",
+        animals_offered: "",
         role: "shelter"
     });
+
+    const [image, setImage] = useState({});
 
     const PROVINCE_OPTIONS = [
         { value: "", label: "Select" },
@@ -44,9 +47,18 @@ export function ShelterSignup () {
         setFormData({...formData, [id]: value});
     }
 
+    const handleImage = (event) => {
+        setImage(event.target.files[0]);
+    }
+
     const handleSubmit = async () => {
         try {
-            const response = await signup(formData);
+            let submitData = new FormData();
+            for (const entry in formData) {
+                submitData.append(entry, formData[entry])
+            }
+            submitData.append("image", image);
+            const response = await signup(submitData);
             if (response.status === 200) {
                 redirect("/");
             }
@@ -130,6 +142,15 @@ export function ShelterSignup () {
                             <label htmlFor="description" className="signup-labels">Shelter Description:</label>
                             <textarea id="description" name="description"
                                    className="TextField__PurpleOutline Signup__description" placeholder="Shelter Description" onChange={handleChange} required />
+                        </div>
+                        <div className="Filters__filterItem">
+                            <label htmlFor="animals_offered" className="signup-labels">Animals Offered:</label>
+                            <input id="animals_offered" name="description"
+                                   className="TextField__PurpleOutline signup-fields" placeholder="Animals Offered" onChange={handleChange} required />
+                        </div>
+                        <div>
+                            <label for="image">Image:</label>
+                            <input type="file" id="image" name="image" class="TextField__PurpleOutline" onChange={handleImage}></input>
                         </div>
                         <div className="signup-button">
                             <button className="Button__purpleOutline signup-button" onClick={handleSubmit}>Sign Up</button>
