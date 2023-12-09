@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./AdoptionForm.scss";
 import "../../../BaseStyles.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { axiosGet, axiosPost } from "../../../requests/axiosRequests";
+import authStore, { AuthStore } from "../../../stores/AuthStore";
+import { observer } from "mobx-react";
+import { RootStoreContext } from "../../../providers/RootProvider";
 
 const GENDER_OPTIONS = [
   { value: "", label: "Select" },
@@ -31,8 +34,12 @@ const SAFE_GUARD_OPTIONS = [
   { value: "no", label: "No" },
 ];
 
-export function AdoptionForm(props) {
+export const AdoptionForm = observer((props) => {
+  const rootStore = useContext(RootStoreContext);
+  const { authStore } = rootStore;
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     yourName: "",
     age: "",
@@ -48,17 +55,51 @@ export function AdoptionForm(props) {
     message: "",
   });
 
+  const [validationErrors, setValidationErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(true); // Updated initial state
+
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const user = await authStore.retrieveCurrentUserContext();
+        setUser(user);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   const handleChange = (event) => {
     const { id, value } = event.target;
     setFormData({ ...formData, [id]: value });
+
+    setValidationErrors((prevErrors) => ({ ...prevErrors, [id]: null }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setButtonClicked(true);
+
+    const formIsValid = validateForm();
+    setIsFormValid(formIsValid);
+
+    if (!formIsValid) {
+      console.error("Form validation failed");
+      return;
+    }
 
     try {
       await createApplication(formData);
       console.log("AdoptionForm submitted successfully!");
+
+      setButtonClicked(false);
+
+      navigate(`/applications/`);
     } catch (error) {
       console.error("Error submitting application:", error);
     }
@@ -76,6 +117,17 @@ export function AdoptionForm(props) {
     }
   };
 
+  const validateForm = () => {
+    const errors = {};
+
+    setValidationErrors(errors);
+    console.log(errors);
+    const formIsValid = Object.keys(errors).length === 0;
+    setIsFormValid(formIsValid);
+
+    return formIsValid;
+  };
+
   return (
     <div className="PageContainer">
       <div className="center">
@@ -88,10 +140,20 @@ export function AdoptionForm(props) {
                 type="text"
                 className="form-control"
                 id="yourName"
-                placeholder="Enter your full name"
                 onChange={handleChange}
+                value={
+                  user && user.first_name && user.last_name
+                    ? `${user.first_name} ${user.last_name}`
+                    : ""
+                }
+                readOnly
                 required
               />
+              {validationErrors.yourName && (
+                <span className="AdoptionForm__validationError">
+                  {validationErrors.yourName}
+                </span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="age">Your Age:</label>
@@ -100,6 +162,7 @@ export function AdoptionForm(props) {
                 className="form-control"
                 id="age"
                 placeholder="Enter your age"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -110,9 +173,16 @@ export function AdoptionForm(props) {
                 className="form-control"
                 id="email"
                 placeholder="Enter your email address"
+                value={user && user.email ? user.email : ""}
+                readOnly
                 onChange={handleChange}
                 required
               />
+              {validationErrors.email && (
+                <span className="AdoptionForm__validationError">
+                  {validationErrors.email}
+                </span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="phone">Phone Number:</label>
@@ -122,8 +192,15 @@ export function AdoptionForm(props) {
                 id="phone"
                 placeholder="Enter your phone number"
                 onChange={handleChange}
+                value={user && user.phone_number ? user.phone_number : ""}
+                readOnly
                 required
               />
+              {validationErrors.phone && (
+                <span className="AdoptionForm__validationError">
+                  {validationErrors.phone}
+                </span>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="address">Your Address:</label>
@@ -133,6 +210,8 @@ export function AdoptionForm(props) {
                 id="address"
                 placeholder="Enter your address"
                 onChange={handleChange}
+                value={user && user.street_address ? user.street_address : ""}
+                readOnly
                 required
               />
             </div>
@@ -243,13 +322,24 @@ export function AdoptionForm(props) {
               ></textarea>
             </div>
             <div className="center">
-              <Link to={`/applications/`} className="Button__purpleOutline">
+              <button
+                type="submit"
+                className={`Button__purpleOutline ${
+                  !isFormValid && buttonClicked ? "disabled" : ""
+                }`}
+              >
                 Send Application
-              </Link>
+              </button>
+
+              {!isFormValid && buttonClicked && (
+                <p className="AdoptionForm__errorMessage">
+                  Please fill out all required fields correctly.
+                </p>
+              )}
             </div>
           </form>
         </div>
       </div>
     </div>
   );
-}
+});
