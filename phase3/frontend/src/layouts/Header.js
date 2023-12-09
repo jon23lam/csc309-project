@@ -67,10 +67,6 @@ export const Header = observer((props) => {
         <div className="HeaderItem__manage">
           <div className="Notification__button">
             <div className="Notification__dot"></div>
-            <button
-              // Add onclick for notifications
-              className="dropbtn"
-            >
             <button 
               onClick={() => navigate('/notifications')}
               className="dropbtn">

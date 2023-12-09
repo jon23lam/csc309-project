@@ -97,7 +97,8 @@ function App() {
 
                       path="/shelterDetail/:id/"
                       element={<ShelterDetail />}
-
+                    />
+                    <Route
                       path="/notifications"
                       element={<Notifications />}
                     />

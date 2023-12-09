@@ -14,6 +14,9 @@ const GET_APPLICATIONS_STATUS_ENDPOINT = (status) =>
 const GET_APPLICATIONS_SORTED_ENDPOINT = (sort) =>
   endpoint(`api/applications/application/${sort}/`);
 
+const GET_APPLICATION_USERS = (application_id) => 
+  endpoint(`api/applications/application/${application_id}/users/`)
+
 export async function postApplicationEndpoint(payload, listingId) {
   const response = await axiosRequests.axiosPost(
     endpoint(`api/applications/petlisting/${listingId}/application/`),
@@ -41,6 +44,15 @@ export async function getApplication(listingId) {
 
   return response;
 }
+
+export async function getApplicationUsers(application_id) {
+  const response = await axiosRequests.axiosGet(
+    GET_APPLICATION_USERS(application_id),
+  );
+
+  return response;
+}
+
 // ADD BACK FILTERS AS A PARAMATER AFTER
 export async function getApplications(page = 1) {
   const response = await axiosRequests.axiosGet(GET_APPLICATIONS_ENDPOINT);

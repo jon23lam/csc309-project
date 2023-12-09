@@ -1,23 +1,25 @@
-import { getNotifications } from "../../../requests/notifications";
+import { getNotifications, readNotification } from "../../../requests/notifications";
 import { useEffect, useState } from "react";
 import icon from "../../../assets/notification-bell.png";
 import unreadIcon from "../../../assets/unread-notification-bell.png"
+import { useNavigate } from "react-router-dom";
 
 import "./Notifications.scss"
 import { axiosGet } from "../../../requests/axiosRequests";
 
 export function Notifications() {
 
+    const navigate = useNavigate();
+
     const [notifications, setNotifications] = useState([]);
     const [nextPage, setNextPage] = useState(null);
 
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getNotifications().then((response) => {
           setNotifications(response.data.results);
           setNextPage(response.data.next);
-        }).finally(() => setLoading(false));
+        }).finally();
     }, []);
 
     const getNextPage = async () => {
@@ -28,8 +30,14 @@ export function Notifications() {
       setNextPage(next);
     }
 
-    const handleClick = (notificationId) => {
-      
+    const handleClick = async (notification) => {
+      await readNotification(notification.id)
+
+      if (notification.type === 'application' || notification.type === 'application_comment') {
+        navigate(`/applications/${notification.associated_id}/messages`);
+      } else {
+        navigate(`/shelterDetail/${notification.associated_id}`)
+      }
     }
 
     return (
@@ -38,7 +46,7 @@ export function Notifications() {
           <h1 className="HeaderText">Notifications</h1>
           <div className="NotificationsPage">
           {notifications.map((notification) => 
-            <div class="NotificationsPage__item" onClick={() => handleClick(notification.id)}>
+            <div class="NotificationsPage__item" onClick={() => handleClick(notification)}>
               {notification.read ? <img
                 src={icon}
                 alt="Notification Icon"
