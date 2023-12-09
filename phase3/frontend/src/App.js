@@ -17,12 +17,12 @@ import { HeaderRoute } from "./routes/HeaderRoute";
 import { ApplicationsPage } from "./pages/shelter/Applications/ApplicationsPage";
 import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
-import { SeekerSignup } from "./pages/signup/Seeker/Seeker";
-import { ShelterSignup } from "./pages/signup/Shelter/Shelter";
+import { Notifications } from "./pages/common/Notifications/Notifications";
+import {SeekerSignup} from "./pages/signup/Seeker/Seeker";
+import {ShelterSignup} from "./pages/signup/Shelter/Shelter";
 import { ShelterAccountUpdate } from "./pages/shelter/AccountUpdate/AccountUpdate";
 import { SeekerAccountUpdate } from "./pages/petseeker/AccountUpdate/AccountUpdate";
-import { Landing } from "./pages/landing/Landing";
-import { Notifications } from "./pages/common/Notifications/Notifications";
+import {Landing} from "./pages/landing/Landing";
 
 import "./App.scss";
 
@@ -63,6 +63,11 @@ function App() {
                     </Route>
 
                     <Route path="" element={<SeekerRoute />}>
+                      <Route path="/search" element={<SearchPage />} />
+                      <Route
+                        path="/seekerAccountDetails"
+                        element={<SeekerAccountUpdate />}
+                      />
                       <Route path="/search/list/" element={<SearchPage />} />
                       <Route
                         path="/seekerAccountDetails"
