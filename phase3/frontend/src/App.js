@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login } from "./pages/public/Login/Login";
 import { NotFound } from "./pages/public/NotFound/NotFound";
 import { SearchPage } from "./pages/petseeker/Search/SearchPage";
@@ -17,9 +17,9 @@ import { HeaderRoute } from "./routes/HeaderRoute";
 import { ApplicationsPage } from "./pages/shelter/Applications/ApplicationsPage";
 import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
-import {SeekerSignup} from "./pages/signup/Seeker/Seeker";
-import {ShelterSignup} from "./pages/signup/Shelter/Shelter";
-import {Landing} from "./pages/landing/Landing";
+import { SeekerSignup } from "./pages/signup/Seeker/Seeker";
+import { ShelterSignup } from "./pages/signup/Shelter/Shelter";
+import { Landing } from "./pages/landing/Landing";
 
 import "./App.scss";
 
