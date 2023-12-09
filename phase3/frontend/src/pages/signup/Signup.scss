@@ -18,6 +18,16 @@
   box-sizing: border-box;
 }
 
+.Signup__description {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
 .special-fields {
   margin: 0 10px 0 0;
   width: 15rem;

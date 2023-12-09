@@ -1,5 +1,6 @@
 import "../Signup.scss"
 import "../../../BaseStyles.scss"
+import "../../petseeker/Search/SearchPage.scss"
 import React, {useState} from "react";
 import {signup} from "../../../requests/signup";
 import {redirect} from "react-router-dom";
@@ -17,6 +18,7 @@ export function ShelterSignup () {
         email: "",
         password: "",
         password_confirm: "",
+        description: "",
         role: "shelter"
     });
 
@@ -123,6 +125,11 @@ export function ShelterSignup () {
                             <label htmlFor="password_confirm" className="signup-labels">Confirm Password:</label>
                             <input type="password" id="password_confirm" name="password_confirm"
                                    className="TextField__PurpleOutline signup-fields" placeholder="Confirm Password" onChange={handleChange} required />
+                        </div>
+                        <div className="Filters__filterItem">
+                            <label htmlFor="description" className="signup-labels">Shelter Description:</label>
+                            <textarea id="description" name="description"
+                                   className="TextField__PurpleOutline Signup__description" placeholder="Shelter Description" onChange={handleChange} required />
                         </div>
                         <div className="signup-button">
                             <button className="Button__purpleOutline signup-button" onClick={handleSubmit}>Sign Up</button>

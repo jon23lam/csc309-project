@@ -19,6 +19,8 @@ import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
 import { SeekerSignup } from "./pages/signup/Seeker/Seeker";
 import { ShelterSignup } from "./pages/signup/Shelter/Shelter";
+import { ShelterAccountUpdate } from "./pages/shelter/AccountUpdate/AccountUpdate";
+import { SeekerAccountUpdate } from "./pages/petseeker/AccountUpdate/AccountUpdate";
 import { Landing } from "./pages/landing/Landing";
 import { Notifications } from "./pages/common/Notifications/Notifications";
 
@@ -54,10 +56,18 @@ function App() {
                         path="/editlisting/:id/"
                         element={<PetListingEditor />}
                       />
+                      <Route
+                        path="/shelterAccountDetails"
+                        element={<ShelterAccountUpdate />}
+                      />
                     </Route>
 
                     <Route path="" element={<SeekerRoute />}>
                       <Route path="/search/list/" element={<SearchPage />} />
+                      <Route
+                        path="/seekerAccountDetails"
+                        element={<SeekerAccountUpdate />}
+                      />
                     </Route>
 
                     <Route
