@@ -27,7 +27,8 @@ class ShelterCommentListCreateAPIView(APIView):
                     title='New comment',
                     body_text=f'{request.user.username} commented on your shelter profile',
                     type='shelter_comment',
-                    comment=comment
+                    comment=comment,
+                    associated_id=shelter_id
                 )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -98,7 +99,8 @@ class ApplicationCommentListAPIView(APIView):
                 title='New comment',
                 body_text=f'{request.user.username} commented on your application',
                 type='application_comment',
-                comment=comment
+                comment=comment,
+                associated_id=application.id
             )
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
