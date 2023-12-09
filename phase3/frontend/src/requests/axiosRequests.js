@@ -66,7 +66,7 @@ export async function axiosDelete(endpoint) {
       "Content-Type": "application/json",
       Accept: "application/json",
       "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
-    },
+    }
   });
 
   return response;
