@@ -71,20 +71,11 @@ export const Header = observer((props) => {
               // Add onclick for notifications
               className="dropbtn"
             >
+            <button 
+              onClick={() => navigate('/notifications')}
+              className="dropbtn">
               Notifications
             </button>
-            <div id="notificationsDropdown" className="Notification__dropdown">
-              {/* Put notifications here */}
-
-              <div
-                className="Notification__seeAll"
-                // onClick="location.href='../Notifications/Notifications.html';"
-              >
-                <div className="Notification__seeAllText">
-                  See all notifications
-                </div>
-              </div>
-            </div>
           </div>
           <button
             className="Button__purpleOutline"

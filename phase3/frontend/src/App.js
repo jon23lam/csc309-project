@@ -17,6 +17,7 @@ import { HeaderRoute } from "./routes/HeaderRoute";
 import { ApplicationsPage } from "./pages/shelter/Applications/ApplicationsPage";
 import { CommentsPage } from "./pages/shelter/Comments/CommentsPage";
 import { PetDetailPage } from "./pages/petseeker/Detail/PetDetail/PetDetailPage";
+import { Notifications } from "./pages/common/Notifications/Notifications";
 import {SeekerSignup} from "./pages/signup/Seeker/Seeker";
 import {ShelterSignup} from "./pages/signup/Shelter/Shelter";
 import { ShelterAccountUpdate } from "./pages/shelter/AccountUpdate/AccountUpdate";
@@ -89,8 +90,12 @@ function App() {
                       element={<StrayAnimalPage />}
                     />
                     <Route
+
                       path="/shelterDetail/:id/"
                       element={<ShelterDetail />}
+
+                      path="/notifications"
+                      element={<Notifications />}
                     />
                   </Route>
                 </Route>
