@@ -18,6 +18,8 @@ export function SeekerSignup() {
         role: "seeker"
     });
 
+    const [image, setImage] = useState({});
+
     const GENDER_OPTIONS = [
         { value: "", label: "Select" },
         { value: "male", label: "Male" },
@@ -29,9 +31,18 @@ export function SeekerSignup() {
         setFormData({...formData, [id]: value});
     }
 
+    const handleImage = (event) => {
+        setImage(event.target.files[0]);
+    }
+
     const handleSubmit = async () => {
         try {
-            const response = await signup(formData);
+            let submitData = new FormData();
+            for (const entry in formData) {
+                submitData.append(entry, formData[entry])
+            }
+            submitData.append("image", image);
+            const response = await signup(submitData);
             if (response.status === 200) {
                 redirect("/search");
             }
@@ -94,6 +105,10 @@ export function SeekerSignup() {
                             <label htmlFor="password_confirm" className="signup-labels">Confirm Password:</label>
                             <input type="password" id="password_confirm" name="password_confirm"
                                    className="TextField__PurpleOutline signup-fields" placeholder="Confirm Password" onChange={handleChange} required />
+                        </div>
+                        <div>
+                            <label for="image">Image:</label>
+                            <input type="file" id="image" name="image" class="TextField__PurpleOutline" onChange={handleImage}></input>
                         </div>
                         <div className="signup-button">
                             <button className="Button__purpleOutline signup-button" onClick={handleSubmit}>Sign Up</button>

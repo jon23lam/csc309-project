@@ -1,4 +1,4 @@
-import { makeAutoObservable, action } from "mobx";
+import { makeAutoObservable, action, computed } from "mobx";
 import { PetListingsStore } from "./PetListingsStore";
 import { ApplicationStore } from "./ApplicationStore";
 import { SeekerShelterStore } from "./SeekerShelterStore";
@@ -39,7 +39,9 @@ export class RootStore {
     }
 
     makeAutoObservable(this, {
-      resetRootStore: action
+      resetRootStore: action,
+      location: computed 
+      
     });
 
   }
@@ -47,6 +49,14 @@ export class RootStore {
   resetRootStore = () => {
     this.petListingsStore = new PetListingsStore(this);
     this.strayAnimalsStore = new StrayAnimalsStore(this);
+  }
+
+  get location() {
+    return {
+      locationOn: this.locationOn,
+      latitude: this.latitude,
+      longitude: this.longitude,
+    };
   }
 
 }
